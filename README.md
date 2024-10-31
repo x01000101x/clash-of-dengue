@@ -68,14 +68,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## API LISTS
 
 1. REGISTER
-{URL}/api/auth/register
+- {URL}/api/auth/register
 
 2. LOGIN
-{URL}/api/auth/login
+- {URL}/api/auth/login
 
 3. LOGOUT
-{URL}/api/auth/logout
+- {URL}/api/auth/logout
 
 4. TEST UDAH LOGIN/LOGOUT
-{URL}/api/auth/test
+- {URL}/api/auth/test
 
