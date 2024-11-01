@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Models\User;
+use App\Models\{User,Score};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +50,10 @@ class UserController extends Controller
                 'username' => $request->username,
                 'school_name' => $request->school_name,
                 'password' => Hash::make($request->password)
+            ]);
+
+            $user = Score::create([
+                'score_id' => $user->id,
             ]);
 
             return response()->json([
@@ -122,6 +126,42 @@ class UserController extends Controller
             ], 200);
 
         } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getUsers()
+    {
+        try{
+            $user = User::get();
+
+            return response()->json([
+                'status' => true,
+                'response' => $user
+            ], 200);
+        }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getUserById($id)
+    {
+        try{
+            $user = User::where('id', $id)->first();
+
+            return response()->json([
+                'status' => true,
+                'response' => $user
+            ], 200);
+        }
+        catch(\Throwable $th){
             return response()->json([
                 'status' => false,
                 'message' => $th->getMessage()
