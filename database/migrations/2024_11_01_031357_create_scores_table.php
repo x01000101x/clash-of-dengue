@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->string('questions');
-            $table->string('answers');
-            $table->string('points');
-            $table->string('session');
-            $table->string('type');
+            $table->string('score_id')->unique();
+            $table->string('correct_answer')->default("0");
+            $table->string('false_answer')->default("0");
+            $table->string('total_score')->default("0");
+            $table->string('rank')->nullable();
             $table->timestamps();
         });
     }
