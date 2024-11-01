@@ -132,4 +132,40 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    public function getUsers()
+    {
+        try{
+            $user = User::get();
+
+            return response()->json([
+                'status' => true,
+                'response' => $user
+            ], 200);
+        }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getUserById($id)
+    {
+        try{
+            $user = User::where('id', $id)->first();
+
+            return response()->json([
+                'status' => true,
+                'response' => $user
+            ], 200);
+        }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 }
