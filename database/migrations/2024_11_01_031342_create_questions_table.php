@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('option_e');
             $table->string('answer');
             $table->string('point');
-            $table->string('time');
+            $table->string('time')->nullable();
             $table->timestamps();
         });
     }
