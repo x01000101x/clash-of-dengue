@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\{UserController,ScoreController};
+use App\Http\Controllers\Api\{QuestionController, UserController,ScoreController};
 
 // Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //     return $request->user();
@@ -20,6 +20,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //Users API
     Route::get('/user', [UserController::class, 'getUsers']);
     Route::get('/user/{id}', [UserController::class, 'getUserById']);
+
+    //Questions API
+    Route::get('/question', [QuestionController::class, 'getQuestions']);
+    Route::get('/question/{id}', [QuestionController::class, 'getQuestionId']);
+    Route::post('/question', [QuestionController::class, 'PostQuestion']);
+
 });
 
 //Auth API
