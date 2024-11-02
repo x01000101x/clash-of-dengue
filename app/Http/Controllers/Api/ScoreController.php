@@ -72,8 +72,6 @@ class ScoreController extends Controller
                     'correct_answer' => strval($isCorrect),
                 ]);
             }else{
-
-
                     $newScore = intval($score->total_score) - intval(request('score'));
                     $isCorrect = 1 + intval($score->false_answer);
 
