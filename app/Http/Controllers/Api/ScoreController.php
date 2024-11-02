@@ -51,43 +51,53 @@ class ScoreController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function updateScore($id)
     {
-        //
+        try{
+            $score = Score::where('score_id', $id)->first();
+
+            $correct = request('is_correct');
+
+            $newScore = intval(request('score')) - intval($score->total_score);
+
+
+
+            if($correct == "Y"){
+                $newScore = intval(request('score')) + intval($score->total_score);
+
+                $isCorrect = 1 + intval($score->correct_answer);
+
+                $score->update([
+                    'total_score' => strval($newScore),
+                    'correct_answer' => strval($isCorrect),
+                ]);
+            }else{
+                    $newScore = intval($score->total_score) - intval(request('score'));
+                    $isCorrect = 1 + intval($score->false_answer);
+
+
+                    if($newScore < 0){
+                        $newScore = 0;
+                    }
+
+                $score->update([
+                    'total_score' => strval($newScore),
+                    'false_answer' => strval($isCorrect)
+                ]);
+
+            }
+
+            return response()->json([
+                'status' => true,
+                'response' => $score
+            ], 200);
+        }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Score $score)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Score $score)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Score $score)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Score $score)
-    {
-        //
-    }
 }

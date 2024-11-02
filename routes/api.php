@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //Scores API
     Route::get('/score', [ScoreController::class, 'getScores']);
     Route::get('/score/{id}', [ScoreController::class, 'getScoreById']);
+    Route::post('/score/{id}', [ScoreController::class, 'updateScore']);
 
     //Users API
     Route::get('/user', [UserController::class, 'getUsers']);
