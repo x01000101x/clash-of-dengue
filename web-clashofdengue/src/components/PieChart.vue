@@ -28,10 +28,15 @@
             },
           },
         }],
+        legend: {
+          show: true,
+          position: 'bottom', // Menempatkan legend di bawah chart
+          horizontalAlign: 'center', // Menyelaraskan legend ke tengah
+        },
         dataLabels: {
           enabled: true,
           style: {
-            colors: ['#ffffff'], // Color for data labels
+            colors: ['#ffffff'],
           },
           dropShadow: {
             enabled: true,
@@ -44,13 +49,12 @@
           formatter: function (val) {
             return `${val.toFixed(1)}%`; // Formats label as a percentage
           },
-          offsetX: 0, // Horizontal offset
           offsetY: 0, // Vertical offset
         },
         plotOptions: {
           pie: {
             dataLabels: {
-              offset: -10, // Moves the data labels closer to the center of each section
+              offset: -20, // Moves the data labels closer to the center of each section
             },
           },
         },

@@ -8,7 +8,7 @@
     <!-- Button Section -->
     <div class="button-container flex flex-col items-center">
       <template v-if="!viewProfile">
-        <h2>POINT SAAT INI:</h2>
+        <h2 class="header-point">POINT SAAT INI:</h2>
         <p class="points">180</p>
         <button @click="goToQuiz" class="new-game-button">NEW GAME</button>
       </template>
@@ -76,6 +76,9 @@ export default {
     goToQuiz() {
       this.$router.push('/quiz');
     },
+  },
+  async mounted() {
+    await this.$store.dispatch("ClashOfDengue/getScoreUser");
   },
 };
 </script>

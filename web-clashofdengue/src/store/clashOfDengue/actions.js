@@ -30,6 +30,7 @@ export const loginUser = async ({ commit }, request) => {
         }
 
         commit("setToken", res.token);
+        commit("setUserId", res.user_id);
         return res;
     } catch (err) {
         throw new Error(err.message);
@@ -42,6 +43,24 @@ export const logoutUser = async ({ getters }) => {
             token: getters.getToken,
         });
         console.log("res logout User", res);
+
+        if (res.status === false) {
+            throw new Error(res.message || "logout failed");
+        }
+
+        return res;
+    } catch (err) {
+        throw new Error("Network error: " + err.message);
+    }
+};
+
+export const getScoreUser = async ({ getters }) => {
+    try {
+        const res = await clashOfDengueService.getScore({
+            token: getters.getToken,
+            id: getters.getUserId,
+        });
+        console.log("res get score User", res);
 
         if (res.status === false) {
             throw new Error(res.message || "logout failed");
