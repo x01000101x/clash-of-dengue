@@ -13,6 +13,5 @@ module.exports = {
         "no-unused-vars": "warn",
         "vue/no-unused-vars": "warn",
         "vue/no-mutating-props": "error",
-        "comma-dangle": ["error", "always-multiline"], // Aturan untuk comma-dangle
     },
 };

@@ -37,12 +37,13 @@
       handleAnswer(selectedAnswer) {
         console.log('Selected Answer:', selectedAnswer);
         // Move to the next question or process the answer here
-        if (this.currentQuestionIndex < this.questions.length - 1) {
-          this.currentQuestionIndex++;
-          this.resetTimer();
-        } else {
-          // End the quiz
-          alert('Quiz selesai!');
+        if(selectedAnswer){          
+          if (this.currentQuestionIndex < this.questions.length - 1) {
+            this.currentQuestionIndex++;
+            this.resetTimer();
+          } else {
+            this.$router.push('/result');
+          }
         }
       },
       resetTimer() {

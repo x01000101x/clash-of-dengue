@@ -23,6 +23,7 @@
   
         <!-- Save Button -->
         <button class="save-button" @click="saveProfile">SAVE</button>
+        <button class="save-button" @click="logOut">LOG OUT</button>
       </div>
     </div>
 </template>
@@ -53,6 +54,15 @@
         alert('Profile saved');
         // Add logic to save profile data here
       },
+      async logOut() {
+        try {
+              await this.$store.dispatch("ClashOfDengue/logoutUser");
+              this.$router.push('/login');
+          } catch (error) {
+              console.error('logOut error:', error.message);
+              alert(error.message);
+          }
+      },
     },
   };
 </script>
@@ -69,7 +79,7 @@
   }
 
   .profile-container {
-    width: 300px;
+    width: 75%;
     margin: 0 auto;
     background-color: #ffa500; /* Orange background */
     border-radius: 15px;
@@ -109,6 +119,7 @@
   .form-group {
     margin: 15px 0;
     text-align: left;
+    width: 100%;
   }
   
   .form-group label {

@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Header Section -->
     <div class="header flex flex-col items-center">
-      <img src="@/assets/logo.png" alt="Clash Dengue" class="logo" />
+      <img src="@/assets/logo.png" alt="Clash Dengue" class="logo-home" />
     </div>
     
     <!-- Button Section -->

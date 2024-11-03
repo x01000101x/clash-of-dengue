@@ -3,6 +3,8 @@ import Dashboard from "../pages/Dashboard.vue";
 import PieChart from "../components/PieChart.vue";
 import Quiz from "../pages/Quiz.vue";
 import LeaderBoard from "@/pages/LeaderBoard.vue";
+import ResultAnswer from "@/components/ResultAnswer.vue";
+import Login from "@/pages/Login.vue";
 
 const routes = [
     {
@@ -24,6 +26,16 @@ const routes = [
         path: "/rank",
         name: "Rank",
         component: LeaderBoard,
+    },
+    {
+        path: "/result",
+        name: "Result",
+        component: ResultAnswer,
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Login,
     },
 ];
 
