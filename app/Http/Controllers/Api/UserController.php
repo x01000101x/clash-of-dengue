@@ -104,6 +104,8 @@ class UserController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Berhasil Login',
+                'user_id' => $user->id,
+                'session_id' => $user->session_id,
                 'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
 
