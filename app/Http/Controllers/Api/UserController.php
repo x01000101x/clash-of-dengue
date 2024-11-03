@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Models\User;
+use App\Models\{User,Score, UserSession};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+
 class UserController extends Controller
 {
 
@@ -29,6 +31,24 @@ class UserController extends Controller
     public function createUser(Request $request)
     {
         try {
+
+            $timezone = 'Asia/Jakarta';
+
+            $now = Carbon::now();
+
+            $now->setTimezone($timezone);
+
+                    $records = UserSession::where('dateFrom', '<=', $now)
+                    ->where('dateTo', '>=', $now)
+                    ->first();
+            if($records == null){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Maaf sesi tidak tersedia',
+                    'timeNow' => $now
+                ], 401);
+            }
+
             $validateUser = Validator::make($request->all(),
             [
                 'name' => 'required',
@@ -49,13 +69,18 @@ class UserController extends Controller
                 'name' => $request->name,
                 'username' => $request->username,
                 'school_name' => $request->school_name,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'session_id' => $records->id
+            ]);
+
+            $user = Score::create([
+                'score_id' => $user->id,
             ]);
 
             return response()->json([
                 'status' => true,
                 'message' => 'User Created Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
+                // 'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
 
         } catch (\Throwable $th) {
@@ -74,6 +99,25 @@ class UserController extends Controller
     public function loginUser(Request $request)
     {
         try {
+
+            $timezone = 'Asia/Jakarta';
+
+            $now = Carbon::now();
+
+            $now->setTimezone($timezone);
+
+            $records = UserSession::where('dateFrom', '<=', $now)
+            ->where('dateTo', '>=', $now)
+            ->first();
+
+            if($records == null){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Maaf sesi tidak tersedia',
+                    'timeNow' => $now
+                ], 401);
+            }
+
             $validateUser = Validator::make($request->all(),
             [
                 'username' => 'required',
@@ -100,6 +144,8 @@ class UserController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Berhasil Login',
+                'user_id' => $user->id,
+                'session_id' => $user->session_id,
                 'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
 
@@ -122,6 +168,42 @@ class UserController extends Controller
             ], 200);
 
         } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getUsers()
+    {
+        try{
+            $user = User::get();
+
+            return response()->json([
+                'status' => true,
+                'response' => $user
+            ], 200);
+        }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getUserById($id)
+    {
+        try{
+            $user = User::where('id', $id)->first();
+
+            return response()->json([
+                'status' => true,
+                'response' => $user
+            ], 200);
+        }
+        catch(\Throwable $th){
             return response()->json([
                 'status' => false,
                 'message' => $th->getMessage()
