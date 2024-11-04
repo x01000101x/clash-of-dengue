@@ -35,7 +35,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/session/{id}', [UserSessionController::class, 'getSessionById']);
 
 
+
 });
+//Forgot Password API
+Route::get('/forgot-password', [UserController::class, 'forgotPassword']);
+Route::post('/forgot-password', [UserController::class, 'forgotPasswordAction']);
+Route::post('/forgot-password-validate', [UserController::class, 'forgotPasswordValidateAction']);
+
 //Sessions API
 Route::post('/session', [UserSessionController::class, 'PostSession']);
 
