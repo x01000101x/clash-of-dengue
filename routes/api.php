@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //Users API
     Route::get('/user', [UserController::class, 'getUsers']);
     Route::get('/user/{id}', [UserController::class, 'getUserById']);
+    Route::patch('/user', [UserController::class, 'updateUser']);
 
     //Questions API
     Route::get('/question', [QuestionController::class, 'getQuestions']);

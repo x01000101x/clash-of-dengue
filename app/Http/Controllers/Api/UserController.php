@@ -210,4 +210,48 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    public function updateUser(Request $request)
+    {
+        try{
+
+        $user = User::where('id', $request->id)->first();
+
+        $updatedFields = [];
+
+        if ($request->has('name') && $request->name !== $user->name) {
+            $updatedFields['name'] = $request->name;
+        }
+
+        if ($request->has('username') && $request->username !== $user->username) {
+            $updatedFields['username'] = $request->username;
+        }
+
+        if ($request->has('school_name') && $request->school_name !== $user->school_name) {
+            $updatedFields['school_name'] = $request->school_name;
+        }
+
+        if ($request->has('email') && $request->email !== $user->email) {
+            $updatedFields['email'] = $request->email;
+        }
+
+        if ($request->has('password') && !empty($request->password)) {
+            $updatedFields['password'] = Hash::make($request->password);
+        }
+        if (!empty($updatedFields)) {
+            $user->update($updatedFields);
+        }
+
+        return response()->json([
+            'status' => true,
+            'response' => $user
+        ], 200);
+    }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 }
