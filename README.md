@@ -370,7 +370,60 @@ By Auth Token dari login
 }
 ```
 
-12. Edit User :
+12. GET Session :
+
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `GET`    | `/api/session`                    | GET Session info                   |
+
+
+#### Response
+```
+{
+    "status": true,
+    "response": [
+        {
+            "id": 1,
+            "dateFrom": "2024-11-03 10: 08: 18",
+            "dateTo": "2024-11-23 19: 08: 18",
+            "created_at": "2024-11-03T07:15:20.000000Z",
+            "updated_at": "2024-11-03T07:15:20.000000Z"
+        }
+    ]
+}
+```
+
+13. POST Session :
+
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `POST`    | `/api/session`                    | POST Session                 |
+
+#### Request
+
+```
+{
+    "dateFrom": "2024-11-03 10: 08: 18",
+    "dateTo": "2024-11-03 19: 08: 18"
+}
+```
+
+#### Response
+```
+{
+    "status": true,
+    "message": "Session Created Successfully",
+    "data": {
+        "dateFrom": "2024-11-03 10: 08: 18",
+        "dateTo": "2024-11-03 19: 08: 18",
+        "updated_at": "2024-11-04T04:22:17.000000Z",
+        "created_at": "2024-11-04T04:22:17.000000Z",
+        "id": 2
+    }
+}
+```
+
+14. Edit User :
 
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
