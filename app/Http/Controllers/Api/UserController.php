@@ -38,22 +38,22 @@ class UserController extends Controller
     {
         try {
 
-            $timezone = 'Asia/Jakarta';
+            // $timezone = 'Asia/Jakarta';
 
-            $now = Carbon::now();
+            // $now = Carbon::now();
 
-            $now->setTimezone($timezone);
+            // $now->setTimezone($timezone);
 
-                    $records = UserSession::where('dateFrom', '<=', $now)
-                    ->where('dateTo', '>=', $now)
-                    ->first();
-            if($records == null){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Maaf sesi tidak tersedia',
-                    'timeNow' => $now
-                ], 401);
-            }
+            //         $records = UserSession::where('dateFrom', '<=', $now)
+            //         ->where('dateTo', '>=', $now)
+            //         ->first();
+            // if($records == null){
+            //     return response()->json([
+            //         'status' => false,
+            //         'message' => 'Maaf sesi tidak tersedia',
+            //         'timeNow' => $now
+            //     ], 401);
+            // }
 
             $validateUser = Validator::make($request->all(),
             [
@@ -76,7 +76,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 'school_name' => $request->school_name,
                 'password' => Hash::make($request->password),
-                'session_id' => $records->id
+                'session_id' => ""
             ]);
 
             $user = Score::create([
@@ -106,23 +106,23 @@ class UserController extends Controller
     {
         try {
 
-            $timezone = 'Asia/Jakarta';
+            // $timezone = 'Asia/Jakarta';
 
-            $now = Carbon::now();
+            // $now = Carbon::now();
 
-            $now->setTimezone($timezone);
+            // $now->setTimezone($timezone);
 
-            $records = UserSession::where('dateFrom', '<=', $now)
-            ->where('dateTo', '>=', $now)
-            ->first();
+            // $records = UserSession::where('dateFrom', '<=', $now)
+            // ->where('dateTo', '>=', $now)
+            // ->first();
 
-            if($records == null){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Maaf sesi tidak tersedia',
-                    'timeNow' => $now
-                ], 401);
-            }
+            // if($records == null){
+            //     return response()->json([
+            //         'status' => false,
+            //         'message' => 'Maaf sesi tidak tersedia',
+            //         'timeNow' => $now
+            //     ], 401);
+            // }
 
             $validateUser = Validator::make($request->all(),
             [
@@ -151,7 +151,7 @@ class UserController extends Controller
                 'status' => true,
                 'message' => 'Berhasil Login',
                 'user_id' => $user->id,
-                'session_id' => $user->session_id,
+                // 'session_id' => $user->session_id,
                 'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
 
@@ -385,7 +385,7 @@ class UserController extends Controller
             ], 500);
         }
     }
-    }
+}
 
 
 

@@ -60,7 +60,6 @@ class QuestionController extends Controller
                 'option_b' => 'required',
                 'option_c' => 'required',
                 'option_d' => 'required',
-                'option_e' => 'required',
                 'answer' => 'required',
                 'point' => 'required',
             ]);
@@ -81,7 +80,6 @@ class QuestionController extends Controller
                 'option_b' => $request->option_b,
                 'option_c' => $request->option_c,
                 'option_d' => $request->option_d,
-                'option_e' => $request->option_e,
                 'answer' => $request->answer,
                 'point' => $request->point,
                 'time' => $request->time

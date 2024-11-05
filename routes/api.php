@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //Sessions API
     Route::get('/session', [UserSessionController::class, 'getSession']);
     Route::get('/session/{id}', [UserSessionController::class, 'getSessionById']);
+    Route::post('/validate-session', [UserSessionController::class, 'validateSession']);
 
 
 
