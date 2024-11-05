@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //Questions API
     Route::get('/question', [QuestionController::class, 'getQuestions']);
     Route::get('/question/{id}', [QuestionController::class, 'getQuestionId']);
+    Route::post('/question-session', [QuestionController::class, 'getQuestionSession']);
     Route::post('/question', [QuestionController::class, 'PostQuestion']);
 
 
