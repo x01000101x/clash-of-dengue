@@ -27,15 +27,23 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //Questions API
     Route::get('/question', [QuestionController::class, 'getQuestions']);
     Route::get('/question/{id}', [QuestionController::class, 'getQuestionId']);
+    Route::post('/question-session', [QuestionController::class, 'getQuestionSession']);
     Route::post('/question', [QuestionController::class, 'PostQuestion']);
 
 
     //Sessions API
     Route::get('/session', [UserSessionController::class, 'getSession']);
     Route::get('/session/{id}', [UserSessionController::class, 'getSessionById']);
+    Route::post('/validate-session', [UserSessionController::class, 'validateSession']);
+
 
 
 });
+//Forgot Password API
+Route::get('/forgot-password', [UserController::class, 'forgotPassword']);
+Route::post('/forgot-password', [UserController::class, 'forgotPasswordAction']);
+Route::post('/forgot-password-validate', [UserController::class, 'forgotPasswordValidateAction']);
+
 //Sessions API
 Route::post('/session', [UserSessionController::class, 'PostSession']);
 

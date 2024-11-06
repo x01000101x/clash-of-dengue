@@ -60,7 +60,6 @@ class QuestionController extends Controller
                 'option_b' => 'required',
                 'option_c' => 'required',
                 'option_d' => 'required',
-                'option_e' => 'required',
                 'answer' => 'required',
                 'point' => 'required',
             ]);
@@ -81,7 +80,6 @@ class QuestionController extends Controller
                 'option_b' => $request->option_b,
                 'option_c' => $request->option_c,
                 'option_d' => $request->option_d,
-                'option_e' => $request->option_e,
                 'answer' => $request->answer,
                 'point' => $request->point,
                 'time' => $request->time
@@ -93,6 +91,24 @@ class QuestionController extends Controller
                 'data' => $question
             ], 200);
 
+        }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getQuestionSession(Request $request)
+    {
+        try{
+            $question = Question::where('session_id', $request->session_id)->get();
+
+            return response()->json([
+                'status' => true,
+                'response' => $question
+            ], 200);
         }
         catch(\Throwable $th){
             return response()->json([

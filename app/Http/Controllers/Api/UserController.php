@@ -1,13 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Models\{User,Score, UserSession};
+use App\Models\{PasswordResetToken, User,Score, UserSession};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+
+
 
 class UserController extends Controller
 {
@@ -32,22 +38,22 @@ class UserController extends Controller
     {
         try {
 
-            $timezone = 'Asia/Jakarta';
+            // $timezone = 'Asia/Jakarta';
 
-            $now = Carbon::now();
+            // $now = Carbon::now();
 
-            $now->setTimezone($timezone);
+            // $now->setTimezone($timezone);
 
-                    $records = UserSession::where('dateFrom', '<=', $now)
-                    ->where('dateTo', '>=', $now)
-                    ->first();
-            if($records == null){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Maaf sesi tidak tersedia',
-                    'timeNow' => $now
-                ], 401);
-            }
+            //         $records = UserSession::where('dateFrom', '<=', $now)
+            //         ->where('dateTo', '>=', $now)
+            //         ->first();
+            // if($records == null){
+            //     return response()->json([
+            //         'status' => false,
+            //         'message' => 'Maaf sesi tidak tersedia',
+            //         'timeNow' => $now
+            //     ], 401);
+            // }
 
             $validateUser = Validator::make($request->all(),
             [
@@ -70,7 +76,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 'school_name' => $request->school_name,
                 'password' => Hash::make($request->password),
-                'session_id' => $records->id
+                'session_id' => ""
             ]);
 
             $user = Score::create([
@@ -100,23 +106,23 @@ class UserController extends Controller
     {
         try {
 
-            $timezone = 'Asia/Jakarta';
+            // $timezone = 'Asia/Jakarta';
 
-            $now = Carbon::now();
+            // $now = Carbon::now();
 
-            $now->setTimezone($timezone);
+            // $now->setTimezone($timezone);
 
-            $records = UserSession::where('dateFrom', '<=', $now)
-            ->where('dateTo', '>=', $now)
-            ->first();
+            // $records = UserSession::where('dateFrom', '<=', $now)
+            // ->where('dateTo', '>=', $now)
+            // ->first();
 
-            if($records == null){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Maaf sesi tidak tersedia',
-                    'timeNow' => $now
-                ], 401);
-            }
+            // if($records == null){
+            //     return response()->json([
+            //         'status' => false,
+            //         'message' => 'Maaf sesi tidak tersedia',
+            //         'timeNow' => $now
+            //     ], 401);
+            // }
 
             $validateUser = Validator::make($request->all(),
             [
@@ -145,7 +151,7 @@ class UserController extends Controller
                 'status' => true,
                 'message' => 'Berhasil Login',
                 'user_id' => $user->id,
-                'session_id' => $user->session_id,
+                // 'session_id' => $user->session_id,
                 'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
 
@@ -244,6 +250,7 @@ class UserController extends Controller
 
         return response()->json([
             'status' => true,
+            'message' => 'Updated Successfuly',
             'response' => $user
         ], 200);
     }
@@ -254,4 +261,131 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    public function forgotPasswordAction(Request $request){
+        try{
+
+            $validateEmail = Validator::make($request->all(),
+            [
+                'email' => 'required|email|exists:users,email',
+            ]);
+
+            if($validateEmail->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validation error',
+                    'errors' => $validateEmail->errors()
+                ], 401);
+            }
+
+            $token = Str::random(60);
+
+            PasswordResetToken::updateOrCreate(
+                [
+                    'email' => $request->email
+                ],
+                [
+                    'email' => $request->email,
+                    'token' => $token,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]
+            );
+
+            Mail::to($request->email)->send(new ResetPasswordMail($token));
+
+            return response()->json([
+                'status' => true,
+                'response' => $request->email
+            ], 200);
+        }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function forgotPasswordValidate(Request $request, $token){
+        try{
+
+            $token = PasswordResetToken::where('token', $token)->first();
+
+            if (!$token){
+                return response()->json([
+                    'status' => false,
+                    'response' => "token tidak valid"
+                ], 401);
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'berhasil mengirim link reset password, silahkan cek email anda',
+                'response' => $request->email
+            ], 200);
+        }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function forgotPasswordValidateAction(Request $request){
+        try{
+
+            $validateEmail = Validator::make($request->all(),
+            [
+                'password' => 'required',
+            ]);
+
+            if($validateEmail->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validation error',
+                    'errors' => $validateEmail->errors()
+                ], 401);
+            }
+
+            $token = PasswordResetToken::where('token', $request->token)->first();
+
+            if (!$token){
+                return response()->json([
+                    'status' => false,
+                    'response' => "Token tidak valid"
+                ], 401);
+            }
+
+            $user = User::where('email', $token->email)->first();
+
+            if (!$token){
+                return response()->json([
+                    'status' => false,
+                    'response' => "Email tidak terdaftar"
+                ], 401);
+            }
+
+           $user->update([
+            'password' => Hash::make($request->password)
+           ]);
+
+           $token->delete();
+
+            return response()->json([
+                'status' => true,
+                'response' => "Sukses merubah password"
+            ], 200);
+        }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 }
+
+
+
