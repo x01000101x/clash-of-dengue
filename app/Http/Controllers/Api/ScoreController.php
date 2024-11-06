@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\{Score};
+use App\Models\{Score, User};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -97,6 +97,27 @@ class ScoreController extends Controller
             ], 500);
         }
     }
+
+    public function getHighScore()
+    {
+        try{
+            $score = User::leftJoin('scores', 'users.id', '=', 'scores.score_id')
+            ->select('users.*','scores.*')->orderBy('scores.total_score', 'desc')->get();
+
+            return response()->json([
+                'status' => true,
+                'response' => $score
+            ], 200);
+        }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+
 
     // public function updateScore($id)
     // {
