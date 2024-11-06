@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body,
+    html {
+        margin: auto;
+        padding: 0;
+        overflow: auto;
+        background-color: transparent;
+        font-family: "Roboto", sans-serif;
+    }
+}
+
+/* Optionally, set Roboto as the default font for all text classes in Tailwind */
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    div,
+    button {
+        font-family: "Roboto", sans-serif;
+    }
+}
+
+.header {
+    width: 100%;
+}

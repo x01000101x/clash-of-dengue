@@ -1,0 +1,17 @@
+export const getToken = (state) => state.token;
+export const getUserId = (state) => state.user_id;
+export const getSessionId = (state) => state.session_id;
+export const getScoreUser = (state) => state.score_user;
+export const getUserProfile = (state) => state.user_profile;
+export const getQuiz = (state) => state.quiz;
+export const getSession = (state) => state.session;
+export const getLastSession = (state) => state.lastSession;
+export const getShowLoading = (state) => state.showLoading;
+export const getShowDialog = (state) => state.showDialog;
+export const getMessageDialog = (state) => state.messageDialog;
+export const getIconDialog = (state) => state.iconDialog;
+export const getCurrentQuiz = (state) => state.currentQuiz;
+export const getAllUser = (state) => state.allUser;
+export const getAllRank = (state) => state.allRank;
+export const getUserRank = (state) => state.myRank;
+export const getAvatars = (state) => state.fotoAva;

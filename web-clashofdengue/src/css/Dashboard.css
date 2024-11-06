@@ -1,0 +1,210 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.logo-home {
+  width: 250px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.points {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #ff007f;
+  border-radius: 30px 30px 0 0;
+  color: white;
+  height: calc(100% - 100px);
+  flex: 1;
+}
+
+.new-game-button {
+  background-color: #ffa500;
+  color: white;
+  padding: 2% 20%;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.icon {
+  background-color: #ffa500;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 30px;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.menu-logout {
+  position: absolute; /* Menempatkan gambar di posisi tetap */
+  top: 10px; /* Jarak dari bawah kontainer */
+  right: 10px; /* Jarak dari kanan kontainer */
+  height: auto; /* Ukuran tinggi gambar */
+  z-index: 10; /* Memastikan gambar berada di atas elemen lainnya */
+  transition: transform 0.3s ease;
+}
+
+.icon-logout {
+  background-color: #ffa500;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 30px;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.icon-image-dashboard {
+  width: 50px;
+  height: auto;
+}
+
+.ranking {
+  flex: 1;
+  background-color: #e0e0e0;
+  color: #2d93a5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px 30px 0 0;
+  height: calc(100% - 100px);
+}
+
+.title-rank {
+  margin-top: 10px;
+}
+
+.rank {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.profile {
+  background-color: #ffa500;
+  color: #2d93a5;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  border-radius: 30px 30px 0 0;
+  flex: 1;
+  height: calc(100% - 100px);
+  overflow-y: auto;
+}
+
+.pie-chart {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: #ff007f;
+  border-radius: 50%;
+  margin: 1rem auto;
+}
+
+.pie-chart-inner {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
+  background-color: #ffcc00;
+  border-radius: 50%;
+}
+
+.percentage {
+  position: absolute;
+  color: #ff007f;
+  font-weight: bold;
+}
+
+.percentage.secondary {
+  color: #ffcc00;
+  top: 40%;
+}
+
+.labels {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+}
+
+.wrong {
+  color: #ff007f;
+}
+
+.correct {
+  color: #ffcc00;
+}
+
+.icon-circle {
+  background-color: #ffa500;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-point {
+  margin-top: 10%;
+}
+
+.empty-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h1 {
+  color: #ffa500;
+  font-size: 25px;
+  font-weight: bold;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+h3 {
+  color: #0097a7;
+  font-size: 20px;
+  font-weight: bold;
+}
