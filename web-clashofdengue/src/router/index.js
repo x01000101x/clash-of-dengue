@@ -12,6 +12,7 @@ import LoadingSpiner from "@/components/loadingSpiner.vue";
 import ProfilePage from "@/pages/ProfilePage.vue";
 import LandingPage from "@/pages/web/LandingPage.vue";
 import LandingPageMobile from "@/pages/mobile/LandingPageMobile.vue";
+import Ketentuan from "@/pages/web/Ketentuan.vue";
 
 const routes = [
     {
@@ -73,6 +74,11 @@ const routes = [
         path: "/landing",
         name: "Landing",
         component: LandingPage,
+    },
+    {
+        path: "/term",
+        name: "Term",
+        component: Ketentuan,
     },
     {
         path: "/landing/mobile",

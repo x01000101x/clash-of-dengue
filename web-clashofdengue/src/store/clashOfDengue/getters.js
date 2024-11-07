@@ -15,3 +15,4 @@ export const getAllUser = (state) => state.allUser;
 export const getAllRank = (state) => state.allRank;
 export const getUserRank = (state) => state.myRank;
 export const getAvatars = (state) => state.fotoAva;
+export const getLorem = (state) => state.lorem;
