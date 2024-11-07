@@ -24,6 +24,7 @@
                 </div>
                 <div class="button-container-regis">
                     <button type="submit" class="register-button" @click="updateUser">UPDATE</button>
+                    <button type="submit" class="register-button" @click="goToProfile">BACK</button>
                 </div>
             </form>
         </div>
@@ -117,6 +118,9 @@ export default {
                 }, 100); // Check every 100ms
             });
         },
+        goToProfile(){
+            this.$router.push('/regis/profile');
+        }
     },
 };
 </script>
@@ -216,6 +220,7 @@ input {
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    margin-right: 15px;
 }
 
 .maskot-female {

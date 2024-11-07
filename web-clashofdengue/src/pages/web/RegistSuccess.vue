@@ -6,11 +6,9 @@
         <div class="mosquito-logo">
             <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
         </div>
-        <div>
+        <div class="content">
             <img src="@/assets/cod/sucess-regis-new.png" alt="Sukses Regis" />
-            <div class="content-container">
-                <p>Tanggal periode pertandingan: <strong>23 - 27 November 2024</strong></p>
-            </div>
+            <img src="@/assets/cod/sucess-regis-capt.png" alt="Sukses Regis capt" />
         </div>
         <div class="maskot-female">
             <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
@@ -51,6 +49,19 @@ export default {
     overflow: hidden;
 }
 
+.content{
+    max-width: 40vw;
+    max-height: 90vh;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.content img {
+    width: 100%;
+}
+
 .content-container {
     background-color: white;
     border-radius: 25px;
@@ -58,7 +69,6 @@ export default {
     max-width: 90vw;
     max-height: 60vh; /* Limit height for mobile */
     overflow-y: auto; /* Enable vertical scrolling */
-    margin: 40px 0px;
     width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     color: var(--primary-color);
@@ -97,7 +107,7 @@ export default {
 }
 
 .mosquito-logo img {
-    max-width: 250px;
+    max-width: 150px;
     height: auto;
 }
 
@@ -152,17 +162,21 @@ export default {
 }
 
 /* Media Query for mobile view */
-@media (max-width: 768px) {
+@media (max-width: 1185px) {
     .sponsor-logos img {
         max-width: 80%;
     }
+
+    .content{
+    max-width: 50vw;
+    max-height: 90vh;
+}
 
     .content-container {
         padding: 20px 30px;
         margin: 20px;
         max-height: 70vh; /* Limit height for mobile */
         overflow-y: auto; /* Enable vertical scrolling */
-        margin-top: 20px; /* Space below sponsor logos */
     }
 
     .content-container p {
@@ -183,6 +197,13 @@ export default {
 
     .mosquito-logo {
     top: 15%;
+}
+}
+
+@media (max-height: 850px) {
+    .content img {
+    max-height: 500px;
+    max-width:  500px;
 }
 }
 </style>

@@ -181,7 +181,6 @@ input {
     padding: 15px; /* Increased padding for better appearance */
     border: 1px solid #ccc; /* Border */
     border-radius: 5px; /* Rounded corners */
-    background-color: var(--button-bg);
     color: var(--secondary-color);
     font-size: 18px; 
     font-weight: 400;
@@ -275,7 +274,6 @@ input {
         width: 100%; /* Full width */
         border: 1px solid #ccc; /* Border */
         border-radius: 5px; /* Rounded corners */
-        background-color: var(--button-bg);
         color: var(--secondary-color);
         font-size: 15px; 
         font-weight: 400;
@@ -325,7 +323,6 @@ input {
         width: 100%; /* Full width */
         border: 1px solid #ccc; /* Border */
         border-radius: 5px; /* Rounded corners */
-        background-color: var(--button-bg);
         color: var(--secondary-color);
         font-size: 15px; 
         font-weight: 400;

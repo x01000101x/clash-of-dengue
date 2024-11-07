@@ -15,10 +15,11 @@ import Registrasi from "@/pages/web/Registrasi.vue";
 import RegistSuccess from "@/pages/web/RegistSuccess.vue";
 import ProfileRegis from "@/pages/web/ProfileRegis.vue";
 import HalamanLanding from "@/pages/controllerPage/HalamanLanding.vue";
-import LoginWeb from "@/pages/web/LoginWeb.vue";
 import HalamanKetentuan from "@/pages/controllerPage/HalamanKetentuan.vue";
 import HalamanHitung from "@/pages/controllerPage/HalamanHitung.vue";
 import HalamanEdit from "@/pages/controllerPage/HalamanEdit.vue";
+import LoginNew from "@/pages/web/LoginNew.vue";
+import ForgotPass from "@/pages/web/ForgotPass.vue";
 
 const routes = [
     {
@@ -119,7 +120,7 @@ const routes = [
     {
         path: "/login",
         name: "Login",
-        component: LoginWeb,
+        component: LoginNew,
     },
     {
         path: "/edit",
@@ -130,6 +131,11 @@ const routes = [
         path: "/edit/control",
         name: "EditControl",
         component: HalamanEdit,
+    },
+    {
+        path: "/forgot",
+        name: "ForgotPassword",
+        component: ForgotPass,
     },
 ];
 
