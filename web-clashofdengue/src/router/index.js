@@ -14,6 +14,8 @@ import LandingPage from "@/pages/web/LandingPage.vue";
 import LandingPageMobile from "@/pages/mobile/LandingPageMobile.vue";
 import Ketentuan from "@/pages/web/Ketentuan.vue";
 import Registrasi from "@/pages/web/Registrasi.vue";
+import RegistSuccess from "@/pages/web/RegistSuccess.vue";
+import CountingDays from "@/pages/web/CountingDays.vue";
 
 const routes = [
     {
@@ -87,9 +89,19 @@ const routes = [
         component: Registrasi,
     },
     {
+        path: "/regis/success",
+        name: "RegisSuccess",
+        component: RegistSuccess,
+    },
+    {
         path: "/landing/mobile",
         name: "LandingMobile",
         component: LandingPageMobile,
+    },
+    {
+        path: "/count",
+        name: "CountDay",
+        component: CountingDays,
     },
 ];
 
