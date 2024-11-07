@@ -8,6 +8,9 @@
         </div>
         <div>
             <img src="@/assets/cod/sucess-regis-new.png" alt="Sukses Regis" />
+            <div class="content-container">
+                <p>Tanggal periode pertandingan: <strong>23 - 27 November 2024</strong></p>
+            </div>
         </div>
         <div class="maskot-female">
             <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
@@ -48,11 +51,35 @@ export default {
     overflow: hidden;
 }
 
+.content-container {
+    background-color: white;
+    border-radius: 25px;
+    padding: 30px 50px;
+    max-width: 90vw;
+    max-height: 60vh; /* Limit height for mobile */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin: 40px 0px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text */
+}
+
+.content-container p {
+    font-size: 30px; /* Make the text larger */
+    font-weight: bold; /* Bold text for emphasis */
+    margin: 0; /* Remove default margin */
+}
+
+/* Other styles remain unchanged */
 .sponsor-logos {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 20px; /* Space between logos and content */
 }
 
 .sponsor-logos img {
@@ -63,8 +90,8 @@ export default {
 .mosquito-logo {
     position: absolute;
     top: 20%;
-    left: 50%; /* Pusatkan logo nyamuk di tengah */
-    transform: translate(-50%, 0); /* Pusatkan secara horizontal */
+    left: 50%; /* Center the mosquito logo */
+    transform: translate(-50%, 0); /* Center horizontally */
     animation: floating 3s ease-in-out infinite;
     z-index: 999;
 }
@@ -111,7 +138,7 @@ export default {
     max-height: 75px;
 }
 
-/* Animasi untuk efek floating */
+/* Floating animation */
 @keyframes floating {
     0% {
         transform: translate(-50%, 0); 
@@ -124,10 +151,22 @@ export default {
     }
 }
 
-/* Media Query untuk tampilan mobile */
+/* Media Query for mobile view */
 @media (max-width: 768px) {
     .sponsor-logos img {
         max-width: 80%;
+    }
+
+    .content-container {
+        padding: 20px 30px;
+        margin: 20px;
+        max-height: 70vh; /* Limit height for mobile */
+        overflow-y: auto; /* Enable vertical scrolling */
+        margin-top: 20px; /* Space below sponsor logos */
+    }
+
+    .content-container p {
+        font-size: 20px; /* Adjust font size for mobile */
     }
 
     .maskot-female img {
@@ -137,9 +176,13 @@ export default {
     .maskot-male img {
         width: 150px;
     }
+
     .mosquito-logo img {
-    max-width: 100px;
-    height: auto;
+        max-width: 100px;
+    }
+
+    .mosquito-logo {
+    top: 15%;
 }
 }
 </style>

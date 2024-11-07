@@ -27,9 +27,17 @@ export default {
   emits: ["close"],
   methods: {
     handleConfirm() {
+      this.closeDialog();
+    },
+    closeDialog() {
       this.$store.commit("ClashOfDengue/resetDialog");
       this.$emit("close");
     },
+  },
+  beforeRouteLeave(to, from, next) {
+    // Close the dialog when navigating away
+    this.closeDialog();
+    next(); // Proceed with the navigation
   },
 };
 </script>

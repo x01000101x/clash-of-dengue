@@ -258,6 +258,10 @@ input {
     .sponsor-logos img {
         max-width: 60%;
     }
+
+    .background-page {
+    background-image: url('@/assets/cod/bg-mobile.png');
+}
     
     .content-container {
         padding: 10px 30px;

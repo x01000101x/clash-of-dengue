@@ -47,7 +47,7 @@ export default {
 <style scoped>
 .background-page {
   height: 100vh;
-  background-image: url('@/assets/cod/bg-web.png');
+  background-image: url('@/assets/cod/bg-mobile.png');
   background-size: cover;
   background-position: center;
   display: flex;
