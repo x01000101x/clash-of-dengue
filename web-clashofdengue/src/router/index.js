@@ -13,6 +13,7 @@ import ProfilePage from "@/pages/ProfilePage.vue";
 import LandingPage from "@/pages/web/LandingPage.vue";
 import LandingPageMobile from "@/pages/mobile/LandingPageMobile.vue";
 import Ketentuan from "@/pages/web/Ketentuan.vue";
+import Registrasi from "@/pages/web/Registrasi.vue";
 
 const routes = [
     {
@@ -79,6 +80,11 @@ const routes = [
         path: "/term",
         name: "Term",
         component: Ketentuan,
+    },
+    {
+        path: "/regis",
+        name: "Regis",
+        component: Registrasi,
     },
     {
         path: "/landing/mobile",
