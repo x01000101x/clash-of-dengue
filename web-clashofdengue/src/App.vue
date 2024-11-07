@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div class="backdrop">
-      <div class="mobile-view">
+    <!-- <div class="backdrop">
+      <div class="mobile-view"> -->
         <LoadingSpiner :isLoading="isLoading"/>
         <DialogComponent
           v-if="showDialog"
@@ -10,14 +10,15 @@
           @close="resetDialog"
         />
         <router-view />
-      </div>
-    </div>
+      <!-- </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import LoadingSpiner from '@/components/loadingSpiner.vue';
 import DialogComponent from '@/components/dialogComponent.vue';
+import '@/css/style.css';
 
 export default {
   name: 'App',

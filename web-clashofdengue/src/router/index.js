@@ -10,68 +10,80 @@ import SendEmail from "@/pages/SendEmail.vue";
 import DialogComponent from "@/components/dialogComponent.vue";
 import LoadingSpiner from "@/components/loadingSpiner.vue";
 import ProfilePage from "@/pages/ProfilePage.vue";
+import LandingPage from "@/pages/web/LandingPage.vue";
+import LandingPageMobile from "@/pages/mobile/LandingPageMobile.vue";
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Dashboard,
-  },
-  {
-    path: "/pie",
-    name: "Pie",
-    component: PieChart,
-  },
-  {
-    path: "/quiz",
-    name: "Quiz",
-    component: Quiz,
-  },
-  {
-    path: "/rank",
-    name: "Rank",
-    component: LeaderBoard,
-  },
-  {
-    path: "/result",
-    name: "Result",
-    component: ResultAnswer,
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
-  },
-  {
-    path: "/password",
-    name: "Password",
-    component: ForgotPassword,
-  },
-  {
-    path: "/reset",
-    name: "Reset",
-    component: SendEmail,
-  },
-  {
-    path: "/dialog",
-    name: "Dialog",
-    component: DialogComponent,
-  },
-  {
-    path: "/loading",
-    name: "Loading",
-    component: LoadingSpiner,
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    component: ProfilePage,
-  },
+    {
+        path: "/",
+        name: "Home",
+        component: Dashboard,
+    },
+    {
+        path: "/pie",
+        name: "Pie",
+        component: PieChart,
+    },
+    {
+        path: "/quiz",
+        name: "Quiz",
+        component: Quiz,
+    },
+    {
+        path: "/rank",
+        name: "Rank",
+        component: LeaderBoard,
+    },
+    {
+        path: "/result",
+        name: "Result",
+        component: ResultAnswer,
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Login,
+    },
+    {
+        path: "/password",
+        name: "Password",
+        component: ForgotPassword,
+    },
+    {
+        path: "/reset",
+        name: "Reset",
+        component: SendEmail,
+    },
+    {
+        path: "/dialog",
+        name: "Dialog",
+        component: DialogComponent,
+    },
+    {
+        path: "/loading",
+        name: "Loading",
+        component: LoadingSpiner,
+    },
+    {
+        path: "/profile",
+        name: "Profile",
+        component: ProfilePage,
+    },
+    {
+        path: "/landing",
+        name: "Landing",
+        component: LandingPage,
+    },
+    {
+        path: "/landing/mobile",
+        name: "LandingMobile",
+        component: LandingPageMobile,
+    },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+    history: createWebHistory(),
+    routes,
 });
 
 export default router;

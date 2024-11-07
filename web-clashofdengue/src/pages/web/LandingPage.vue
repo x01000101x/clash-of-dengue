@@ -1,0 +1,165 @@
+<template>
+    <div class="background-page">
+      <div class="sponsor-logos">
+        <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
+      </div>
+      <div class="mosquito-logo">
+        <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
+      </div>
+      <div class="content-container">
+      <h2>Makna dan Tujuan</h2>
+      <ul>
+        <li>
+          Meningkatkan kesadaran generasi muda tentang bahaya Demam Berdarah
+          Dengue (DBD) dan pentingnya pencegahan dini
+        </li>
+        <li>
+          Melalui kompetisi yang interaktif dan menyenangkan, anak-anak
+          diharapkan tidak hanya memahami cara-cara pencegahan DBD tetapi
+          juga menjadi agen perubahan di lingkungan sekolah dan rumah mereka
+        </li>
+      </ul>
+      <div class="button-container-regis">
+        <button class="register-button">REGISTER</button>
+      </div>
+    </div>
+    <div class="maskot-female">
+      <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+    </div>
+    <div class="maskot-male">
+      <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+    </div>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    name: 'BackgroundPage',
+  };
+  </script>
+  
+  <style scoped>
+  .background-page {
+    height: 100vh;
+    background-image: url('@/assets/cod/bg-web.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .sponsor-logos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .sponsor-logos img {
+    max-width: 1000px;
+    height: auto;
+  }
+
+  .content-container {
+  background-color: white;
+  border-radius: 45px;
+  padding: 30px 50px;
+  max-width:1000px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 40px;
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 25%;
+  left: auto; 
+  z-index: 2;
+}
+
+.content-container h2 {
+  font-size: 50px;
+  font-weight: 1000;
+  margin-bottom: 20px;
+}
+
+.content-container ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+
+.content-container li {
+  font-size: 25px;
+}
+
+.button-container-regis {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.register-button {
+  background-color: var(--secondary-color);
+  color: white;
+  font-weight: 700;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.mosquito-logo {
+  position: absolute;
+  top: 10%;
+  left: 75%;
+  transform: translateX(-50%);
+  animation: floating 3s ease-in-out infinite;
+  z-index: 999;
+}
+
+.mosquito-logo img {
+  max-width: 250px;
+  height: auto;
+}
+
+.maskot-female {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  z-index: 999;
+}
+
+.maskot-female img {
+  max-width: 150px;
+  height: auto;
+}
+
+.maskot-male {
+  position: absolute;
+  top: 15%;
+  left: 25%;
+  transform: translateX(-50%);
+  animation: floating 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+.maskot-male img {
+  width: 250px; 
+  height: auto;
+}
+
+/* Animasi untuk efek floating */
+@keyframes floating {
+  0% {
+    transform: translate(-50%, 0); /* Posisi awal */
+  }
+  50% {
+    transform: translate(-50%, -10px); /* Mengangkat ke atas */
+  }
+  100% {
+    transform: translate(-50%, 0); /* Kembali ke posisi awal */
+  }
+}
+</style>
+  
