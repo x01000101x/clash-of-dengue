@@ -4,7 +4,7 @@
             <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
         </div>
         <div class="content-container">
-            <h2>Registrasi</h2>
+            <h2>Edit Profile</h2>
             <form @submit.prevent="submitForm" class="registration-form">
                 <div class="form-group">
                     <label for="name">Nama</label>
@@ -20,14 +20,10 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Kata Sandi</label>
-                    <input type="password" id="password" v-model="formData.password" placeholder="Kata Sandi" required />
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Konfirmasi Kata Sandi</label>
-                    <input type="password" id="confirm-password" v-model="formData.confirmPassword" placeholder="Konfirmasi Kata Sandi" required />
+                    <input type="password" id="password" v-model="formData.password" placeholder="Kata Sandi"/>
                 </div>
                 <div class="button-container-regis">
-                    <button type="submit" class="register-button">DAFTAR</button>
+                    <button type="submit" class="register-button" @click="updateUser">UPDATE</button>
                 </div>
             </form>
         </div>
@@ -53,46 +49,23 @@ export default {
                 username: '',
                 school: '',
                 password: '',
-                confirmPassword: '',
             },
         };
     },
+    computed: {
+        profileUser(){
+            return this.$store.getters["ClashOfDengue/getUserProfile"];
+      },
+    },
+    mounted(){
+        this.getData();
+    },
     methods: {
-        async submitForm() {
-            // Logic for handling form submission
-            console.log(this.formData);
-            if (!this.formData.name || !this.formData.school || !this.formData.username || !this.formData.password || !this.formData.confirmPassword) {
-              this.$store.commit("ClashOfDengue/setCreateDialog", {
-                show: true,
-                message: "Harap lengkapi seluruh data",
-                icon: "fa-solid fa-circle-exclamation",
-              });
-              return;
-            }
-            if(this.formData.confirmPassword !== this.formData.password){
-                this.$store.commit("ClashOfDengue/setCreateDialog", {
-                  show: true,
-                  message: "Password dan Konfimasi Password tidak sama!",
-                  icon: "fa-solid fa-circle-exclamation",
-                });
-                return;
-            }
-            const userData = {
-                name: this.formData.name,
-                username: this.formData.username,
-                school_name: this.formData.school,
-                password: this.formData.password,
-            };
-            try {
-              await this.$store.dispatch("ClashOfDengue/registerUser", userData);
-              this.$router.push('/regis/success');
-            } catch (error) {
-                console.error('Registration error:', error.message);
-                this.$store.commit("ClashOfDengue/setCreateDialog", {
-                    show: true,
-                    message: error.message,
-                    icon: "fa-solid fa-circle-exclamation",
-                });
+        getData(){
+            this.formData = {
+                name: this.profileUser.name,
+                username: this.profileUser.username,
+                school: this.profileUser.school_name,
             }
         },
         toUpperCase(field) {
@@ -101,6 +74,48 @@ export default {
             } else if (field === 'school') {
                 this.formData.school = this.formData.school.toUpperCase();
             }
+        },
+        async updateUser(){
+            let userData = {};
+            if(!this.formData.password) {
+                userData = {
+                    name: this.formData.name,
+                    username: this.formData.username,
+                    school_name: this.formData.school,
+                };
+            } else {
+                userData = {
+                    password: this.formData.password,
+                }
+            }
+            try {
+                await this.$store.dispatch("ClashOfDengue/updateUser", userData);
+                this.$store.commit("ClashOfDengue/setCreateDialog", {
+                  show: true,
+                  message: "Profile Berhasil Diupdate",
+                  icon: "fa-solid fa-thumbs-up",
+                });
+                await this.waitForDialogClose();
+                this.$router.push('/regis/profile');
+              } catch (error) {
+                console.error('Error updating profile:', error);
+                this.$store.commit("ClashOfDengue/setCreateDialog", {
+                  show: true,
+                  message: error.message,
+                  icon: "fa-solid fa-circle-exclamation",
+                });
+              }
+            },
+            waitForDialogClose() {
+            return new Promise((resolve) => {
+                const checkDialogClosed = setInterval(() => {
+                    // Check if the dialog is closed
+                    if (!this.$store.getters["ClashOfDengue/getShowDialog"]) {
+                        clearInterval(checkDialogClosed);
+                        resolve(); // Resolve the promise
+                    }
+                }, 100); // Check every 100ms
+            });
         },
     },
 };
@@ -188,7 +203,7 @@ input {
 
 .button-container-regis {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-top: 20px;
 }
 

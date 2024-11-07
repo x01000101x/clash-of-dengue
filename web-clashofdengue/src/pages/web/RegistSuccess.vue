@@ -5,7 +5,7 @@
         </div>
         <div class="mosquito-logo">
             <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
-          </div>
+        </div>
         <div>
             <img src="@/assets/cod/sucess-regis-new.png" alt="Sukses Regis" />
         </div>
@@ -23,23 +23,15 @@
 
 <script>
 export default {
-    name: 'RegistrationPage',
+    name: 'RegistrationSucessPage',
     data() {
-        return {
-            formData: {
-                name: '',
-                username: '',
-                school: '',
-                password: '',
-                confirmPassword: '',
-            },
-        };
+        return {};
     },
-    methods: {
-        submitForm() {
-            // Logic for handling form submission
-            console.log(this.formData);
-        },
+    mounted() {
+        // Redirect to the login page after 3 seconds
+        setTimeout(() => {
+            this.$router.push({ path: '/count' }); // Replace '/login' with your actual login route
+        }, 10000);
     },
 };
 </script>
@@ -70,17 +62,17 @@ export default {
 }
 
 .mosquito-logo {
-  position: absolute;
-  top: 20%;
-  left: 50%; /* Pusatkan logo nyamuk di tengah */
-  transform: translate(-50%, 0); /* Pusatkan secara horizontal */
-  animation: floating 3s ease-in-out infinite;
-  z-index: 999;
+    position: absolute;
+    top: 20%;
+    left: 50%; /* Pusatkan logo nyamuk di tengah */
+    transform: translate(-50%, 0); /* Pusatkan secara horizontal */
+    animation: floating 3s ease-in-out infinite;
+    z-index: 999;
 }
 
 .mosquito-logo img {
-  max-width: 250px;
-  height: auto;
+    max-width: 250px;
+    height: auto;
 }
 
 .maskot-female {

@@ -20,7 +20,7 @@
         </li>
       </ul>
       <div class="button-container-regis">
-        <button class="register-button">REGISTER</button>
+        <button class="register-button" @click="pushToRegis">REGISTER</button>
       </div>
     </div>
     <div class="maskot-female">
@@ -35,6 +35,11 @@
 <script>
 export default {
   name: 'BackgroundPage',
+  methods: {
+    async pushToRegis() {
+        this.$router.push('/term');
+    },
+  }
 };
 </script>
 

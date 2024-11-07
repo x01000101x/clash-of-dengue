@@ -27,6 +27,9 @@
                     </div>
                 </div>
             </div>
+            <div class="button-profile">
+                <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
+            </div>
         </div>
         <div class="maskot-female">
             <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
@@ -34,6 +37,7 @@
         <div class="maskot-male">
             <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
         </div>
+ 
     </div>
 </template>
 
@@ -42,23 +46,24 @@ export default {
     name: 'RegistrationPage',
     data() {
         return {
-            formData: {
-                name: '',
-                username: '',
-                school: '',
-                password: '',
-                confirmPassword: '',
-            },
             targetDate: new Date('2024-12-01T00:00:00'), // Set your target date here
             days: 0,
             hours: 0,
             minutes: 0,
         };
     },
+    computed: {
+        token(){
+            return this.$store.getters["ClashOfDengue/getToken"];
+        },
+    },
     methods: {
-        submitForm() {
-            // Logic for handling form submission
-            console.log(this.formData);
+        goToProfile() {
+            if(!this.token){
+                this.$router.push('/login');
+            } else {
+                this.$router.push('/regis/profile');
+            }
         },
         updateCountdown() {
             const now = new Date();
@@ -119,6 +124,23 @@ export default {
 .mosquito-logo img {
   max-width: 200px;
   height: auto;
+}
+
+.button-profile {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profile-button {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 700;
+    padding: 10px 20px; /* Adjust padding for the button */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 150px;
 }
 
 .highlight-logo {

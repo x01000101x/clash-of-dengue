@@ -12,7 +12,7 @@
       </div>
       <div class="button-container-term">
           <label class="checkbox-container">
-            <input type="checkbox" class="checkbox" />
+            <input type="checkbox" class="checkbox" @change="handleCheckboxChange" />
             <span class="checkmark"></span>
             Kamu sudah siap untuk ikut Clash Of Dengue? Pahami misinya, kuatkan aksi nyata, dan tunjukkan bahwa kamu bisa jadi pahlawan DBD!
           </label>
@@ -33,7 +33,14 @@ export default {
     lorem() {
       return this.$store.getters["ClashOfDengue/getLorem"];
     },
-  }
+  },
+  methods: {
+    handleCheckboxChange(event) {
+      if (event.target.checked) {
+        this.$router.push('/regis');
+      }
+    },
+  },
 };
 </script>
 

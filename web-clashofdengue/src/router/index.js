@@ -16,11 +16,20 @@ import Ketentuan from "@/pages/web/Ketentuan.vue";
 import Registrasi from "@/pages/web/Registrasi.vue";
 import RegistSuccess from "@/pages/web/RegistSuccess.vue";
 import CountingDays from "@/pages/web/CountingDays.vue";
+import ProfileRegis from "@/pages/web/ProfileRegis.vue";
+import HalamanLanding from "@/pages/controllerPage/HalamanLanding.vue";
+import LoginWeb from "@/pages/web/LoginWeb.vue";
+import EditProfile from "@/pages/web/EditProfile.vue";
 
 const routes = [
     {
         path: "/",
         name: "Home",
+        component: CountingDays,
+    },
+    {
+        path: "/dashboard",
+        name: "Dashobard",
         component: Dashboard,
     },
     {
@@ -42,11 +51,6 @@ const routes = [
         path: "/result",
         name: "Result",
         component: ResultAnswer,
-    },
-    {
-        path: "/login",
-        name: "Login",
-        component: Login,
     },
     {
         path: "/password",
@@ -89,6 +93,11 @@ const routes = [
         component: Registrasi,
     },
     {
+        path: "/regis/profile",
+        name: "RegisProfile",
+        component: ProfileRegis,
+    },
+    {
         path: "/regis/success",
         name: "RegisSuccess",
         component: RegistSuccess,
@@ -102,6 +111,21 @@ const routes = [
         path: "/count",
         name: "CountDay",
         component: CountingDays,
+    },
+    {
+        path: "/splash",
+        name: "SplashScreen",
+        component: HalamanLanding,
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: LoginWeb,
+    },
+    {
+        path: "/edit",
+        name: "Edit",
+        component: EditProfile,
     },
 ];
 

@@ -84,7 +84,7 @@ export default {
     console.log("token", this.token);
     
     if(!this.token){
-      this.$router.push('/login');
+      this.$router.push('/splash');
     } else {
       await this.$store.dispatch("ClashOfDengue/getScoreUser");
       await this.$store.dispatch("ClashOfDengue/getSession");
