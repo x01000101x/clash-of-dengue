@@ -1,12 +1,12 @@
 <template>
-    <div class="background-page">
-      <div class="sponsor-logos">
-        <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
-      </div>
-      <div class="mosquito-logo">
-        <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
-      </div>
-      <div class="content-container">
+  <div class="background-page">
+    <div class="sponsor-logos">
+      <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
+    </div>
+    <div class="mosquito-logo">
+      <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
+    </div>
+    <div class="content-container">
       <h2>Makna dan Tujuan</h2>
       <ul>
         <li>
@@ -29,49 +29,49 @@
     <div class="maskot-male">
       <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
     </div>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'BackgroundPage',
-  };
-  </script>
-  
-  <style scoped>
-  .background-page {
-    height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
-  
-  .sponsor-logos {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .sponsor-logos img {
-    max-width: 1000px;
-    height: auto;
-  }
+  </div>
+</template>
 
-  .content-container {
+<script>
+export default {
+  name: 'BackgroundPage',
+};
+</script>
+
+<style scoped>
+.background-page {
+  height: 100vh;
+  background-image: url('@/assets/cod/bg-web.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.sponsor-logos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.sponsor-logos img {
+  max-width: 1000px;
+  height: auto;
+}
+
+.content-container {
   background-color: white;
   border-radius: 45px;
   padding: 30px 50px;
-  max-width:1000px;
+  max-width: 1000px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin: 40px;
   color: var(--primary-color);
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: absolute; /* Tetap absolute untuk tampilan web */
   top: 25%;
   left: auto; 
   z-index: 2;
@@ -152,14 +152,52 @@
 /* Animasi untuk efek floating */
 @keyframes floating {
   0% {
-    transform: translate(-50%, 0); /* Posisi awal */
+    transform: translate(-50%, 0); 
   }
   50% {
-    transform: translate(-50%, -10px); /* Mengangkat ke atas */
+    transform: translate(-50%, -10px);
   }
   100% {
-    transform: translate(-50%, 0); /* Kembali ke posisi awal */
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Media Query untuk tampilan mobile */
+@media (max-width: 768px) {
+  .sponsor-logos img {
+    max-width: 80%;
+  }
+  
+  .content-container {
+    padding: 20px 30px;
+    margin: 20px;
+    max-height: 70vh; /* Batasi tinggi kontainer di mobile */
+    overflow-y: auto; /* Aktifkan scroll vertikal */
+    top: 15%; /* Sesuaikan posisi untuk mobile */
+  }
+
+  .content-container h2 {
+    font-size: 30px;
+  }
+
+  .content-container li {
+    font-size: 20px;
+  }
+
+  .register-button {
+    padding: 8px 20px;
+  }
+
+  .mosquito-logo img {
+    max-width: 150px;
+  }
+
+  .maskot-female img {
+    max-width: 100px;
+  }
+
+  .maskot-male img {
+    width: 150px;
   }
 }
 </style>
-  
