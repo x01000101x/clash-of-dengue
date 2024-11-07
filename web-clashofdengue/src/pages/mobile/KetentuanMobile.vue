@@ -79,7 +79,7 @@ export default {
   display: flex;
   flex-direction: column;
   position: absolute; /* Tetap absolute untuk tampilan web */
-  top: 25%;
+  top: 30%;
   left: auto; 
   z-index: 2;
 }
@@ -99,20 +99,21 @@ export default {
 }
 
 .button-container-term {
-  position: absolute; /* Keep absolute positioning */
-  bottom: 5%; /* Adjust this value to move it above the bottom edge */
-  left: 50%; /* Position it from the left side */
-  transform: translateX(-50%); /* Center it horizontally */
   display: flex;
-  justify-content: center; /* Center any children inside */
-  z-index: 999; /* Ensure it's above other elements */
-  width: auto; /* Allow width to be determined by content */
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 22%;
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
 }
 
 .mosquito-logo {
   position: absolute;
   top: 10%;
-  left: 75%;
+  left: 50%;
   transform: translateX(-50%);
   animation: floating 3s ease-in-out infinite;
   z-index: 999;
@@ -125,7 +126,7 @@ export default {
 
 .maskot-female {
   position: absolute;
-  bottom: 0%;
+  bottom: -10%;
   left: 0%;
 }
 
@@ -136,11 +137,8 @@ export default {
 
 .maskot-male {
   position: absolute;
-  top: 15%;
-  left: 25%;
-  transform: translateX(-50%);
-  animation: floating 3s ease-in-out infinite;
-  z-index: 1;
+  bottom: -10%;
+  right: 0%;
 }
 
 .maskot-male img {
@@ -161,6 +159,8 @@ export default {
   border-radius: 20px;
   cursor: pointer;
   margin: 20px;
+  width: 80vw;
+  font-size: 15px;
 }
 
 .checkbox {
@@ -221,7 +221,7 @@ export default {
     margin: 20px;
     max-height: 70vh; /* Batasi tinggi kontainer di mobile */
     overflow-y: auto; /* Aktifkan scroll vertikal */
-    top: 15%; /* Sesuaikan posisi untuk mobile */
+    top: 20%; /* Sesuaikan posisi untuk mobile */
   }
 
   .content-container h2 {
@@ -242,6 +242,19 @@ export default {
 
   .maskot-male img {
     width: 150px;
+  }
+}
+
+@media (max-height: 667px) {
+    .checkbox-container {
+        font-size: 10px;
+      }
+
+      .content-container h2 {
+    font-size: 25px;
+  }
+  .mosquito-logo img {
+    max-width: 100px;
   }
 }
 </style>

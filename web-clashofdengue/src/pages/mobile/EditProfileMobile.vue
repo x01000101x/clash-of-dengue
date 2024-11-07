@@ -4,7 +4,7 @@
             <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
         </div>
         <div class="content-container">
-            <h2>Registrasi</h2>
+            <h2>Edit Profile</h2>
             <form @submit.prevent="submitForm" class="registration-form">
                 <div class="form-group">
                     <label for="name">Nama</label>
@@ -20,22 +20,13 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Kata Sandi</label>
-                    <input type="password" id="password" v-model="formData.password" placeholder="Kata Sandi" required />
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Konfirmasi Kata Sandi</label>
-                    <input type="password" id="confirm-password" v-model="formData.confirmPassword" placeholder="Konfirmasi Kata Sandi" required />
+                    <input type="password" id="password" v-model="formData.password" placeholder="Kata Sandi"/>
                 </div>
                 <div class="button-container-regis">
-                    <button type="submit" class="register-button">DAFTAR</button>
+                    <button type="submit" class="register-button" @click="updateUser">UPDATE</button>
+                    <button type="submit" class="register-button" @click="goToProfile">BACK</button>
                 </div>
             </form>
-        </div>
-        <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
-        </div>
-        <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
         </div>
         <div class="featuring-by">
             <img src="@/assets/cod/Sponsor.png" alt="Featuring by" />
@@ -53,46 +44,23 @@ export default {
                 username: '',
                 school: '',
                 password: '',
-                confirmPassword: '',
             },
         };
     },
+    computed: {
+        profileUser(){
+            return this.$store.getters["ClashOfDengue/getUserProfile"];
+      },
+    },
+    mounted(){
+        this.getData();
+    },
     methods: {
-        async submitForm() {
-            // Logic for handling form submission
-            console.log(this.formData);
-            if (!this.formData.name || !this.formData.school || !this.formData.username || !this.formData.password || !this.formData.confirmPassword) {
-              this.$store.commit("ClashOfDengue/setCreateDialog", {
-                show: true,
-                message: "Harap lengkapi seluruh data",
-                icon: "fa-solid fa-circle-exclamation",
-              });
-              return;
-            }
-            if(this.formData.confirmPassword !== this.formData.password){
-                this.$store.commit("ClashOfDengue/setCreateDialog", {
-                  show: true,
-                  message: "Password dan Konfimasi Password tidak sama!",
-                  icon: "fa-solid fa-circle-exclamation",
-                });
-                return;
-            }
-            const userData = {
-                name: this.formData.name,
-                username: this.formData.username,
-                school_name: this.formData.school,
-                password: this.formData.password,
-            };
-            try {
-              await this.$store.dispatch("ClashOfDengue/registerUser", userData);
-              this.$router.push('/regis/success');
-            } catch (error) {
-                console.error('Registration error:', error.message);
-                this.$store.commit("ClashOfDengue/setCreateDialog", {
-                    show: true,
-                    message: error.message,
-                    icon: "fa-solid fa-circle-exclamation",
-                });
+        getData(){
+            this.formData = {
+                name: this.profileUser.name,
+                username: this.profileUser.username,
+                school: this.profileUser.school_name,
             }
         },
         toUpperCase(field) {
@@ -102,6 +70,51 @@ export default {
                 this.formData.school = this.formData.school.toUpperCase();
             }
         },
+        async updateUser(){
+            let userData = {};
+            if(!this.formData.password) {
+                userData = {
+                    name: this.formData.name,
+                    username: this.formData.username,
+                    school_name: this.formData.school,
+                };
+            } else {
+                userData = {
+                    password: this.formData.password,
+                }
+            }
+            try {
+                await this.$store.dispatch("ClashOfDengue/updateUser", userData);
+                this.$store.commit("ClashOfDengue/setCreateDialog", {
+                  show: true,
+                  message: "Profile Berhasil Diupdate",
+                  icon: "fa-solid fa-thumbs-up",
+                });
+                await this.waitForDialogClose();
+                this.$router.push('/regis/profile');
+              } catch (error) {
+                console.error('Error updating profile:', error);
+                this.$store.commit("ClashOfDengue/setCreateDialog", {
+                  show: true,
+                  message: error.message,
+                  icon: "fa-solid fa-circle-exclamation",
+                });
+              }
+            },
+            waitForDialogClose() {
+            return new Promise((resolve) => {
+                const checkDialogClosed = setInterval(() => {
+                    // Check if the dialog is closed
+                    if (!this.$store.getters["ClashOfDengue/getShowDialog"]) {
+                        clearInterval(checkDialogClosed);
+                        resolve(); // Resolve the promise
+                    }
+                }, 100); // Check every 100ms
+            });
+        },
+        goToProfile(){
+            this.$router.push('/regis/profile');
+        }
     },
 };
 </script>
@@ -109,7 +122,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/bg-mobile.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -156,9 +169,7 @@ export default {
 /* Style untuk form */
 .registration-form {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns for larger screens */
-    gap: 10px 40px;
-    margin-bottom: 20px;
+    grid-template-columns: 1fr; /* Two columns for larger screens */
 }
 
 .form-group {
@@ -189,7 +200,7 @@ input {
 
 .button-container-regis {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-top: 20px;
 }
 
@@ -201,6 +212,7 @@ input {
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .maskot-female {
@@ -237,7 +249,7 @@ input {
 
 .featuring-by img {
     width: auto; 
-    max-height: 75px;
+    max-height: 65px;
 }
 
 /* Animasi untuk efek floating */
@@ -267,40 +279,23 @@ input {
         margin-top: 20px; /* Space below sponsor logos */
     }
 
-    input {
-        width: 100%; /* Full width */
-        border: 1px solid #ccc; /* Border */
-        border-radius: 5px; /* Rounded corners */
-        background-color: var(--button-bg);
-        color: var(--secondary-color);
-        font-size: 15px; 
-        font-weight: 400;
-        padding: 5px;
-    }
-
-    .registration-form {
-        grid-template-columns: 1fr;
-        gap: 10px 10px;
-        margin-bottom: 20px;
-    }
-
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        width: 100%;
-        color: white;
-        margin: 0;
-    }
-
     label {
-        font-weight: bold;
-        margin-bottom: 5px;
-        font-size: 15px;
-    }
+    font-size: 15px;
+}
+
+input {
+    width: 100%; /* Full width */
+    padding: 5px; /* Increased padding for better appearance */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: var(--button-bg);
+    color: var(--secondary-color);
+    font-size: 15px; 
+    font-weight: 400;
+}
 
     .content-container h2 {
-        font-size: 30px;
+        font-size: 25px;
     }
 
     .register-button {
@@ -308,24 +303,23 @@ input {
     }
 
     .maskot-female img {
-        max-width: 0;
+        max-width: 100px;
     }
 
     .maskot-male img {
-        width: 0;
+        width: 150px;
     }
 }
 
-@media (max-height: 800px) {
-    input {
-        width: 100%; /* Full width */
-        border: 1px solid #ccc; /* Border */
-        border-radius: 5px; /* Rounded corners */
-        background-color: var(--button-bg);
-        color: var(--secondary-color);
-        font-size: 15px; 
-        font-weight: 400;
-        padding: 5px;
-    }
+@media (max-width: 480px) {
+    .content-container h2 {
+    font-size: 0px;
+}
+}
+
+@media (max-height: 530px) {
+    .content-container h2 {
+    font-size: 0px;
+}
 }
 </style>

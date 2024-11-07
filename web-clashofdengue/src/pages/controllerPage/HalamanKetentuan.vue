@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import LandingPageMobile from '../mobile/LandingPageMobile.vue';
-import LandingPage from '../web/LandingPage.vue';
+import KetentuanMobile from '../mobile/KetentuanMobile.vue';
+import Ketentuan from '../web/Ketentuan.vue';
 
 export default {
     name: 'ControllerPage',
     components: {
-        LandingPage,
-        LandingPageMobile,
+        Ketentuan,
+        KetentuanMobile
     },
     data() {
         return {
@@ -31,10 +31,10 @@ export default {
     methods: {
         updateCurrentPage() {
             // Check the window width and set the currentPage accordingly
-            if (window.innerWidth < 780) {
-                this.currentPage = LandingPageMobile; // Set to LandingPageMobile for mobile screens
+            if (window.innerWidth < 768) {
+                this.currentPage = KetentuanMobile; // Set to LandingPageMobile for mobile screens
             } else {
-                this.currentPage = LandingPage; // Set to LandingPage for larger screens
+                this.currentPage = Ketentuan; // Set to LandingPage for larger screens
             }
         },
     },

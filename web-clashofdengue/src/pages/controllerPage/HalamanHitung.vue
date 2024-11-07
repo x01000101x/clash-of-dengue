@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import LandingPageMobile from '../mobile/LandingPageMobile.vue';
-import LandingPage from '../web/LandingPage.vue';
+import CountingMobile from '../mobile/CountingMobile.vue';
+import CountingDays from '../web/CountingDays.vue';
 
 export default {
     name: 'ControllerPage',
     components: {
-        LandingPage,
-        LandingPageMobile,
+        CountingDays,
+        CountingMobile
     },
     data() {
         return {
@@ -31,10 +31,10 @@ export default {
     methods: {
         updateCurrentPage() {
             // Check the window width and set the currentPage accordingly
-            if (window.innerWidth < 780) {
-                this.currentPage = LandingPageMobile; // Set to LandingPageMobile for mobile screens
+            if (window.innerWidth < 768) {
+                this.currentPage = CountingMobile; // Set to LandingPageMobile for mobile screens
             } else {
-                this.currentPage = LandingPage; // Set to LandingPage for larger screens
+                this.currentPage = CountingDays; // Set to LandingPage for larger screens
             }
         },
     },

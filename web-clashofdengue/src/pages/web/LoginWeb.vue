@@ -63,7 +63,7 @@
                 };
                 try {
                     await this.$store.dispatch("ClashOfDengue/loginUser", userData);
-                    this.$router.push('/count');
+                    this.$router.push('/');
                 } catch (error) {
                     console.error('Login error:', error.message);
                     this.$store.commit("ClashOfDengue/setCreateDialog", {
@@ -94,6 +94,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    overflow: hidden;
 }
 
 .sponsor-logos {
@@ -233,8 +234,11 @@ input {
 
 /* Media Query untuk tampilan mobile */
 @media (max-width: 768px) {
+    .background-page {
+    background-image: url('@/assets/cod/bg-mobile.png');
+}
     .sponsor-logos img {
-        max-width: 80%;
+        max-width: 70%;
     }
     
     .content-container {
@@ -254,11 +258,11 @@ input {
     }
 
     .maskot-female img {
-        max-width: 100px;
+        max-width: 0;
     }
 
     .maskot-male img {
-        width: 150px;
+        width: 0;
     }
 }
 </style>

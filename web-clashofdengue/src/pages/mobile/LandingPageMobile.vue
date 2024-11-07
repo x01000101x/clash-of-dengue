@@ -20,7 +20,7 @@
         </li>
       </ul>
       <div class="button-container-regis">
-        <button class="register-button">REGISTER</button>
+        <button class="register-button" @click="pushToRegis">REGISTER</button>
       </div>
     </div>
     <div class="maskot-female">
@@ -35,6 +35,11 @@
 <script>
 export default {
   name: 'BackgroundPage',
+  methods: {
+    async pushToRegis() {
+        this.$router.push('/term');
+    },
+  },
 };
 </script>
 
@@ -48,6 +53,7 @@ export default {
   flex-direction: column;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 .sponsor-logos {
@@ -193,11 +199,11 @@ export default {
   }
 
   .maskot-female img {
-    max-width: 100px;
+    max-width: 200px;
   }
 
   .maskot-male img {
-    width: 150px; /* Sesuaikan ukuran maskot laki-laki untuk mobile */
+    width: 250px; /* Sesuaikan ukuran maskot laki-laki untuk mobile */
   }
 }
 </style>

@@ -28,10 +28,9 @@ export default {
         return {};
     },
     mounted() {
-        // Redirect to the login page after 3 seconds
         setTimeout(() => {
-            this.$router.push({ path: '/count' }); // Replace '/login' with your actual login route
-        }, 10000);
+            this.$router.push({ path: '/' });
+        }, 8000);
     },
 };
 </script>
@@ -138,5 +137,9 @@ export default {
     .maskot-male img {
         width: 150px;
     }
+    .mosquito-logo img {
+    max-width: 100px;
+    height: auto;
+}
 }
 </style>

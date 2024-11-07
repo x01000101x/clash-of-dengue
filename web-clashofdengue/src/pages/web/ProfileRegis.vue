@@ -104,7 +104,7 @@ export default {
         try {
           await this.$store.dispatch("ClashOfDengue/logoutUser");
           this.$store.commit("ClashOfDengue/resetStore")
-          this.$router.push('/count');
+          this.$router.push('/');
         } catch (error) {
           console.error('logOut error:', error.message);
           this.$store.commit("ClashOfDengue/setCreateDialog", {
@@ -142,8 +142,8 @@ export default {
 }
 
 .sponsor-logos img {
-    max-width: 1000px;
     height: auto;
+    max-width: 80%;
 }
 
 .button-container-edit {
@@ -248,22 +248,81 @@ export default {
     }
 }
 
+@media (max-width: 1040px) {
+.edit-button {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 400;
+    margin-right: 10px;
+    padding: 10px 30px;
+}
+.profile-info p {
+    font-size: 40px;
+    color: var(--secondary-color); /* Optional color for school name */
+}
+}
+
 /* Media Query untuk tampilan mobile */
 @media (max-width: 768px) {
+    .background-page {
+    background-image: url('@/assets/cod/bg-mobile.png');
+}
+
+.profile-info h2 {
+    font-size: 45px;
+    margin: 10px 0 5px; /* Spacing for name */
+    color: var(--primary-color);
+}
+
+.profile-info p {
+    font-size: 27px;
+    color: var(--secondary-color); /* Optional color for school name */
+}
+
+.edit-button {
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.button-container-edit {
+    max-width: 100%;
+}
+
     .sponsor-logos img {
-        max-width: 80%;
+        max-width: 60%;
     }
 
     .maskot-female img {
         max-width: 100px;
     }
 
+    .maskot-female {
+    bottom: -10%;
+    transform: translateX(-50%);
+    animation: none;
+}
+
+.maskot-male {
+    bottom: -10%;
+    transform: translateX(-50%);
+    animation: none;
+}
+
     .maskot-male img {
         width: 150px;
     }
 
     .profile-card {
-        max-width: 90%; /* Adjust for mobile */
+        width: 70vw; /* Adjust for mobile */
     }
+
+.edit-button {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 400;
+    margin-right: 10px;
+    padding: 0px 20px;
+}
 }
 </style>

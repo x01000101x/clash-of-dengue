@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import LandingPageMobile from '../mobile/LandingPageMobile.vue';
-import LandingPage from '../web/LandingPage.vue';
+import EditProfileMobile from '../mobile/EditProfileMobile.vue';
+import EditProfile from '../web/EditProfile.vue';
 
 export default {
     name: 'ControllerPage',
     components: {
-        LandingPage,
-        LandingPageMobile,
+        EditProfile,
+        EditProfileMobile,
     },
     data() {
         return {
@@ -32,9 +32,9 @@ export default {
         updateCurrentPage() {
             // Check the window width and set the currentPage accordingly
             if (window.innerWidth < 780) {
-                this.currentPage = LandingPageMobile; // Set to LandingPageMobile for mobile screens
+                this.currentPage = EditProfileMobile; // Set to LandingPageMobile for mobile screens
             } else {
-                this.currentPage = LandingPage; // Set to LandingPage for larger screens
+                this.currentPage = EditProfile; // Set to LandingPage for larger screens
             }
         },
     },

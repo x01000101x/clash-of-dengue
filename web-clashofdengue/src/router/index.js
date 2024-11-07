@@ -11,20 +11,20 @@ import LoadingSpiner from "@/components/loadingSpiner.vue";
 import ProfilePage from "@/pages/ProfilePage.vue";
 import LandingPage from "@/pages/web/LandingPage.vue";
 import LandingPageMobile from "@/pages/mobile/LandingPageMobile.vue";
-import Ketentuan from "@/pages/web/Ketentuan.vue";
 import Registrasi from "@/pages/web/Registrasi.vue";
 import RegistSuccess from "@/pages/web/RegistSuccess.vue";
-import CountingDays from "@/pages/web/CountingDays.vue";
 import ProfileRegis from "@/pages/web/ProfileRegis.vue";
 import HalamanLanding from "@/pages/controllerPage/HalamanLanding.vue";
 import LoginWeb from "@/pages/web/LoginWeb.vue";
-import EditProfile from "@/pages/web/EditProfile.vue";
+import HalamanKetentuan from "@/pages/controllerPage/HalamanKetentuan.vue";
+import HalamanHitung from "@/pages/controllerPage/HalamanHitung.vue";
+import HalamanEdit from "@/pages/controllerPage/HalamanEdit.vue";
 
 const routes = [
     {
         path: "/",
         name: "Home",
-        component: CountingDays,
+        component: HalamanHitung,
     },
     {
         path: "/dashboard",
@@ -84,7 +84,7 @@ const routes = [
     {
         path: "/term",
         name: "Term",
-        component: Ketentuan,
+        component: HalamanKetentuan,
     },
     {
         path: "/regis",
@@ -109,7 +109,7 @@ const routes = [
     {
         path: "/count",
         name: "CountDay",
-        component: CountingDays,
+        component: HalamanHitung,
     },
     {
         path: "/splash",
@@ -124,7 +124,12 @@ const routes = [
     {
         path: "/edit",
         name: "Edit",
-        component: EditProfile,
+        component: HalamanEdit,
+    },
+    {
+        path: "/edit/control",
+        name: "EditControl",
+        component: HalamanEdit,
     },
 ];
 
