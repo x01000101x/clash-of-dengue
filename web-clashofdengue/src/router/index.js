@@ -4,7 +4,6 @@ import PieChart from "../components/PieChart.vue";
 import Quiz from "../pages/Quiz.vue";
 import LeaderBoard from "@/pages/LeaderBoard.vue";
 import ResultAnswer from "@/components/ResultAnswer.vue";
-import Login from "@/pages/Login.vue";
 import ForgotPassword from "@/pages/ForgotPassword.vue";
 import SendEmail from "@/pages/SendEmail.vue";
 import DialogComponent from "@/components/dialogComponent.vue";
