@@ -24,19 +24,23 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/user', [UserController::class, 'getUsers']);
     Route::get('/user/{id}', [UserController::class, 'getUserById']);
     Route::patch('/user', [UserController::class, 'updateUser']);
+    Route::post('/delete-user', [UserController::class, 'deleteUser']);
 
     //Questions API
     Route::get('/question', [QuestionController::class, 'getQuestions']);
     Route::get('/question/{id}', [QuestionController::class, 'getQuestionId']);
     Route::post('/question-session', [QuestionController::class, 'getQuestionSession']);
     Route::post('/question', [QuestionController::class, 'PostQuestion']);
-
+    Route::patch('/update-question/', [QuestionController::class, 'updateQuestion']);
+    Route::delete('/delete-question/', [QuestionController::class, 'deleteQuestion']);
 
     //Sessions API
     Route::get('/session', [UserSessionController::class, 'getSession']);
     Route::get('/session/{id}', [UserSessionController::class, 'getSessionById']);
+    Route::post('/session', [UserSessionController::class, 'PostSession']);
+    Route::patch('/update-session/', [UserSessionController::class, 'updateSession']);
+    Route::delete('/delete-session/', [UserSessionController::class, 'deleteSession']);
     Route::post('/validate-session', [UserSessionController::class, 'validateSession']);
-
 
 
 });
@@ -46,7 +50,6 @@ Route::post('/forgot-password', [UserController::class, 'forgotPasswordAction'])
 Route::post('/forgot-password-validate', [UserController::class, 'forgotPasswordValidateAction']);
 
 //Sessions API
-Route::post('/session', [UserSessionController::class, 'PostSession']);
 
 //Auth API
 Route::post('/auth/register', [UserController::class, 'createUser']);

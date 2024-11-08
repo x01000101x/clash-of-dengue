@@ -117,4 +117,85 @@ class QuestionController extends Controller
             ], 500);
         }
     }
+
+    public function updateQuestion(Request $request)
+    {
+        try{
+
+        $question = Question::where('id', $request->id)->first();
+
+        $updatedFields = [];
+
+        if ($request->has('category_id') && $request->category_id !== $question->category_id) {
+            $updatedFields['category_id'] = $request->category_id;
+        }
+
+        if ($request->has('session_id') && $request->session_id !== $question->session_id) {
+            $updatedFields['session_id'] = $request->session_id;
+        }
+
+        if ($request->has('question') && $request->question !== $question->question) {
+            $updatedFields['question'] = $request->question;
+        }
+
+        if ($request->has('option_a') && $request->option_a !== $question->option_a) {
+            $updatedFields['option_a'] = $request->option_a;
+        }
+
+        if ($request->has('option_b') && $request->option_b !== $question->option_b) {
+            $updatedFields['option_b'] = $request->option_b;
+        }
+
+        if ($request->has('option_c') && $request->option_c !== $question->option_c) {
+            $updatedFields['option_c'] = $request->option_c;
+        }
+
+        if ($request->has('option_d') && $request->option_d !== $question->option_d) {
+            $updatedFields['option_d'] = $request->option_d;
+        }
+
+        if ($request->has('answer') && $request->answer !== $question->answer) {
+            $updatedFields['answer'] = $request->answer;
+        }
+
+        if ($request->has('point') && $request->point !== $question->point) {
+            $updatedFields['point'] = $request->point;
+        }
+
+        if (!empty($updatedFields)) {
+            $question->update($updatedFields);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Updated Successfuly',
+            'response' => $question
+        ], 200);
+    }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deleteSession(Request $request)
+    {
+        try {
+            $session = Question::find($request->id);
+            $session->delete();
+
+
+            return response()->json([
+                'message' => 'Berhasil Menghapus Pertanyaan!'
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 }

@@ -241,6 +241,10 @@ class UserController extends Controller
             $updatedFields['email'] = $request->email;
         }
 
+        if ($request->has('role') && $request->role !== $user->role) {
+            $updatedFields['role'] = $request->role;
+        }
+
         if ($request->has('password') && !empty($request->password)) {
             $updatedFields['password'] = Hash::make($request->password);
         }
@@ -379,6 +383,25 @@ class UserController extends Controller
             ], 200);
         }
         catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deleteUser(Request $request)
+    {
+        try {
+            $user = User::find($request->id);
+            $user->delete();
+
+
+            return response()->json([
+                'message' => 'Berhasil Menghapus User!'
+            ], 200);
+
+        } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
                 'message' => $th->getMessage()

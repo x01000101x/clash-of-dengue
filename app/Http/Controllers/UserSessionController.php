@@ -146,4 +146,57 @@ class UserSessionController extends Controller
         }
     }
 
+    public function updateSession(Request $request)
+    {
+        try{
+
+        $session = UserSession::where('id', $request->id)->first();
+
+        $updatedFields = [];
+
+        if ($request->has('dateFrom') && $request->dateFrom !== $session->dateFrom) {
+            $updatedFields['dateFrom'] = $request->dateFrom;
+        }
+
+        if ($request->has('dateTo') && $request->dateTo !== $session->dateTo) {
+            $updatedFields['dateTo'] = $request->dateTo;
+        }
+
+        if (!empty($updatedFields)) {
+            $session->update($updatedFields);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Updated Successfuly',
+            'response' => $session
+        ], 200);
+    }
+        catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deleteSession(Request $request)
+    {
+        try {
+            $session = UserSession::find($request->id);
+            $session->delete();
+
+
+            return response()->json([
+                'message' => 'Berhasil Menghapus Sesi!'
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
 }
