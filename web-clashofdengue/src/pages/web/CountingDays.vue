@@ -240,10 +240,41 @@ export default {
     }
 }
 
-/* Media Query untuk tampilan mobile */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .sponsor-logos img {
-        max-width: 80%;
+        max-width: 60%;
+    }
+
+    .maskot-female img {
+        max-width: 200px;
+    }
+
+    .maskot-male img {
+        width: 250px;
+    }
+
+    .mosquito-logo img {
+        max-width: 100px;
+      }
+
+    .highlight-logo img {
+        max-width: 100px;
+        height: auto;
+    }
+    .highlight-logo {
+        top: 15%;
+    }
+    .profile-button {
+        font-size: 15px;
+        padding: 8px 8px; /* Adjust padding for the button */
+
+    }
+}
+
+/* Media Query untuk tampilan mobile */
+@media (max-width: 800px) {
+    .sponsor-logos img {
+        max-width: 50%;
     }
 
     .maskot-female img {
@@ -252,6 +283,12 @@ export default {
 
     .maskot-male img {
         width: 150px;
+    }
+    .mosquito-logo {
+        top: 25%;
+      }
+      .highlight-logo {
+        top: 30%;
     }
 }
 </style>

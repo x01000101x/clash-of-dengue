@@ -31,7 +31,7 @@ export default {
     methods: {
         updateCurrentPage() {
             // Check the window width and set the currentPage accordingly
-            if (window.innerWidth < 768) {
+            if (window.innerWidth < 801) {
                 this.currentPage = CountingMobile; // Set to LandingPageMobile for mobile screens
             } else {
                 this.currentPage = CountingDays; // Set to LandingPage for larger screens

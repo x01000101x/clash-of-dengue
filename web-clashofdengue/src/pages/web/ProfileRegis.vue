@@ -199,12 +199,11 @@ export default {
 
 .profile-info h2 {
     font-size: 75px;
-    margin: 10px 0 5px; /* Spacing for name */
     color: var(--primary-color);
 }
 
 .profile-info p {
-    font-size: 47px;
+    font-size: 35px;
     color: var(--secondary-color); /* Optional color for school name */
 }
 
@@ -258,6 +257,19 @@ export default {
 }
 .profile-info p {
     font-size: 40px;
+    color: var(--secondary-color); /* Optional color for school name */
+}
+}
+
+@media (max-width: 1040px) {
+    .profile-info h2 {
+    font-size: 35px;
+    margin: 10px 0 5px; /* Spacing for name */
+    color: var(--primary-color);
+}
+
+.profile-info p {
+    font-size: 20px;
     color: var(--secondary-color); /* Optional color for school name */
 }
 }
@@ -323,6 +335,16 @@ export default {
     font-weight: 400;
     margin-right: 10px;
     padding: 0px 20px;
+}
+}
+
+@media (max-height: 714px) {
+    .profile-card {
+    max-height: 75vh;
+    overflow-y: auto;
+}
+.sponsor-logos img {
+    max-width: 60%;
 }
 }
 </style>
