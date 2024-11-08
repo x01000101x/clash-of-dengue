@@ -31,7 +31,7 @@ export default {
     methods: {
         updateCurrentPage() {
             // Check the window width and set the currentPage accordingly
-            if (window.innerWidth < 768) {
+            if (window.innerWidth < 980) {
                 this.currentPage = KetentuanMobile; // Set to LandingPageMobile for mobile screens
             } else {
                 this.currentPage = Ketentuan; // Set to LandingPage for larger screens

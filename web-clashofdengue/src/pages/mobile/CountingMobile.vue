@@ -43,7 +43,7 @@ export default {
     name: 'RegistrationPage',
     data() {
         return {
-            targetDate: new Date('2024-12-01T00:00:00'), // Set your target date here
+            targetDate: new Date('2024-11-21T00:00:00'), // Set your target date here
             days: 0,
             hours: 0,
             minutes: 0,
@@ -238,7 +238,7 @@ export default {
     }
 
     .mosquito-logo img {
-        max-width: 150px;
+        max-width: 200px;
         height: auto;
     }
     .content-container {
@@ -248,4 +248,26 @@ export default {
         z-index: 2;
     }
 }
+
+@media (max-width: 450px) {
+       .mosquito-logo img {
+        max-width: 150px;
+        height: auto;
+    }
+}
+
+@media (max-height: 750px) {
+       .mosquito-logo img {
+        max-width: 150px;
+        height: auto;
+    }
+}
+
+@media (max-width: 320px) {
+       .mosquito-logo img {
+        max-width: 100px;
+        height: auto;
+    }
+}
+
 </style>

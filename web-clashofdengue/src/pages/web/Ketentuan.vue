@@ -1,45 +1,52 @@
 <template>
-    <div class="background-page">
+  <div class="background-page">
       <div class="sponsor-logos">
-        <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
+          <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
       </div>
       <div class="mosquito-logo">
-        <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
+          <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
       </div>
       <div class="content-container">
-        <h2>Syarat dan Ketentuan</h2>
-        <p>{{lorem}}</p>
+          <h2>Syarat dan Ketentuan</h2>
+          <ul class="terms-list">
+              <li>Peserta: Terbuka untuk siswa/siswi aktif di sekolah</li>
+              <li>Waktu pendaftaran: Pendaftaran akan dibuka pada tanggal 15 November 2024 - 22 November 2024</li>
+              <li>Pendaftaran: Pendaftaran dapat dilakukan pada website CegahDBD.com</li>
+              <li>Perangkat: Peserta dapat menggunakan HP masing-masing atau dapat melalui website</li>
+              <li>Waktu Pengerjaan: Waktu pengerjaan akan dimulai pada pukul 13.00 - 15.00 setiap hari dari tanggal 15 November 2024 sampai tanggal 23 November 2024</li>
+              <li>Kontak: Jika mengalami kendala dan pertanyaan seputar ini bisa menghubungi nomor 0813 9999 7218</li>
+          </ul>
       </div>
       <div class="button-container-term">
           <label class="checkbox-container">
-            <input type="checkbox" class="checkbox" @change="handleCheckboxChange" />
-            <span class="checkmark"></span>
-            Kamu sudah siap untuk ikut Clash Of Dengue? Pahami misinya, kuatkan aksi nyata, dan tunjukkan bahwa kamu bisa jadi pahlawan DBD!
+              <input type="checkbox" class="checkbox" @change="handleCheckboxChange" />
+              <span class="checkmark"></span>
+              Kamu sudah siap untuk ikut Clash Of Dengue? Pahami misinya, kuatkan aksi nyata, dan tunjukkan bahwa kamu bisa jadi pahlawan DBD!
           </label>
       </div>
       <div class="maskot-female">
-        <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+          <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
       </div>
       <div class="maskot-male">
-        <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+          <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
       </div>
-    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'TermPage',
   computed: {
-    lorem() {
-      return this.$store.getters["ClashOfDengue/getLorem"];
-    },
+      lorem() {
+          return this.$store.getters["ClashOfDengue/getLorem"];
+      },
   },
   methods: {
-    handleCheckboxChange(event) {
-      if (event.target.checked) {
-        this.$router.push('/regis');
-      }
-    },
+      handleCheckboxChange(event) {
+          if (event.target.checked) {
+              this.$router.push('/regis');
+          }
+      },
   },
 };
 </script>
@@ -84,18 +91,21 @@ export default {
   z-index: 2;
 }
 
-
 .content-container h2 {
   font-size: 50px;
   font-weight: 1000;
   margin-bottom: 20px;
+  text-align: center; /* Center the heading */
 }
 
-.content-container p {
-    max-height: 30vh; /* Batasi tinggi kontainer */
-    overflow-y: auto; /* Aktifkan scroll vertikal */
-  font-size: 20px; 
-  margin-bottom: 20px;
+.terms-list {
+  font-size: 20px; /* Adjust font size for the list */
+  margin: 0; /* Remove default margin */
+  padding-left: 20px; /* Add padding for list items */
+}
+
+.terms-list li {
+  margin-bottom: 10px; /* Space between list items */
 }
 
 .button-container-term {
@@ -109,6 +119,7 @@ export default {
   width: auto; /* Allow width to be determined by content */
 }
 
+/* Rest of your existing styles remain unchanged */
 .mosquito-logo {
   position: absolute;
   top: 10%;
@@ -148,6 +159,7 @@ export default {
   height: auto;
 }
 
+/* Checkbox and checkmark styles */
 .checkbox-container {
   display: flex;
   align-items: center;
@@ -200,48 +212,48 @@ export default {
 /* Animasi untuk efek floating */
 @keyframes floating {
   0% {
-    transform: translate(-50%, 0); 
+      transform: translate(-50%, 0); 
   }
   50% {
-    transform: translate(-50%, -10px);
+      transform: translate(-50%, -10px);
   }
   100% {
-    transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
   }
 }
 
 /* Media Query untuk tampilan mobile */
 @media (max-width: 768px) {
   .sponsor-logos img {
-    max-width: 80%;
+      max-width: 80%;
   }
   
   .content-container {
-    padding: 20px 30px;
-    margin: 20px;
-    max-height: 70vh; /* Batasi tinggi kontainer di mobile */
-    overflow-y: auto; /* Aktifkan scroll vertikal */
-    top: 15%; /* Sesuaikan posisi untuk mobile */
+      padding: 20px 30px;
+      margin: 20px;
+      max-height: 70vh; /* Batasi tinggi kontainer di mobile */
+      overflow-y: auto; /* Aktifkan scroll vertikal */
+      top: 15%; /* Sesuaikan posisi untuk mobile */
   }
 
   .content-container h2 {
-    font-size: 30px;
+      font-size: 30px;
   }
 
   .register-term {
-    padding: 8px 20px;
+      padding: 8px 20px;
   }
 
   .mosquito-logo img {
-    max-width: 150px;
+      max-width: 150px;
   }
 
   .maskot-female img {
-    max-width: 100px;
+      max-width: 100px;
   }
 
   .maskot-male img {
-    width: 150px;
+      width: 150px;
   }
 }
 </style>

@@ -281,14 +281,23 @@ export default {
 }
 
 .profile-info h2 {
-    font-size: 45px;
+    font-size: 25px;
     margin: 10px 0 5px; /* Spacing for name */
     color: var(--primary-color);
 }
 
 .profile-info p {
-    font-size: 27px;
+    font-size: 20px;
     color: var(--secondary-color); /* Optional color for school name */
+}
+
+.profile-picture img {
+    width: 200px; /* Set a fixed size for profile picture */
+    height: auto;
+    border-radius: 50%; /* Make it circular */
+    border: 2px solid #ccc; /* Optional border */
+    display: flex;
+    flex-direction: column;
 }
 
 .edit-button {
@@ -310,10 +319,11 @@ export default {
     }
 
     .maskot-female {
-    bottom: -10%;
-    transform: translateX(-50%);
-    animation: none;
-}
+        bottom: -10%;
+        right: 0%;
+        transform: translateX(-50%);
+        animation: none;
+    }
 
 .maskot-male {
     bottom: -10%;

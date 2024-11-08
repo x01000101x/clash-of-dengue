@@ -6,9 +6,12 @@
         <div class="mosquito-logo">
             <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
         </div>
-        <div class="content">
-            <img src="@/assets/cod/sucess-regis-new.png" alt="Sukses Regis" />
-            <img src="@/assets/cod/sucess-regis-capt.png" alt="Sukses Regis capt" />
+        <div class="content-container">
+            <h2>Selamat kamu telah berhasil terdaftar dan ikut mendukung kampanye</h2>
+            <p>Indonesia Bebas Kematian Akibat DBD Tahun 2030</p>
+        </div>
+        <div class="content-container-date">
+            <h2>Tanggal Periode pertandingan: 23 - 27 November 2024</h2>
         </div>
         <div class="maskot-female">
             <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
@@ -29,9 +32,9 @@ export default {
         return {};
     },
     mounted() {
-        setTimeout(() => {
-            this.$router.push({ path: '/' });
-        }, 8000);
+        // setTimeout(() => {
+        //     this.$router.push({ path: '/' });
+        // }, 8000);
     },
 };
 </script>
@@ -58,10 +61,6 @@ export default {
     transform: translate(-50%, 0);
 }
 
-.content img {
-    width: 100%;
-}
-
 .content-container {
     background-color: white;
     border-radius: 25px;
@@ -77,12 +76,44 @@ export default {
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
     text-align: center; /* Center text */
+    max-width: 80vw;
+    margin-top: 25vh;
+}
+
+.content-container-date {
+    background-color: white;
+    border-radius: 25px;
+    padding: 30px 50px;
+    max-width: 90vw;
+    max-height: 60vh; /* Limit height for mobile */
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text */
+    max-width: 80vw;
+    margin-top: 20px;
+}
+
+.content-container-date h2 {
+    font-size: 20px; /* Make the text larger */
+    font-weight: bold; /* Bold text for emphasis */
+    color: var(--secondary-color) ;
 }
 
 .content-container p {
-    font-size: 30px; /* Make the text larger */
+    font-size: 15px; /* Make the text larger */
     font-weight: bold; /* Bold text for emphasis */
-    margin: 0; /* Remove default margin */
+}
+
+.content-container h2 {
+    font-size: 20px; /* Make the text larger */
+    font-weight: bold; /* Bold text for emphasis */
+    color: var(--secondary-color) ;
 }
 
 /* Other styles remain unchanged */
@@ -177,10 +208,25 @@ export default {
         margin: 20px;
         max-height: 70vh; /* Limit height for mobile */
         overflow-y: auto; /* Enable vertical scrolling */
+        max-width: 80vw;
+        margin-top: 20vh;
     }
 
     .content-container p {
-        font-size: 20px; /* Adjust font size for mobile */
+        font-size: 15px; /* Adjust font size for mobile */
+    }
+
+    .content-container-date {
+        padding: 20px 30px;
+        margin: 20px;
+        max-height: 70vh; /* Limit height for mobile */
+        overflow-y: auto; /* Enable vertical scrolling */
+        max-width: 80vw;
+        margin-top: 20px;
+    }
+
+    .content-container-date h2 {
+        font-size: 15px; /* Adjust font size for mobile */
     }
 
     .maskot-female img {
@@ -189,6 +235,16 @@ export default {
 
     .maskot-male img {
         width: 150px;
+    }
+
+    .maskot-male {
+        bottom: 0%;
+        left: 10%;
+    }
+
+    .maskot-female {
+        bottom: 0%;
+        right: 0%;
     }
 
     .mosquito-logo img {

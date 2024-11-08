@@ -46,7 +46,7 @@ export default {
     name: 'RegistrationPage',
     data() {
         return {
-            targetDate: new Date('2024-12-01T00:00:00'), // Set your target date here
+            targetDate: new Date('2024-11-21T00:00:00'), // Set your target date here
             days: 0,
             hours: 0,
             minutes: 0,
