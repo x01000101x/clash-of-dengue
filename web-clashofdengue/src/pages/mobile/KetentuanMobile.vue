@@ -106,8 +106,8 @@ export default {
 .checkbox-container {
   display: flex;
   align-items: center;
-  cursor: pointer; /* Change cursor on hover */
-  margin-bottom: 10px; /* Space below for checkbox */
+  cursor: pointer; /* Mengubah pointer saat hover */
+  margin-bottom: 10px; /* Jarak bawah untuk checkbox */
   background-color: var(--secondary-color);
   color: white;
   font-weight: 700;
@@ -115,43 +115,46 @@ export default {
   border: none;
   border-radius: 20px;
   margin: 20px;
-  width: 80vw; /* Set to a consistent width */
+  width: 80vw; /* Tetap dengan lebar yang konsisten */
   font-size: 15px;
 }
 
 .checkbox {
-  display: none; /* Hide default checkbox */
+  display: none; /* Sembunyikan checkbox default */
 }
 
 .checkmark {
-  height: 20px; /* Height of checkmark */
-  width: 20px; /* Width of checkmark */
-  background-color: #eee; /* Background color */
-  border-radius: 4px; /* Rounded corners */
-  margin-right: 10px; /* Space between checkbox and text */
-  position: relative; /* Relative position for checkmark */
+  height: 30px; /* Tinggi kotak centang */
+  width: 30px; /* Lebar kotak centang */
+  background-color: #eee; /* Warna latar belakang kotak */
+  border: 2px solid #ccc; /* Border kotak */
+  border-radius: 0; /* Kotak, bukan bulat */
+  margin-right: 10px; /* Jarak antara checkbox dan teks */
+  position: relative; /* Posisi relatif untuk checkmark */
 }
 
 .checkbox:checked + .checkmark {
-  background-color: var(--primary-color); /* Change color when checked */
+  background-color: var(--primary-color); /* Ganti warna saat dicentang */
+  border-color: var(--primary-color); /* Ganti warna border saat dicentang */
 }
 
 .checkmark:after {
-  content: ""; /* Empty content */
-  display: none; /* Hide initially */
-  position: absolute; /* Absolute position for checkmark */
-  left: 6px; /* Position checkmark */
-  top: 2px; /* Adjust vertical position */
-  width: 5px; /* Width of checkmark */
-  height: 10px; /* Height of checkmark */
-  border: solid white; /* Checkmark color */
-  border-width: 0 2px 2px 0; /* Define desired edges */
-  transform: rotate(45deg); /* Rotate checkmark */
+  content: ""; /* Membuat konten kosong */
+  display: none; /* Sembunyikan konten awal */
+  position: absolute; /* Posisi absolut untuk centang */
+  left: 9px; /* Posisikan centang lebih ke kanan */
+  top: 3px; /* Atur posisi vertikal centang */
+  width: 5px; /* Lebar centang */
+  height: 12px; /* Tinggi centang */
+  border: solid white; /* Warna centang */
+  border-width: 0 2px 2px 0; /* Tepi centang */
+  transform: rotate(45deg); /* Memutar centang */
 }
 
 .checkbox:checked + .checkmark:after {
-  display: block; /* Show checkmark when checked */
+  display: block; /* Tampilkan centang saat dicentang */
 }
+
 
 /* Animasi untuk efek floating */
 @keyframes floating {

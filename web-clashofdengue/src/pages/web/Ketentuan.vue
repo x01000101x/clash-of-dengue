@@ -180,24 +180,27 @@ export default {
 }
 
 .checkmark {
-  height: 20px; /* Tinggi checkmark */
-  width: 20px; /* Lebar checkmark */
+  height: 25px; /* Tinggi checkmark */
+  width: 25px; /* Lebar checkmark */
   background-color: #eee; /* Warna latar belakang */
-  border-radius: 4px; /* Sudut membulat */
+  border: 2px solid #ccc; /* Border kotak centang */
+  /* Hapus border-radius agar kotaknya menjadi kotak, bukan bundar */
+  border-radius: 0; 
   margin-right: 10px; /* Jarak antara checkbox dan teks */
   position: relative; /* Posisi relatif untuk centang */
 }
 
 .checkbox:checked + .checkmark {
   background-color: var(--primary-color); /* Ganti warna saat dicentang */
+  border-color: var(--primary-color); /* Ganti warna border saat dicentang */
 }
 
 .checkmark:after {
   content: ""; /* Membuat konten kosong */
   display: none; /* Sembunyikan konten awal */
   position: absolute; /* Posisi absolut untuk centang */
-  left: 6px; /* Posisikan centang */
-  top: 2px; /* Atur posisi vertikal centang */
+  left: 8px; /* Posisikan centang sedikit lebih ke kanan */
+  top: 3px; /* Atur posisi vertikal centang */
   width: 5px; /* Lebar centang */
   height: 10px; /* Tinggi centang */
   border: solid white; /* Warna centang */
