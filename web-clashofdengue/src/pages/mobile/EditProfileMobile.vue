@@ -130,6 +130,8 @@ export default {
     align-items: center;
     position: relative;
     overflow: hidden;
+    height: 100dvh; /* new browsers */
+    width: 100%;
 }
 
 .sponsor-logos {

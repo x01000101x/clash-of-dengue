@@ -32,9 +32,9 @@ export default {
         return {};
     },
     mounted() {
-        // setTimeout(() => {
-        //     this.$router.push({ path: '/' });
-        // }, 8000);
+        setTimeout(() => {
+            this.$router.push({ path: '/' });
+        }, 8000);
     },
 };
 </script>
@@ -50,6 +50,8 @@ export default {
     align-items: center;
     position: relative;
     overflow: hidden;
+    height: 100dvh; /* new browsers */
+    width: 100%;
 }
 
 .content{

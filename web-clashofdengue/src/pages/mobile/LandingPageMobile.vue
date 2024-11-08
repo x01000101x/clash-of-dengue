@@ -54,6 +54,8 @@ export default {
   align-items: center;
   position: relative;
   overflow: hidden;
+  height: 100dvh; /* new browsers */
+  width: 100%;
 }
 
 .sponsor-logos {
@@ -101,7 +103,7 @@ export default {
 
 .button-container-regis {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: auto;
 }
 
@@ -180,6 +182,8 @@ export default {
 
   .content-container h2 {
     font-size: 30px;
+    display: flex;
+    justify-content: center;
   }
 
   .content-container li {

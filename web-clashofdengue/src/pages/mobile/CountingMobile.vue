@@ -95,6 +95,8 @@ export default {
     align-items: center;
     position: relative;
     overflow: hidden;
+    height: 100dvh; /* new browsers */
+    width: 100%;
 }
 
 .sponsor-logos {
@@ -126,7 +128,8 @@ export default {
 .button-profile {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    margin-top: 2px;
 }
 
 .profile-button {

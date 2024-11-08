@@ -117,6 +117,8 @@ export default {
     align-items: center;
     position: relative;
     overflow: hidden;
+    height: 100dvh; /* new browsers */
+    width: 100%;
 }
 
 .sponsor-logos {
@@ -303,6 +305,11 @@ input {
 
     .content-container h2 {
         font-size: 30px;
+    }
+
+    .button-container-regis {
+        justify-content: center;
+        margin-top: 10px;
     }
 
     .register-button {

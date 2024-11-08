@@ -101,6 +101,8 @@ export default {
 <style scoped>
 .background-page {
 height: 100vh;
+height: 100dvh; /* new browsers */
+width: 100%;
 background-image: url('@/assets/cod/bg-web.png');
 background-size: cover;
 background-position: center;
