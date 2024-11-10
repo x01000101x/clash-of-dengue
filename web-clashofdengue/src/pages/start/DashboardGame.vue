@@ -90,7 +90,6 @@ export default {
     },
     methods: {
         async toggleProfile() {
-            await this.$store.dispatch("ClashOfDengue/getProfileUser");
             this.$router.push('/start/profile');
           },
     async goToQuiz() {
@@ -165,6 +164,7 @@ export default {
     },
     async mounted() {
         try {
+            await this.$store.dispatch("ClashOfDengue/getProfileUser");
             await this.$store.dispatch("ClashOfDengue/getScoreUser");
             await this.$store.dispatch("ClashOfDengue/getRank");
             await this.$store.dispatch("ClashOfDengue/getSession");

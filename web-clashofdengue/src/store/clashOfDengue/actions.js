@@ -346,11 +346,12 @@ export const getRank = async ({ getters, commit }) => {
         const myRankIndex = sortedRanks.findIndex(
             (score) => score.score_id === String(getters.getUserId)
         );
-        console.log("myRank", myRankIndex);
+        const myRank = myRankIndex + 1;
+        console.log("myRank", myRank);
 
-        if (myRankIndex) {
-            console.log(`Your rank: ${myRankIndex + 1}`);
-            commit("setUserRank", myRankIndex + 1);
+        if (myRank) {
+            console.log(`Your rank: ${myRank}`);
+            commit("setUserRank", myRank);
         } else {
             commit("setUserRank", 0);
         }
