@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let url = "http://127.0.0.1:8000/api";
+let url = "https://api.clashofdengue.com/api";
 
 if (process.env.NODE_ENV === "production") {
     url = "https://api.clashofdengue.com/api";
@@ -159,6 +159,7 @@ export default {
         const bodyRequest = {
             is_correct: request.is_correct,
             score: request.score,
+            question_no: request.question_no,
         };
         const token = request.token;
         try {

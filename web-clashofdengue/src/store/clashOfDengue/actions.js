@@ -169,6 +169,7 @@ export const sendScore = async ({ getters, commit }, request) => {
             id: getters.getUserId,
             is_correct: request.correct,
             score: request.score,
+            question_no: request.question_no,
         });
         console.debug("res Send Score", res);
 
@@ -245,7 +246,7 @@ export const getSession = async ({ getters, commit }) => {
     }
 };
 
-export const startGame = async ({ getters, commit }) => {
+export const endGame = async ({ getters, commit }) => {
     try {
         commit("setShowLoading", true);
         const res = await clashOfDengueService.validateSession({
@@ -275,7 +276,7 @@ export const getQuizBySession = async ({ getters, commit }) => {
         commit("setShowLoading", true);
         const res = await clashOfDengueService.questionSession({
             token: getters.getToken,
-            session: "1",
+            session: getters.getLastSession,
         });
         console.debug("res get quiz session", res);
 
@@ -335,23 +336,21 @@ export const getRank = async ({ getters, commit }) => {
         if (res.status === false || !res.response) {
             throw new Error(res.message || "Get Rank");
         }
-        const sortedRanks = res.response.sort((a, b) => {
-            return parseInt(b.total_score) - parseInt(a.total_score); // Urutkan dari yang tertinggi
-        });
-        const myRank = sortedRanks.find(
-            (score) => score.id === getters.getUserId
-        );
-        console.log("myRank", myRank);
 
-        if (myRank) {
-            // Menghitung ranking saya
-            const rank =
-                sortedRanks.filter(
-                    (score) =>
-                        Number(score.total_score) > Number(myRank.total_score)
-                ).length + 1;
-            console.log(`Your rank: ${rank}`);
-            commit("setUserRank", rank);
+        const filteredData = res.response.filter((item) => item.role_id === 4);
+        const sortedRanks = filteredData.sort((a, b) => {
+            return parseInt(b.total_score) - parseInt(a.total_score);
+        });
+        console.log("SORETED RANK", sortedRanks);
+
+        const myRankIndex = sortedRanks.findIndex(
+            (score) => score.score_id === String(getters.getUserId)
+        );
+        console.log("myRank", myRankIndex);
+
+        if (myRankIndex) {
+            console.log(`Your rank: ${myRankIndex + 1}`);
+            commit("setUserRank", myRankIndex + 1);
         } else {
             commit("setUserRank", 0);
         }

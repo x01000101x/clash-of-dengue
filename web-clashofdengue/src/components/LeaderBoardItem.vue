@@ -3,7 +3,8 @@
     <div class="rank-circle">
       <span>{{ rank }}</span>
     </div>
-    <img :src="avatar" alt="Student Avatar" class="student-photo" /> <!-- Use avatar instead of photo -->
+    <img :src="avatars[parseInt(ava)]" alt="Student Avatar" class="student-photo"/> <!-- Use parseInt to convert the string to an integer -->
+
     <div class="student-info">
       <p class="student-name">{{ name }}</p>
       <p class="student-school">{{ school }}</p>
@@ -23,8 +24,12 @@ export default {
     name: String,
     school: String,
     totalScore: Number,
+    ava:String
   },
   computed: {
+    avatars() {
+        return this.$store.getters["ClashOfDengue/getAvatars"];
+      },
     avatar() {
       // Access the avatars array from Vuex using the avatar index
       return this.$store.state.ClashOfDengue.fotoAva[this.avatarIndex] || ''; // Fallback to empty string if index is invalid
@@ -37,7 +42,7 @@ export default {
 .entry-container {
   display: flex;
   align-items: center;
-  background-color: #fdd6d6;
+  background-color: var(--secondary-color);
   padding: 10px;
   border-radius: 15px;
   margin: 10px 0;
@@ -67,11 +72,18 @@ export default {
 
 .student-info {
   flex: 1;
+  width: 100%;
+
 }
 
 .student-name,
 .student-school {
   margin: 0;
+  color: white;
+}
+
+.student-school {
+  font-size: 10px;
 }
 
 .student-name {
@@ -90,5 +102,21 @@ export default {
   border-radius: 15px;
   font-weight: bold;
   margin-left: 10px;
+}
+
+@media (max-width: 765px) {
+  .entry-container {
+  padding: 5px;
+  width: 90%;
+}
+.student-name {
+  font-size: 10px;
+}
+.student-school {
+  font-size: 5px;
+}
+.total-score {
+  font-size: 15px;
+}
 }
 </style>

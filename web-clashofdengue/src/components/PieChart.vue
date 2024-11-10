@@ -16,7 +16,12 @@ export default {
       return this.$store.getters["ClashOfDengue/getScoreUser"];
     },
     series() {
-      const stringArr = [this.scoreData.correct_answer, this.scoreData.false_answer];
+      // Cek apakah data kosong dan set nilai default [50, 50] jika kosong
+      const stringArr = [this.scoreData.correct_answer || 0, this.scoreData.false_answer || 0];
+      // Jika kedua nilai kosong atau 0, set [50, 50]
+      if (stringArr[0] === "0" && stringArr[1] === "0") {
+        return [50, 50];
+      }
       return stringArr.map(Number);
     },
   },

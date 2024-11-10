@@ -132,7 +132,8 @@ export default {
               updatedAt: sessionUpdatedAt
           } : latest;
       }, { session: null, updatedAt: new Date(0) }).session;
-
+      console.log("last session", lastSession);
+      
       this.$store.commit("ClashOfDengue/setLastSession", lastSession);
     },
     async logOut() {

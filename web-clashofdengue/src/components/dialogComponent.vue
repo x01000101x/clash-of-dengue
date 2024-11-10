@@ -58,14 +58,15 @@ export default {
 
 .alert-content {
   display: flex;
-  flex-direction: column; /* Mengatur isi dialog secara vertikal */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white; /* Latar belakang putih untuk konten dialog */
+  background-color: white;
   border-radius: 10px;
   padding: 20px;
   width: 300px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Bayangan untuk efek mengambang */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  text-align: center; /* Menambahkan ini agar teks berada di tengah */
 }
 
 .alert-icon {
@@ -75,13 +76,16 @@ export default {
 
 .alert-buttons {
   margin-top: 20px;
+  width: 100%; /* Pastikan tombol mengisi lebar konten */
+  display: flex;
+  justify-content: center; /* Membuat tombol terpusat secara horizontal */
 }
 
 .alert-buttons button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #0097a7; /* Green for OK */
+  background-color: #0097a7;
   color: white;
   cursor: pointer;
 }
