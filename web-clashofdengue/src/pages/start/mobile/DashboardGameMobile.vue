@@ -86,7 +86,6 @@ export default {
     },
     methods: {
         async toggleProfile() {
-            await this.$store.dispatch("ClashOfDengue/getProfileUser");
             this.$router.push('/start/profile');
           },
     async goToQuiz() {
@@ -155,11 +154,18 @@ export default {
       },
     },
     async mounted() {
-      await this.$store.dispatch("ClashOfDengue/getScoreUser");
-      await this.$store.dispatch("ClashOfDengue/getRank");
-      await this.$store.dispatch("ClashOfDengue/getSession");
-      this.checkSession();
-
+        try {
+            await this.$store.dispatch("ClashOfDengue/getProfileUser");
+            await this.$store.dispatch("ClashOfDengue/getScoreUser");
+            await this.$store.dispatch("ClashOfDengue/getRank");
+            await this.$store.dispatch("ClashOfDengue/getSession");
+        } catch (error) {
+            this.$store.commit("ClashOfDengue/setCreateDialog", {
+            show: true,
+            message: error.message,
+            icon: "fa-solid fa-circle-exclamation",
+          });
+        }
     },
 };
 </script>
