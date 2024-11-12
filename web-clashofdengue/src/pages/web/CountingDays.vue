@@ -3,12 +3,6 @@
         <div class="sponsor-logos">
             <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
         </div>
-        <div class="mosquito-logo">
-            <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
-        </div>
-        <div class="highlight-logo">
-            <img src="@/assets/cod/event-highlight.png" alt="Logo Highlight" />
-        </div>
         <div class="content-container">
             <div class="poster">
               <img src="@/assets/cod/Poster.png" alt="Gambar Poster" />
@@ -32,10 +26,10 @@
             </div>
         </div>
         <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-fam4.png" alt="Maskot Perempuan" />
         </div>
         <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-fam.png" alt="Maskot Laki-laki" />
         </div>
  
     </div>
@@ -110,6 +104,10 @@ export default {
 .sponsor-logos img {
     max-width: 1000px;
     height: auto;
+}
+
+.sponsor-logos img {
+    max-width: 70%;
 }
 
 .mosquito-logo {
@@ -203,8 +201,8 @@ export default {
 
 .maskot-female {
     position: absolute;
-    bottom: -25%;
-    right: -5%;
+    bottom: -3%;
+    right: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
@@ -216,27 +214,27 @@ export default {
 
 .maskot-male {
     position: absolute;
-    bottom: -25%;
-    left: 10%;
+    bottom: -5%;
+    left: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-male img {
-    width: 350px; 
+    width: 250px; 
     height: auto;
 }
 
 /* Animasi untuk efek floating */
 @keyframes floating {
     0% {
-        transform: translate(-50%, 0); 
+        transform: translate(0, 0); 
     }
     50% {
-        transform: translate(-50%, -10px);
+        transform: translate(0, -10px);
     }
     100% {
-        transform: translate(-50%, 0);
+        transform: translate(0, 0);
     }
 }
 

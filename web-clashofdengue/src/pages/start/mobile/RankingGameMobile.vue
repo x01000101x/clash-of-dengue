@@ -294,6 +294,9 @@ export default {
   font-size: 20px;
   color: white;
 }
+.your-rank {
+    width: 100%;
+}
 .icon-container p {
     font-size: 10px;
 }

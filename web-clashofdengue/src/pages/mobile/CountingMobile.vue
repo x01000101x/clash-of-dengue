@@ -3,9 +3,6 @@
         <div class="sponsor-logos">
             <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
         </div>
-        <div class="mosquito-logo">
-            <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
-        </div>
         <div class="content-container">
             <div class="poster">
               <img src="@/assets/cod/Poster.png" alt="Gambar Poster" />
@@ -24,15 +21,15 @@
                     </div>
                 </div>
             </div>
-            <div class="button-profile">
-                <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
-            </div>
+        </div>
+        <div class="button-profile">
+            <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
         </div>
         <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-fam4.png" alt="Maskot Perempuan" />
         </div>
         <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-fam5.png" alt="Maskot Laki-laki" />
         </div>
  
     </div>
@@ -95,7 +92,7 @@ export default {
     align-items: center;
     position: relative;
     overflow: hidden;
-    height: 100dvh; /* new browsers */
+    height: 100dvh;
     width: 100%;
 }
 
@@ -103,26 +100,12 @@ export default {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 20px; /* Space between logos and content */
+    margin-bottom: 20px;
 }
 
 .sponsor-logos img {
     max-width: 1000px;
     height: auto;
-}
-
-.mosquito-logo {
-  position: absolute;
-  top: 10%;
-  left: 50%; /* Pusatkan logo nyamuk di tengah */
-  transform: translate(-50%, 0); /* Pusatkan secara horizontal */
-  animation: floating 3s ease-in-out infinite;
-  z-index: 999;
-}
-
-.mosquito-logo img {
-  max-width: 200px;
-  height: auto;
 }
 
 .button-profile {
@@ -145,19 +128,15 @@ export default {
 
 .content-container {
     background-color: white;
-    border-radius: 45px;
-    padding: 30px 50px;
+    border-radius: 15px;
+    padding: 15px 15px;
     width: 90vw;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 0;
+    margin: 20px 0; /* Menambahkan margin untuk jarak antara konten */
     color: var(--primary-color);
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 50%;
-    left: 50%; 
-    transform: translate(-50%, -50%);
-    z-index: 2;
+    align-items: center; /* Agar elemen di dalam container terpusat */
 }
 
 .poster {
@@ -169,6 +148,7 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 15px;
 }
 
 .countdown {
@@ -189,8 +169,8 @@ export default {
 
 .maskot-female {
     position: absolute;
-    bottom: -15%;
-    right: -5%;
+    bottom: -10%;
+    right: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
@@ -202,27 +182,27 @@ export default {
 
 .maskot-male {
     position: absolute;
-    bottom: -15%;
-    left: 10%;
+    bottom: -10%;
+    left: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-male img {
-    width: 350px; 
+    width: 200px; 
     height: auto;
 }
 
 /* Animasi untuk efek floating */
 @keyframes floating {
     0% {
-        transform: translate(-50%, 0); 
+        transform: translate(0, 0); 
     }
     50% {
-        transform: translate(-50%, -10px);
+        transform: translate(0, -10px);
     }
     100% {
-        transform: translate(-50%, 0);
+        transform: translate(0, 0);
     }
 }
 
@@ -233,22 +213,16 @@ export default {
     }
 
     .maskot-female img {
-        max-width: 100px;
+        max-width: 125px;
     }
 
     .maskot-male img {
-        width: 150px;
+        width: 100px;
     }
 
     .mosquito-logo img {
         max-width: 200px;
         height: auto;
-    }
-    .content-container {
-        top: 60%;
-        left: 50%; 
-        transform: translate(-50%, -50%);
-        z-index: 2;
     }
 }
 

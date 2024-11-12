@@ -76,7 +76,18 @@ export default {
         this.$store.commit("ClashOfDengue/addCurrentQuiz",);
         this.resetTimer();
       } else {
-        await this.$store.dispatch("ClashOfDengue/endGame");
+        try {
+          await this.$store.dispatch("ClashOfDengue/endGame");
+            await this.$store.dispatch("ClashOfDengue/getScoreUser");
+            await this.$store.dispatch("ClashOfDengue/getRank");
+            await this.$store.dispatch("ClashOfDengue/getProfileUser");
+        } catch (error) {
+            this.$store.commit("ClashOfDengue/setCreateDialog", {
+            show: true,
+            message: error.message,
+            icon: "fa-solid fa-circle-exclamation",
+          });
+        }
         this.$router.push('/start/finish');
       }
     },

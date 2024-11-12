@@ -79,6 +79,7 @@ export default {
           await this.$store.dispatch("ClashOfDengue/endGame");
             await this.$store.dispatch("ClashOfDengue/getScoreUser");
             await this.$store.dispatch("ClashOfDengue/getRank");
+            await this.$store.dispatch("ClashOfDengue/getProfileUser");
         } catch (error) {
             this.$store.commit("ClashOfDengue/setCreateDialog", {
             show: true,

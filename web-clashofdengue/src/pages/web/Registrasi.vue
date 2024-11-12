@@ -15,8 +15,27 @@
                     <input type="text" id="username" v-model="formData.username" placeholder="Username" required />
                 </div>
                 <div class="form-group">
+                    <label for="institutionType">Pilih Jenis Institusi</label>
+                    <!-- Gantikan radio button dengan select dropdown -->
+                    <select v-model="formData.institutionType" id="institutionType" required>
+                        <option value="" disabled>Pilih Institusi</option>
+                        <option value="school">Sekolah</option>
+                        <option value="company">Perusahaan</option>
+                    </select>
+                </div>
+                <div class="form-group" v-if="formData.institutionType === 'school'">
                     <label for="school">Nama Sekolah</label>
-                    <input type="text" id="school" v-model="formData.school" placeholder="Nama Sekolah" @input="toUpperCase('school')" required />
+                    <select v-model="formData.school" id="school" required>
+                        <option value="" disabled>Pilih Nama Sekolah</option>
+                        <option v-for="school in schools" :key="school" :value="school">{{ school }}</option>
+                    </select>
+                </div>
+                <div class="form-group" v-if="formData.institutionType === 'company'">
+                    <label for="company">Nama Perusahaan</label>
+                    <select v-model="formData.company" id="company" required>
+                        <option value="" disabled>Pilih Nama Perusahaan</option>
+                        <option v-for="company in companies" :key="company" :value="company">{{ company }}</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="password">Kata Sandi</label>
@@ -26,6 +45,7 @@
                     <label for="confirm-password">Konfirmasi Kata Sandi</label>
                     <input type="password" id="confirm-password" v-model="formData.confirmPassword" placeholder="Konfirmasi Kata Sandi" required />
                 </div>
+                <div v-if="!formData.institutionType"></div>
                 <div class="button-container-regis">
                     <button type="submit" class="register-button">DAFTAR</button>
                 </div>
@@ -52,40 +72,59 @@ export default {
                 name: '',
                 username: '',
                 school: '',
+                company: '',  // Menambah field untuk perusahaan
                 password: '',
                 confirmPassword: '',
+                institutionType: '',  // school or company
             },
+            schools: [
+                "Panca Budi Medan",
+                "Namira International Islamic School",
+                "Darma Bangsa Medan",
+                "High Scope School Medan",
+                "Chandra Kumala School"
+            ],
+            companies: [
+                "Bank Permata",
+                "Manulife",
+                "Vision",
+                "Nodigon Land",
+                "Bakrie Renewable Chemical",
+                "Purnama Suryani Panjaitan",
+                "Juncai",
+                "PT Galileo Indonesia Perdana",
+                "Hive Five"
+            ]
         };
     },
     methods: {
         async submitForm() {
-            // Logic for handling form submission
             console.log(this.formData);
             if (!this.formData.name || !this.formData.school || !this.formData.username || !this.formData.password || !this.formData.confirmPassword) {
-              this.$store.commit("ClashOfDengue/setCreateDialog", {
-                show: true,
-                message: "Harap lengkapi seluruh data",
-                icon: "fa-solid fa-circle-exclamation",
-              });
-              return;
-            }
-            if(this.formData.confirmPassword !== this.formData.password){
                 this.$store.commit("ClashOfDengue/setCreateDialog", {
-                  show: true,
-                  message: "Password dan Konfimasi Password tidak sama!",
-                  icon: "fa-solid fa-circle-exclamation",
+                    show: true,
+                    message: "Harap lengkapi seluruh data",
+                    icon: "fa-solid fa-circle-exclamation",
+                });
+                return;
+            }
+            if (this.formData.confirmPassword !== this.formData.password) {
+                this.$store.commit("ClashOfDengue/setCreateDialog", {
+                    show: true,
+                    message: "Password dan Konfimasi Password tidak sama!",
+                    icon: "fa-solid fa-circle-exclamation",
                 });
                 return;
             }
             const userData = {
                 name: this.formData.name,
                 username: this.formData.username,
-                school_name: this.formData.school,
+                school_name: this.formData.institutionType === 'school' ? this.formData.school : this.formData.company,
                 password: this.formData.password,
             };
             try {
-              await this.$store.dispatch("ClashOfDengue/registerUser", userData);
-              this.$router.push('/regis/success');
+                await this.$store.dispatch("ClashOfDengue/registerUser", userData);
+                this.$router.push('/regis/success');
             } catch (error) {
                 console.error('Registration error:', error.message);
                 this.$store.commit("ClashOfDengue/setCreateDialog", {
@@ -121,6 +160,28 @@ export default {
     width: 100%;
 }
 
+/* Style untuk select dropdown */
+select {
+    width: 100%;
+    padding: 5px; /* Sama seperti padding untuk input */
+    border: 1px solid #ccc; /* Border konsisten dengan input */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--secondary-color); /* Menggunakan warna yang sama */
+    background-color: white; /* Warna latar belakang untuk dropdown */
+    box-sizing: border-box; /* Menjaga padding tidak mempengaruhi lebar */
+}
+
+select:focus {
+    outline: none; /* Menghilangkan outline saat fokus */
+    border-color: var(--primary-color); /* Ganti border color saat fokus */
+}
+
+option {
+    font-size: 16px;
+    padding: 10px;
+}
 .sponsor-logos {
     display: flex;
     justify-content: center;
@@ -150,7 +211,7 @@ export default {
 }
 
 .content-container h2 {
-    font-size: 50px;
+    font-size: 30px;
     font-weight: 1000;
     text-align: center; /* Center the heading */
 }
@@ -190,7 +251,7 @@ input {
 
 .button-container-regis {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-top: 20px;
 }
 
@@ -304,7 +365,7 @@ input {
     }
 
     .content-container h2 {
-        font-size: 30px;
+        font-size: 10px;
     }
 
     .button-container-regis {

@@ -3,8 +3,11 @@
       <div class="sponsor-logos">
           <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
       </div>
+      <div class="mosquito-logo">
+        <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
+      </div>
       <div class="content-container">
-          <h2>Syarat dan Ketentuan</h2>
+          <h2>Syarat & Ketentuan</h2>
           <ul class="terms-list">
               <li>Peserta: Terbuka untuk siswa/siswi aktif di sekolah.</li>
               <li>Waktu pendaftaran: Pendaftaran akan dibuka pada tanggal 15 November 2024 - 22 November 2024.</li>
@@ -15,23 +18,26 @@
           </ul>
       </div>
       <div class="button-container-term">
-          <label class="checkbox-container">
-              <input type="checkbox" class="checkbox" @change="handleCheckboxChange" />
-              <span class="checkmark"></span>
-              Kamu sudah siap untuk ikut Clash Of Dengue? Pahami misinya, kuatkan aksi nyata, dan tunjukkan bahwa kamu bisa jadi pahlawan DBD!
-          </label>
+          <button class="accept-button" @click="handleButtonClick">
+              Register
+          </button>
+      </div>
+      <div class="maskot-female">
+          <img src="@/assets/cod/logo-fam5.png" alt="Maskot Perempuan" />
+      </div>
+      <div class="maskot-male">
+          <img src="@/assets/cod/logo-fam4.png" alt="Maskot Laki-laki" />
       </div>
   </div>
 </template>
+
 
 <script>
 export default {
   name: 'TermPage',
   methods: {
-      handleCheckboxChange(event) {
-          if (event.target.checked) {
-              this.$router.push('/regis');
-          }
+    handleButtonClick() {
+          this.$router.push('/regis');
       },
   },
 };
@@ -40,7 +46,7 @@ export default {
 <style scoped>
 .background-page {
   height: 100vh;
-  height: 100dvh; /* new browsers */
+  height: 100dvh;
   width: 100%;
   background-image: url('@/assets/cod/bg-mobile.png');
   background-size: cover;
@@ -63,14 +69,27 @@ export default {
   height: auto;
 }
 
+.mosquito-logo {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.mosquito-logo img {
+  max-width: 150px;
+  height: auto;
+}
+
 .content-container {
   background-color: white;
   border-radius: 45px;
-  padding: 30px 50px;
+  padding: 30px 30px;
   max-width: 90vw; /* Maintain this size */
   max-height: 60vh; /* Maintain height limit */
   overflow-y: auto; /* Enable vertical scrolling */
-  margin: 40px; /* Maintain margin */
+  margin-top: 10%;
   color: var(--primary-color);
   display: flex;
   flex-direction: column;
@@ -105,69 +124,56 @@ export default {
   z-index: 999;
 }
 
-.checkbox-container {
-  display: flex;
-  align-items: center;
-  cursor: pointer; /* Mengubah pointer saat hover */
-  margin-bottom: 10px; /* Jarak bawah untuk checkbox */
+/* New styles for the button */
+.accept-button {
   background-color: var(--secondary-color);
   color: white;
   font-weight: 700;
   padding: 10px 30px;
   border: none;
   border-radius: 20px;
-  margin: 20px;
-  width: 80vw; /* Tetap dengan lebar yang konsisten */
-  font-size: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 80vw; /* Maintain consistent width */
+  text-align: center;
+  max-width: 90%; /* Allow some space on smaller screens */
 }
 
-.checkbox {
-  display: none; /* Sembunyikan checkbox default */
+
+/* Maskot Female */
+.maskot-female {
+  position: absolute;
+  bottom: -5%;
+  left: 0%;
 }
 
-.checkmark {
-  height: 30px; /* Tinggi kotak centang */
-  width: 30px; /* Lebar kotak centang */
-  background-color: #eee; /* Warna latar belakang kotak */
-  border: 2px solid #ccc; /* Border kotak */
-  border-radius: 0; /* Kotak, bukan bulat */
-  margin-right: 10px; /* Jarak antara checkbox dan teks */
-  position: relative; /* Posisi relatif untuk checkmark */
+.maskot-female img {
+  max-width: 100px;
+  height: auto;
 }
 
-.checkbox:checked + .checkmark {
-  background-color: var(--primary-color); /* Ganti warna saat dicentang */
-  border-color: var(--primary-color); /* Ganti warna border saat dicentang */
+/* Maskot Male */
+.maskot-male {
+  position: absolute;
+  bottom: -2%;
+  right: 0%;
 }
 
-.checkmark:after {
-  content: ""; /* Membuat konten kosong */
-  display: none; /* Sembunyikan konten awal */
-  position: absolute; /* Posisi absolut untuk centang */
-  left: 9px; /* Posisikan centang lebih ke kanan */
-  top: 3px; /* Atur posisi vertikal centang */
-  width: 5px; /* Lebar centang */
-  height: 12px; /* Tinggi centang */
-  border: solid white; /* Warna centang */
-  border-width: 0 2px 2px 0; /* Tepi centang */
-  transform: rotate(45deg); /* Memutar centang */
+.maskot-male img {
+  width: 100px; 
+  height: auto;
 }
-
-.checkbox:checked + .checkmark:after {
-  display: block; /* Tampilkan centang saat dicentang */
-}
-
 
 /* Animasi untuk efek floating */
 @keyframes floating {
   0% {
-      transform: translate(-50%, 0); 
+      transform: translate(0, 0); 
   }
   50% {
-      transform: translate(-50%, -10px);
+      transform: translate(0, -10px);
   }
   100% {
-      transform: translate(-50%, 0);
+      transform: translate(0, 0);
   }
 }
 
@@ -177,15 +183,71 @@ export default {
       max-width: 80%;
   }
 
+  .maskot-female img {
+  max-width: 100px;
+  height: auto;
+}
+.maskot-male img {
+  max-width: 150px;
+  height: auto;
+}
+
+.mosquito-logo img {
+  max-width: 100px;
+  height: auto;
+}
+
   .content-container {
       padding: 20px 30px;
-      margin: 20px;
+      margin-top: 10%;
       max-height: 70vh; /* Maintain height limit for mobile */
       overflow-y: auto; /* Enable vertical scrolling */
   }
 
   .content-container h2 {
       font-size: 30px;
+  }
+
+  .accept-button {
+      font-size: 14px;
+      padding: 8px 20px;
+  }
+}
+
+@media (max-width: 768px) and (max-height: 670px) {
+  .sponsor-logos img {
+      max-width: 70%;
+      margin-bottom: 20px;
+  }
+
+  .mosquito-logo img {
+  max-width: 150px;
+  height: auto;
+}
+
+.maskot-female img {
+  max-width: 70px;
+  height: auto;
+}
+.maskot-male img {
+  max-width: 70px;
+  height: auto;
+}
+
+  .content-container {
+      padding: 20px 30px;
+      margin-top:35%;
+      max-height: 50vh; /* Sesuaikan max-height dengan kondisi viewport */
+      overflow-y: auto;
+  }
+
+  .content-container h2 {
+      font-size: 30px;
+  }
+
+  .accept-button {
+      font-size: 14px;
+      padding: 8px 20px;
   }
 }
 </style>

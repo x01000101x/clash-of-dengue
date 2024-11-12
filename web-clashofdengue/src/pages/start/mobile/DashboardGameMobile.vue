@@ -50,7 +50,7 @@
 import PieChart from '@/components/PieChart.vue'
 
 export default {
-    name: 'RegistrationPage',
+    name: 'DashboardGame',
     components : {
         PieChart,
     },
@@ -93,7 +93,11 @@ export default {
           await this.$store.dispatch("ClashOfDengue/getQuizBySession");
           this.$store.commit("ClashOfDengue/resetQuiz");
           await this.$store.dispatch("ClashOfDengue/getProfileUser");
-          if(this.profileUser.session_id && this.profileUser.session_id === this.session) {
+          console.log("this.profileUser.session_id", this.profileUser.session_id);
+          console.log("session", this.session);
+          
+          
+          if(this.profileUser.session_id && this.profileUser.session_id === String(this.session.id)) {
             this.$store.commit("ClashOfDengue/setCreateDialog", {
             show: true,
             message: "Anda sudah menyelesaikan quiz di sesi saat ini",
@@ -135,7 +139,8 @@ export default {
               updatedAt: sessionUpdatedAt
           } : latest;
       }, { session: null, updatedAt: new Date(0) }).session;
-    
+      console.log("Lastsession", lastSession);
+      
       this.$store.commit("ClashOfDengue/setLastSession", lastSession);
     },
     async logOut() {
@@ -166,6 +171,7 @@ export default {
             icon: "fa-solid fa-circle-exclamation",
           });
         }
+      this.checkSession();
     },
 };
 </script>
