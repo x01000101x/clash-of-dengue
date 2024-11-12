@@ -35,9 +35,6 @@
 export default {
   name: 'TermPage',
   computed: {
-      lorem() {
-          return this.$store.getters["ClashOfDengue/getLorem"];
-      },
   },
   methods: {
       handleButtonClick() {

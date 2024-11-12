@@ -42,6 +42,10 @@ export const setUserRank = (state, value) => {
     state.myRank = value;
 };
 
+export const setCountDown = (state, value) => {
+    state.countDown = value;
+};
+
 export const addCurrentQuiz = (state) => {
     state.currentQuiz++;
 };

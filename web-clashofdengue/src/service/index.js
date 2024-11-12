@@ -336,4 +336,28 @@ export default {
             }
         }
     },
+
+    async getCountdown(request) {
+        const func = "Get Count Down";
+        const endpoint = url + "/count-down";
+        const token = request.token;
+        try {
+            console.debug(func);
+            const response = await axios.get(endpoint, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response) {
+                throw new Error(
+                    error.response.data.message || "Something went wrong"
+                );
+            } else {
+                throw new Error("Network error: " + error.message);
+            }
+        }
+    },
 };

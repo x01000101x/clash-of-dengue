@@ -40,7 +40,6 @@ export default {
     name: 'RegistrationPage',
     data() {
         return {
-            targetDate: new Date('2024-11-21T00:00:00'), // Set your target date here
             days: 0,
             hours: 0,
             minutes: 0,
@@ -49,6 +48,9 @@ export default {
     computed: {
         token(){
             return this.$store.getters["ClashOfDengue/getToken"];
+        },
+        targetDate(){
+            return this.$store.getters["ClashOfDengue/getCountDown"];
         },
     },
     methods: {
@@ -73,6 +75,10 @@ export default {
                 this.minutes = 0;
             }
         },
+    },
+    async created() {
+        await this.$store.dispatch("ClashOfDengue/getCountDown");
+        this.updateCountdown();
     },
     mounted() {
         this.updateCountdown();

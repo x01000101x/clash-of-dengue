@@ -193,14 +193,14 @@ export default {
 }
 
 .mosquito-logo img {
-  max-width: 100px;
+  max-width: 150px;
   height: auto;
 }
 
   .content-container {
       padding: 20px 30px;
-      margin-top: 10%;
-      max-height: 70vh; /* Maintain height limit for mobile */
+      margin-top: 27%;
+      max-height: 60vh; /* Maintain height limit for mobile */
       overflow-y: auto; /* Enable vertical scrolling */
   }
 

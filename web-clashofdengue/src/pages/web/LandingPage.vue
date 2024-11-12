@@ -24,10 +24,10 @@
       </div>
     </div>
     <div class="maskot-female">
-      <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+      <img src="@/assets/cod/logo-family1.png" alt="Maskot Perempuan" />
     </div>
     <div class="maskot-male">
-      <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+      <img src="@/assets/cod/logo-family2.png" alt="Maskot Laki-laki" />
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
 <style scoped>
 .background-page {
   height: 100vh;
-  background-image: url('@/assets/cod/bg-web.png');
+  background-image: url('@/assets/cod/backweb2.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -137,17 +137,14 @@ export default {
 }
 
 .maskot-female img {
-  max-width: 150px;
+  max-width: 250px;
   height: auto;
 }
 
 .maskot-male {
   position: absolute;
-  top: 15%;
-  left: 25%;
-  transform: translateX(-50%);
-  animation: floating 3s ease-in-out infinite;
-  z-index: 1;
+  bottom: -5%;
+  right: 0%;
 }
 
 .maskot-male img {

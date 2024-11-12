@@ -24,10 +24,10 @@
       </div>
     </div>
     <div class="maskot-female">
-      <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+      <img src="@/assets/cod/logo-family1.png" alt="Maskot Perempuan" />
     </div>
     <div class="maskot-male">
-      <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+      <img src="@/assets/cod/logo-family2.png" alt="Maskot Laki-laki" />
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
 <style scoped>
 .background-page {
   height: 100vh;
-  background-image: url('@/assets/cod/bg-mobile.png');
+  background-image: url('@/assets/cod/backmob2.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -133,23 +133,23 @@ export default {
 
 .maskot-female {
   position: absolute;
-  bottom: -13%;
-  right: 0%;
+  bottom: -1%;
+  left: 0%;
 }
 
 .maskot-female img {
-  max-width: 150px;
+  max-width: 200px;
   height: auto;
 }
 
 .maskot-male {
   position: absolute;
-  bottom: -13%;
-  left:0%;
+  bottom: -5%;
+  right:0%;
 }
 
 .maskot-male img {
-  width: 250px; 
+  width: 200px; 
   height: auto;
 }
 
@@ -178,16 +178,18 @@ export default {
     max-height: 70vh; /* Batasi tinggi kontainer di mobile */
     overflow-y: auto; /* Aktifkan scroll vertikal */
     top: 15%; /* Sesuaikan posisi untuk mobile */
+    margin-top: 20%;
   }
 
   .content-container h2 {
     font-size: 30px;
     display: flex;
     justify-content: center;
+    margin-top: 15%;
   }
 
   .content-container li {
-    font-size: 20px;
+    font-size: 17px;
   }
 
   .register-button {
@@ -199,15 +201,15 @@ export default {
   }
 
   .mosquito-logo img {
-    max-width: 100px;
-  }
-
-  .maskot-female img {
     max-width: 200px;
   }
 
+  .maskot-female img {
+    max-width: 175px;
+  }
+
   .maskot-male img {
-    width: 250px; /* Sesuaikan ukuran maskot laki-laki untuk mobile */
+    width: 150px;
   }
 }
 </style>

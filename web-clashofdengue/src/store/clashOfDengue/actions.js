@@ -368,3 +368,37 @@ export const getRank = async ({ getters, commit }) => {
         });
     }
 };
+
+export const getCountDown = async ({ getters, commit }) => {
+    try {
+        commit("setShowLoading", true);
+        const res = await clashOfDengueService.getCountdown({
+            token: getters.getToken,
+        });
+        console.debug("res Countdown", res);
+
+        if (res.status === false || !res.response) {
+            throw new Error(res.message || "Get CountDown");
+        }
+        commit("setShowLoading", false);
+        // Konversi tanggal yang diterima ke objek Date
+        const targetDate = new Date(res.response[0].date);
+
+        // Pastikan targetDate adalah objek Date yang valid
+        if (isNaN(targetDate)) {
+            throw new Error("Invalid date format received from backend.");
+        }
+
+        // Simpan targetDate ke Vuex state
+        commit("setCountDown", targetDate);
+
+        return res;
+    } catch (err) {
+        commit("setShowLoading", false);
+        commit("setCreateDialog", {
+            show: true,
+            message: err.message,
+            icon: "fa-solid fa-circle-exclamation",
+        });
+    }
+};
