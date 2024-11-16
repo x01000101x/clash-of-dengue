@@ -30,7 +30,6 @@ export default {
     },
     async authLogin(request) {
         const func = "Login User";
-        console.log("URL", url);
         const endpoint = url + "/auth/login";
 
         const bodyRequest = {
@@ -242,7 +241,6 @@ export default {
             session_id: request.session,
         };
         const token = request.token;
-        console.log("request", request);
 
         try {
             console.debug(func, bodyRequest);
@@ -268,6 +266,7 @@ export default {
         const endpoint = url + "/question-session";
         const bodyRequest = {
             session_id: request.session,
+            type: request.type,
         };
         const token = request.token;
         try {

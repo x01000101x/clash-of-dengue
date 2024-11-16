@@ -38,12 +38,14 @@
             </div>
         </div>
         <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
         </div>
         <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-family1.png" alt="Maskot Laki-laki" />
         </div>
-
+        <div class="logo-dbd">
+            <img src="@/assets/cod/logo-dbd.png" alt="Logo DBD" />
+        </div>
         <div class="featuring-by">
             <h2>Peringkat Anda Saat Ini : {{ getUserRank? getUserRank : "0" }}</h2>
         </div>
@@ -97,8 +99,6 @@ export default {
           await this.$store.dispatch("ClashOfDengue/getQuizBySession");
           this.$store.commit("ClashOfDengue/resetQuiz");
           await this.$store.dispatch("ClashOfDengue/getProfileUser");
-          console.log("this.profileUser.session_id", this.profileUser.session_id);
-          console.log("session", this.session);
           
           
           if(this.profileUser.session_id && this.profileUser.session_id === String(this.session.id)) {
@@ -115,7 +115,7 @@ export default {
             this.$router.push('/start/quiz');
           }
       } catch (error) {
-        console.log("error", error);
+        console.debug("error", error);
         return
       }
     },
@@ -142,9 +142,7 @@ export default {
               session,
               updatedAt: sessionUpdatedAt
           } : latest;
-      }, { session: null, updatedAt: new Date(0) }).session;
-      console.log("Lastsession", lastSession);
-      
+      }, { session: null, updatedAt: new Date(0) }).session;      
       this.$store.commit("ClashOfDengue/setLastSession", lastSession);
     },
     async logOut() {
@@ -183,7 +181,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/back-web-mid.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -212,7 +210,7 @@ export default {
 }
 
 .mosquito-logo img {
-  max-width: 200px;
+  width: 300px;
   height: auto;
 }
 
@@ -220,6 +218,17 @@ export default {
     max-width: 75vw;
 }
 
+.logo-dbd {
+position: absolute;
+bottom: 25%;
+right: 3%;
+z-index: 999;
+}
+
+.logo-dbd img {
+max-width: 200px;
+height: auto;
+}
 
 .game-status {
     background-color: white; /* White background for the main container */
@@ -298,33 +307,41 @@ export default {
     font-weight: 500;
 }
 
+.icon-container {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .diagram-pie {
     max-width: 100%;
 }
 
 .maskot-female {
     position: absolute;
-    bottom: -25%;
+    bottom: -5%;
     right: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-female img {
-    max-width: 250px;
+    max-width: 200px;
     height: auto;
 }
 
 .maskot-male {
     position: absolute;
-    bottom: -25%;
-    left: 00%;
+    bottom: -1%;
+    left: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-male img {
-    width: 350px; 
+    width: 250px; 
     height: auto;
 }
 
@@ -374,5 +391,12 @@ export default {
     .mosquito-logo img {
         max-width: 150px;
     }
+}
+
+@media (max-height: 800px) {
+    .mosquito-logo img {
+  width: 200px;
+  height: auto;
+}
 }
 </style>

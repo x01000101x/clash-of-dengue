@@ -3,15 +3,9 @@
         <div class="sponsor-logos">
             <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
         </div>
-        
-        <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+        <div class="avatar-container">
+            <img :src="avatars[parseInt(userAva)]" alt="Profile" @click="openAvatarDialog"/> <!-- Use parseInt to convert the string to an integer -->
         </div>
-        
-        <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
-        </div>
-
         <!-- Profile Section -->
         <div class="profile-card">
             <div class="profile-picture" >
@@ -23,7 +17,6 @@
                         <p>Menu</p>
                     </div>
                 </div>
-                <img :src="avatars[parseInt(userAva)]" alt="Profile" @click="openAvatarDialog"/> <!-- Use parseInt to convert the string to an integer -->
                 <div class="posisi-icon-rank">
                     <div class="icons">
                         <div class="icon-container">
@@ -120,12 +113,7 @@ export default {
     },
     methods: {
         openAvatarDialog() {
-            console.log("open dialog");
             this.isAvatarDialogOpen = true;
-        },
-        submitForm() {
-            // Logic for handling form submission
-            console.log(this.formData);
         },
         async updateAvatar(value) {
         try {
@@ -151,7 +139,7 @@ export default {
         try {
           await this.$store.dispatch("ClashOfDengue/logoutUser");
           this.$store.commit("ClashOfDengue/resetStore")
-          this.$router.push('/start');
+          this.$router.push('/');
         } catch (error) {
           console.error('logOut error:', error.message);
           this.$store.commit("ClashOfDengue/setCreateDialog", {
@@ -177,7 +165,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/backweb2.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -191,15 +179,11 @@ export default {
 
 
 .posisi-icon-rank {
-    position: fixed;
-    top: 0;
-    right: 0;
+
 }
 
 .posisi-icon-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
+
 }
 
 .icon {
@@ -220,10 +204,19 @@ export default {
     font-weight: 500;
 }
 
+.icon-container {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .user {
     display: flex;
     align-items: center;
     width: 100%;
+    justify-content: center;
 }
 .profile-text{
     max-width: 75vw;
@@ -244,6 +237,20 @@ export default {
 
 .points {
     width: 100%;
+}
+
+.avatar-container {
+    position: absolute;
+    top: 15%;
+    z-index: 5;
+}
+
+.avatar-container img {
+    width: 250px; /* Set a fixed size for profile picture */
+    height: auto;
+    border-radius: 50%; /* Make it circular */
+    display: flex;
+    flex-direction: column;
 }
 
 .chart {
@@ -287,11 +294,11 @@ export default {
     background-color: white;
     border-radius: 20px;
     padding: 20px;
-    max-width: 90vw;
+    width: 60vw;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: absolute; /* Positioning for overlay effect */
-    top: 50%; /* Center vertically */
+    top: 60%; /* Center vertically */
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /* Adjust for centering */
     z-index: 2;
@@ -303,8 +310,9 @@ export default {
 .profile-picture {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .profile-picture img {

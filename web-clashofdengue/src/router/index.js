@@ -1,8 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Dashboard from "../pages/Dashboard.vue";
-import ForgotPassword from "@/pages/ForgotPassword.vue";
-import SendEmail from "@/pages/SendEmail.vue";
-import ProfilePage from "@/pages/ProfilePage.vue";
 import LandingPage from "@/pages/web/LandingPage.vue";
 import LandingPageMobile from "@/pages/mobile/LandingPageMobile.vue";
 import Registrasi from "@/pages/web/Registrasi.vue";
@@ -31,28 +27,6 @@ const routes = [
         path: "/",
         name: "Home",
         component: HalamanHitung,
-    },
-    {
-        path: "/dashboard",
-        name: "Dashobard",
-        component: Dashboard,
-        meta: { requiresAuth: true },
-    },
-    {
-        path: "/password",
-        name: "Password",
-        component: ForgotPassword,
-    },
-    {
-        path: "/reset",
-        name: "Reset",
-        component: SendEmail,
-    },
-    {
-        path: "/profile",
-        name: "Profile",
-        component: ProfilePage,
-        meta: { requiresAuth: true },
     },
     {
         path: "/landing",

@@ -10,32 +10,39 @@
             <img src="@/assets/cod/event-highlight.png" alt="Logo Highlight" />
         </div>
         <div class="content-container">
+            <i class="fa-solid fa-arrow-left" @click="prevImage"></i>
             <div class="poster">
-              <img src="@/assets/cod/Poster.png" alt="Gambar Poster" />
+              <img :src="currentPoster" alt="Gambar Poster" />
             </div>
+            <i class="fa-solid fa-arrow-right" @click="nextImage"></i>
+        </div>
+        <div class="container-countdown">
             <div class="countdown">
-                <h2>Sesi Selanjutnya</h2>
+                <h2>Counting the Days</h2>
                 <div class="countdown-timer">
-                    <div>
-                        <span>{{ days }}</span> Days
+                    <div class="time">
+                        <span>{{ days }}</span> 
+                        <p>Days</p>
                     </div>
-                    <div>
-                        <span>{{ hours }}</span> Hours
+                    <div class="time">
+                        <span>{{ hours }}</span>
+                        <p>Hours</p>
                     </div>
-                    <div>
-                        <span>{{ minutes }}</span> Minutes
+                    <div class="time">
+                        <span>{{ minutes }}</span> 
+                        <p>Minutes</p>
                     </div>
                 </div>
             </div>
-            <div class="button-profile">
-                <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
-            </div>
+        </div>
+        <div class="button-profile">
+            <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
         </div>
         <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
         </div>
         <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-family1.png" alt="Maskot Laki-laki" />
         </div>
  
     </div>
@@ -43,19 +50,40 @@
 
 <script>
 export default {
-    name: 'CountingDays',
+    name: 'RegistrationPage',
     data() {
         return {
-            targetDate: new Date('2024-11-21T00:00:00'), // Set your target date here
             days: 0,
             hours: 0,
             minutes: 0,
+            posters: [
+                require("@/assets/cod/poster-nyamuk.png"),
+                require("@/assets/cod/Poster.png")
+            ],
+            currentIndex: 0,
         };
     },
     computed: {
         token(){
             return this.$store.getters["ClashOfDengue/getToken"];
         },
+        targetDate() {
+            const now = new Date();
+            const target = new Date(now);
+
+            // Cek apakah waktu saat ini sudah melewati jam 15:00
+            if (now.getHours() >= 15) {
+                // Jika sudah lewat jam 15, targetkan keesokan hari jam 15:00
+                target.setDate(now.getDate() + 1); // Setel tanggal ke hari berikutnya
+            }
+
+            // Setel jam menjadi 15:00 (3 sore) pada hari yang sudah ditentukan
+            target.setHours(15, 0, 0, 0);
+            return target;
+        },
+        currentPoster() {
+            return this.posters[this.currentIndex]; // Menampilkan gambar berdasarkan currentIndex
+        }
     },
     methods: {
         goToProfile() {
@@ -64,6 +92,9 @@ export default {
             } else {
                 this.$router.push('/start/profile');
             }
+        },
+        goToNewGame() {
+            this.$router.push('/start');
         },
         updateCountdown() {
             const now = new Date();
@@ -79,6 +110,25 @@ export default {
                 this.minutes = 0;
             }
         },
+        nextImage() {
+            if (this.currentIndex < this.posters.length - 1) {
+                this.currentIndex++;
+            } else {
+                this.currentIndex = 0; // Jika sudah di gambar terakhir, kembali ke gambar pertama
+            }
+        },
+        // Fungsi untuk menampilkan gambar sebelumnya
+        prevImage() {
+            if (this.currentIndex > 0) {
+                this.currentIndex--;
+            } else {
+                this.currentIndex = this.posters.length - 1; // Jika sudah di gambar pertama, kembali ke gambar terakhir
+            }
+        }
+    },
+    async created() {
+        await this.$store.dispatch("ClashOfDengue/getCountDown");
+        this.updateCountdown();
     },
     mounted() {
         this.updateCountdown();
@@ -90,7 +140,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/bg-count-web.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -98,8 +148,7 @@ export default {
     align-items: center;
     position: relative;
     overflow: hidden;
-    height: 100dvh; /* new browsers */
-    width: 100%;
+    opacity: 0.9;
 }
 
 .sponsor-logos {
@@ -114,24 +163,38 @@ export default {
     height: auto;
 }
 
+.sponsor-logos img {
+    max-width: 70%;
+}
+
 .mosquito-logo {
   position: absolute;
   top: 10%;
   left: 75%; /* Pusatkan logo nyamuk di tengah */
-  transform: translate(-50%, 0); /* Pusatkan secara horizontal */
+  transform: translate(-50%, -50%); /* Pusatkan secara horizontal */
   animation: floating 3s ease-in-out infinite;
   z-index: 999;
 }
 
 .mosquito-logo img {
-  max-width: 200px;
+  max-width: 140px;
   height: auto;
 }
 
 .button-profile {
-    position: relative;
+    position: absolute;
+    bottom: 10%;
+    left: 67%;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.button-newgame{
+    position: absolute;
+    bottom: 10%;
+    right: 67%;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-button {
@@ -161,7 +224,7 @@ export default {
 .content-container {
     background-color: white;
     border-radius: 45px;
-    padding: 30px 50px;
+    padding: 30px 10px;
     max-width: 90vw;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin: 0;
@@ -169,10 +232,40 @@ export default {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 50%;
+    top: 48%;
     left: 50%; 
     transform: translate(-50%, -50%);
     z-index: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.content-container i {
+    font-size: 30px;
+    margin:20px
+}
+
+.container-countdown {
+    display: flex;
+    position: absolute;
+    bottom: 1%;
+    left: 50%; 
+    transform: translate(-50%, 0);
+    color: white;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.time span {
+    font-size: 50px;
+    padding: 0px;
+    margin: 0px;
 }
 
 .poster {
@@ -192,6 +285,10 @@ export default {
     margin-top: 20px;
 }
 
+.countdown h2{
+    font-size: 20px;
+}
+
 .countdown-timer {
     display: flex;
     justify-content: center;
@@ -205,40 +302,40 @@ export default {
 
 .maskot-female {
     position: absolute;
-    bottom: -25%;
-    right: -5%;
+    bottom: -8%;
+    right: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-female img {
-    max-width: 250px;
+    max-width: 200px;
     height: auto;
 }
 
 .maskot-male {
     position: absolute;
-    bottom: -25%;
-    left: 10%;
+    bottom: -3%;
+    left: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-male img {
-    width: 350px; 
+    width: 250px; 
     height: auto;
 }
 
 /* Animasi untuk efek floating */
 @keyframes floating {
     0% {
-        transform: translate(-50%, 0); 
+        transform: translate(0, 0); 
     }
     50% {
-        transform: translate(-50%, -10px);
+        transform: translate(0, -10px);
     }
     100% {
-        transform: translate(-50%, 0);
+        transform: translate(0, 0);
     }
 }
 
@@ -291,6 +388,12 @@ export default {
       }
       .highlight-logo {
         top: 30%;
+    }
+}
+
+@media (max-height:750px) {
+    .content-container {
+        top: 45%;
     }
 }
 </style>

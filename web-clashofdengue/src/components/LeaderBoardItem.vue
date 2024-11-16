@@ -107,7 +107,7 @@ export default {
 @media (max-width: 765px) {
   .entry-container {
   padding: 5px;
-  width: 90%;
+  width: 100%;
 }
 .student-name {
   font-size: 10px;

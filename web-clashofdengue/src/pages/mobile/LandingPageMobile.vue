@@ -10,18 +10,18 @@
       <h2>Makna dan Tujuan</h2>
       <ul>
         <li>
-          Meningkatkan kesadaran generasi muda tentang bahaya Demam Berdarah
+          Meningkatkan kesadaran masyarakat tentang bahaya Demam Berdarah
           Dengue (DBD) dan pentingnya pencegahan dini
         </li>
         <li>
-          Melalui kompetisi yang interaktif dan menyenangkan, anak-anak
+          Melalui kompetisi yang interaktif dan menyenangkan, peserta
           diharapkan tidak hanya memahami cara-cara pencegahan DBD tetapi
-          juga menjadi agen perubahan di lingkungan sekolah dan rumah mereka
+          juga menjadi agen perubahan di lingkungan masyarakat dan rumah mereka
         </li>
       </ul>
-      <div class="button-container-regis">
-        <button class="register-button" @click="pushToRegis">REGISTER</button>
-      </div>
+    </div>
+    <div class="button-container-regis">
+      <button class="register-button" @click="pushToRegis">REGISTER</button>
     </div>
     <div class="maskot-female">
       <img src="@/assets/cod/logo-family1.png" alt="Maskot Perempuan" />
@@ -79,10 +79,6 @@ export default {
   color: var(--primary-color);
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 25%;
-  left: auto; 
-  z-index: 2;
 }
 
 .content-container h2 {
@@ -104,7 +100,6 @@ export default {
 .button-container-regis {
   display: flex;
   justify-content: center;
-  margin-top: auto;
 }
 
 .register-button {
@@ -178,7 +173,7 @@ export default {
     max-height: 70vh; /* Batasi tinggi kontainer di mobile */
     overflow-y: auto; /* Aktifkan scroll vertikal */
     top: 15%; /* Sesuaikan posisi untuk mobile */
-    margin-top: 20%;
+    margin-top: 35%;
   }
 
   .content-container h2 {
@@ -210,6 +205,16 @@ export default {
 
   .maskot-male img {
     width: 150px;
+  }
+}
+
+@media (max-height: 815px){
+  .maskot-female img {
+    max-width: 125px;
+  }
+
+  .maskot-male img {
+    width: 100px;
   }
 }
 </style>

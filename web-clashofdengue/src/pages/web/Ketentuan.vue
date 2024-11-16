@@ -9,24 +9,26 @@
       <div class="content-container">
           <h2>Syarat dan Ketentuan</h2>
           <ul class="terms-list">
-              <li>Peserta: Terbuka untuk siswa/siswi aktif di sekolah</li>
-              <li>Waktu pendaftaran: Pendaftaran akan dibuka pada tanggal 15 November 2024 - 22 November 2024</li>
-              <li>Pendaftaran: Pendaftaran dapat dilakukan pada website CegahDBD.com</li>
-              <li>Perangkat: Peserta dapat menggunakan HP masing-masing atau dapat melalui website</li>
-              <li>Waktu Pengerjaan: Waktu pengerjaan akan dimulai pada pukul 13.00 - 15.00 setiap hari dari tanggal 15 November 2024 sampai tanggal 23 November 2024</li>
-              <li>Kontak: Jika mengalami kendala dan pertanyaan seputar ini bisa menghubungi nomor 0813 9999 7218</li>
+              <li>1. Peserta: Terbuka untuk peserta undangan Clash of Dengue (sekolah/office terpilih)</li>
+              <li>2. Waktu pendaftaran: Pendaftaran akan dibuka pada tanggal 15 November 2024 - 22 November 2024</li>
+              <li>3. Pendaftaran: Pendaftaran dapat dilakukan pada website CegahDBD.com</li>
+              <li>4. Perangkat: Peserta dapat menggunakan HP masing-masing atau dapat melalui website</li>
+              <li>5. Waktu Pengerjaan: Waktu pengerjaan akan dimulai pada pukul 13.00 - 15.00 setiap hari dari tanggal 23 November 2024 sampai tanggal 28 November 2024</li>
+              <li>6. Kontak: Jika mengalami kendala dan pertanyaan seputar ini bisa menghubungi nomor 0813 9999 7218</li>
           </ul>
-          <div class="button-container-term">
-              <button class="accept-button" @click="handleButtonClick">
-                  Register
-              </button>
-          </div>
+        </div>
+        <div class="button-container-term">
+          <label class="checkbox-container">
+              <input type="checkbox" class="checkbox" @change="handleCheckboxChange" />
+              <span class="checkmark"></span>
+              <span> Kamu sudah siap untuk ikut Clash Of Dengue? <a href="https://www.takeda.com/id-id/pemberitahuan-privasi/" target="_blank">Pahami</a> misinya, kuatkan aksi nyata, dan tunjukkan bahwa kamu bisa jadi pahlawan DBD!</span>
+          </label>
       </div>
       <div class="maskot-female">
-          <img src="@/assets/cod/logo-fam5.png" alt="Maskot Perempuan" />
+          <img src="@/assets/cod/logo-family1.png" alt="Maskot Perempuan" />
       </div>
       <div class="maskot-male">
-          <img src="@/assets/cod/logo-fam3.png" alt="Maskot Laki-laki" />
+          <img src="@/assets/cod/logo-family2.png" alt="Maskot Laki-laki" />
       </div>
   </div>
 </template>
@@ -37,8 +39,10 @@ export default {
   computed: {
   },
   methods: {
-      handleButtonClick() {
-          this.$router.push('/regis');
+    handleCheckboxChange(event) {
+          if (event.target.checked) {
+              this.$router.push('/regis');
+          }
       },
   },
 };
@@ -49,7 +53,7 @@ export default {
 .background-page {
   height: 100vh;
   height: 100dvh;
-  background-image: url('@/assets/cod/bg-web.png');
+  background-image: url('@/assets/cod/backweb2.png');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -84,6 +88,7 @@ export default {
   top: 25%;
   left: auto; 
   z-index: 2;
+  overflow-y: auto;
 }
 
 .content-container h2 {
@@ -91,6 +96,17 @@ export default {
   font-weight: 1000;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.button-container-term {
+  position: absolute; /* Keep absolute positioning */
+  bottom: 5%; /* Adjust this value to move it above the bottom edge */
+  left: 50%; /* Position it from the left side */
+  transform: translateX(-50%); /* Center it horizontally */
+  display: flex;
+  justify-content: center; /* Center any children inside */
+  z-index: 999; /* Ensure it's above other elements */
+  width: auto; /* Allow width to be determined by content */
 }
 
 .terms-list {
@@ -144,12 +160,12 @@ export default {
 /* Maskot Female */
 .maskot-female {
   position: absolute;
-  bottom: -10%;
+  bottom: -1%;
   left: 0%;
 }
 
 .maskot-female img {
-  max-width: 150px;
+  max-width: 250px;
   height: auto;
 }
 
@@ -157,7 +173,7 @@ export default {
 .maskot-male {
   position: absolute;
   top: 10%;
-  left: 25%;
+  left: 30%;
   transform: translateX(-50%);
   animation: floating 3s ease-in-out infinite;
   z-index: 1;
@@ -167,6 +183,72 @@ export default {
   width: 200px; 
   height: auto;
 }
+
+/* Checkbox and checkmark styles */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer; /* Mengubah pointer saat hover */
+  margin-bottom: 10px; /* Jarak bawah untuk checkbox */
+  background-color: var(--secondary-color);
+  color: white;
+  font-weight: 700;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.checkbox-container a {
+  text-decoration: underline; /* Menambahkan garis bawah pada tautan */
+  color: white; /* Menjaga warna tautan sesuai dengan tema */
+  font-weight: bold; /* Menambahkan ketebalan pada teks agar lebih terlihat */
+
+}
+
+.checkbox-container a:hover {
+  text-decoration: underline; /* Menjaga garis bawah saat hover */
+  color: var(--primary-color); /* Ubah warna tautan saat hover */
+}
+
+.checkbox {
+  display: none; /* Sembunyikan checkbox default */
+}
+
+.checkmark {
+  height: 25px; /* Tinggi checkmark */
+  width: 25px; /* Lebar checkmark */
+  background-color: #eee; /* Warna latar belakang */
+  border: 2px solid #ccc; /* Border kotak centang */
+  /* Hapus border-radius agar kotaknya menjadi kotak, bukan bundar */
+  border-radius: 0; 
+  margin-right: 10px; /* Jarak antara checkbox dan teks */
+  position: relative; /* Posisi relatif untuk centang */
+}
+
+.checkbox:checked + .checkmark {
+  background-color: var(--primary-color); /* Ganti warna saat dicentang */
+  border-color: var(--primary-color); /* Ganti warna border saat dicentang */
+}
+
+.checkmark:after {
+  content: ""; /* Membuat konten kosong */
+  display: none; /* Sembunyikan konten awal */
+  position: absolute; /* Posisi absolut untuk centang */
+  left: 8px; /* Posisikan centang sedikit lebih ke kanan */
+  top: 3px; /* Atur posisi vertikal centang */
+  width: 5px; /* Lebar centang */
+  height: 10px; /* Tinggi centang */
+  border: solid white; /* Warna centang */
+  border-width: 0 2px 2px 0; /* Menentukan tepi yang diinginkan */
+  transform: rotate(45deg); /* Memutar centang */
+}
+
+.checkbox:checked + .checkmark:after {
+  display: block; /* Tampilkan centang saat dicentang */
+}
+
 
 /* Animasi untuk efek floating */
 @keyframes floating {
@@ -215,5 +297,17 @@ export default {
   .maskot-male img {
       width: 150px;
   }
+}
+
+@media (max-height: 780px) {
+  .content-container {
+    top: 15%;
+    height: 60vh;
+  }
+
+  .mosquito-logo img {
+  max-width: 200px;
+  height: auto;
+}
 }
 </style>

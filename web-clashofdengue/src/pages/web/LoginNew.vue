@@ -31,11 +31,14 @@
                 </div>
             </form>
         </div>
+        <div class="logo-dbd">
+            <img src="@/assets/cod/logo-dbd.png" alt="Logo DBD" />
+        </div>
         <div class="maskot-female">
-            <img src="@/assets/cod/logo-dbd.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
         </div>
         <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-family1.png" alt="Maskot Laki-laki" />
         </div>
         <div class="featuring-by">
             <img src="@/assets/cod/Sponsor.png" alt="Featuring by" />
@@ -59,7 +62,6 @@ export default {
             this.$router.push('/splash');
         },
         async submitLogin() {
-            console.log(this.formData);
             if (!this.formData.username || !this.formData.password) {
             this.$store.commit("ClashOfDengue/setCreateDialog", {
                 show: true,
@@ -103,7 +105,7 @@ export default {
 height: 100vh;
 height: 100dvh; /* new browsers */
 width: 100%;
-background-image: url('@/assets/cod/bg-web.png');
+background-image: url('@/assets/cod/back-web-mid.png');
 background-size: cover;
 background-position: center;
 display: flex;
@@ -121,7 +123,7 @@ margin-bottom: 20px; /* Space between logos and content */
 }
 
 .sponsor-logos img {
-max-width: 1000px;
+max-width: 500px;
 height: auto;
 }
 
@@ -134,7 +136,7 @@ height: auto;
 }
 
 .content-container {
-background-color: var(--secondary-color);
+background-color: white;
 border-radius: 45px;
 padding: 30px 50px;
 max-width: 70vw;
@@ -142,7 +144,7 @@ max-height: 60vh; /* Batasi tinggi kontainer di mobile */
 overflow-y: auto;
 width: 100%;
 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-color: var(--primary-color);
+color: var(--secondary-color);  
 display: flex;
 flex-direction: column;
 z-index: 2;
@@ -169,7 +171,7 @@ text-align: center; /* Center the heading */
 }
 
 .mosquito-logo img {
-  max-width: 250px;
+  width: auto;
   height: auto;
 }
 
@@ -180,28 +182,31 @@ flex-direction: column; /* Stack the form elements vertically */
 margin-bottom: 20px;
 }
 
+
 .form-group {
-display: flex;
-flex-direction: column;
-height: auto;
-width: 100%;
-color: white;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    color: white;
 }
 
 label {
-font-weight: bold;
-margin-bottom: 5px;
-color: white;
-font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+    font-size: 20px;
 }
 
-input {
-width: 100%; /* Full width */
-padding: 15px; /* Increased padding for better appearance */
-border: 1px solid #ccc; /* Border */
-border-radius: 5px; /* Rounded corners */
-font-size: 18px; 
-font-weight: 400;
+.form-group input {
+    width: 100%; /* Full width */
+    padding: 15px; /* Increased padding for better appearance */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    color: white;
+    background-color: var(--secondary-color);
+    font-size: 18px; 
+    font-weight: 400;
 }
 
 .button-container-regis {
@@ -220,7 +225,7 @@ margin-top: 20px;
 .forgotPassword p{
     display: flex;
     justify-content: flex-end;
-    color: white;
+    color: var(--secondary-color);
 cursor: pointer;
 }
 
@@ -228,6 +233,7 @@ cursor: pointer;
 color: white;
 cursor: pointer;
 margin-top: 10px;
+color: var(--secondary-color);
 }
 
 .button-container-regis a{
@@ -246,8 +252,8 @@ cursor: pointer;
 
 .maskot-female {
 position: absolute;
-bottom: 5%;
-right: 5%;
+bottom: -4%;
+right: 0%;
 z-index: 999;
 }
 
@@ -256,9 +262,22 @@ max-width: 200px;
 height: auto;
 }
 
+.logo-dbd {
+position: absolute;
+bottom: 25%;
+right: 3%;
+z-index: 999;
+}
+
+.logo-dbd img {
+max-width: 200px;
+height: auto;
+}
+
+
 .maskot-male {
 position: absolute;
-bottom: 0%;
+bottom: -1%;
 left: 0%;
 }
 
@@ -271,6 +290,7 @@ height: auto;
 position: absolute;
 bottom: 0%;
 left: auto;
+z-index: 2;
 }
 
 .featuring-by img {
@@ -294,7 +314,7 @@ max-height: 75px;
 /* Media Query untuk tampilan mobile */
 @media (max-width: 768px) {
 .background-page {
-background-image: url('@/assets/cod/bg-mobile.png');
+background-image: url('@/assets/cod/mob-up.jpg');
 }
 .sponsor-logos img {
     max-width: 70%;
@@ -322,6 +342,12 @@ background-image: url('@/assets/cod/bg-mobile.png');
     margin-top: 20px; /* Space below sponsor logos */
 }
 
+.form-group input {
+    padding: 10px; /* Increased padding for better appearance */
+    font-size: 13px; 
+    font-weight: 400;
+}
+
 .content-container h2 {
     font-size: 30px;
 }
@@ -334,13 +360,25 @@ background-image: url('@/assets/cod/bg-mobile.png');
     max-width: 100px;
 }
 
-.maskot-female {
-bottom: 10%;
-right: 5%;
+.logo-dbd img {
+    width: 0px;
 }
 
+.maskot-female {
+bottom: 2%;
+right: 5%;
+z-index: 1;
+}
+
+.maskot-male {
+bottom: 3%;
+left: 5%;
+z-index: 1;
+}
+
+
 .maskot-male img {
-    width: 0;
+    width: 120px;
 }
 }
 
@@ -354,7 +392,6 @@ right: 5%;
   }
   label {
 margin-bottom: 0px;
-color: white;
 font-size: 15px;
 }
 

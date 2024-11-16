@@ -10,14 +10,30 @@
             <p>Selamat kamu telah berhasil menyelesaikan tantangan</p>
             <h2>Clash Of Dengue</h2>
         </div>
-        <div class="content-container-date">
-            <h2>Nantikan pertandingan selanjutnya</h2>
+        <div class="container-countdown">
+            <div class="countdown">
+                <h2>Next Game</h2>
+                <div class="countdown-timer">
+                    <div class="time">
+                        <span>{{ days }}</span> 
+                        <p>Days</p>
+                    </div>
+                    <div class="time">
+                        <span>{{ hours }}</span>
+                        <p>Hours</p>
+                    </div>
+                    <div class="time">
+                        <span>{{ minutes }}</span> 
+                        <p>Minutes</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
         </div>
         <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-family1.png" alt="Maskot Laki-laki" />
         </div>
         <div class="featuring-by">
             <img src="@/assets/cod/Sponsor.png" alt="Featuring by" />
@@ -27,11 +43,52 @@
 
 <script>
 export default {
-    name: 'RegistrationSucessPage',
+    name: 'RegistrationPage',
     data() {
-        return {};
+        return {
+            days: 0,
+            hours: 0,
+            minutes: 0,
+        };
+    },
+    computed: {
+        targetDate() {
+            const now = new Date();
+            const target = new Date(now);
+
+            // Cek apakah waktu saat ini sudah melewati jam 15:00
+            if (now.getHours() >= 15) {
+                // Jika sudah lewat jam 15, targetkan keesokan hari jam 15:00
+                target.setDate(now.getDate() + 1); // Setel tanggal ke hari berikutnya
+            }
+
+            // Setel jam menjadi 15:00 (3 sore) pada hari yang sudah ditentukan
+            target.setHours(15, 0, 0, 0);
+            return target;
+        },
+    },
+    methods: {
+        updateCountdown() {
+            const now = new Date();
+            const timeDifference = this.targetDate - now;
+
+            if (timeDifference > 0) {
+                this.days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                this.hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                this.minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            } else {
+                this.days = 0;
+                this.hours = 0;
+                this.minutes = 0;
+            }
+        },
+    },
+    async created() {
+        this.updateCountdown();
     },
     mounted() {
+        this.updateCountdown();
+        setInterval(this.updateCountdown, 10000);
         setTimeout(() => {
             this.$router.push({ path: '/start/count' });
         }, 8000);
@@ -39,10 +96,11 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/back-web-mid.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -52,6 +110,17 @@ export default {
     overflow: hidden;
     height: 100dvh; /* new browsers */
     width: 100%;
+}
+
+.background-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* hitam dengan opacity 50% */
+    z-index: 1; /* memastikan ini di atas gambar latar belakang */
 }
 
 .content{
@@ -67,7 +136,6 @@ export default {
     background-color: white;
     border-radius: 25px;
     padding: 30px 50px;
-    max-width: 80vw;
     max-height: 60vh; /* Limit height for mobile */
     overflow-y: auto; /* Enable vertical scrolling */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -77,8 +145,43 @@ export default {
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
     text-align: center; /* Center text */
-    max-width: 80vw;
+    width: 40vw;
     margin-top: 25vh;
+    z-index: 2;
+}
+
+.container-countdown {
+    display: flex;
+    position: absolute;
+    bottom: 15%;
+    left: 50%; 
+    transform: translate(-50%, 0);
+    color: white;
+    z-index: 2;
+}
+
+.countdown {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.time span {
+    font-size: 50px;
+    padding: 0px;
+    margin: 0px;
 }
 
 .content-container-date {
@@ -97,6 +200,7 @@ export default {
     text-align: center; /* Center text */
     max-width: 80vw;
     margin-top: 20px;
+    z-index: 2;
 }
 
 .content-container-date h2 {
@@ -131,7 +235,6 @@ export default {
 .mosquito-logo {
     position: absolute;
     top: 20%;
-    left: 50%; /* Center the mosquito logo */
     transform: translate(-50%, 0); /* Center horizontally */
     animation: floating 3s ease-in-out infinite;
     z-index: 999;
@@ -144,27 +247,27 @@ export default {
 
 .maskot-female {
     position: absolute;
-    bottom: -25%;
-    right: -5%;
+    bottom: -5%;
+    right: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-female img {
-    max-width: 250px;
+    max-width: 200px;
     height: auto;
 }
 
 .maskot-male {
     position: absolute;
-    bottom: -25%;
-    left: 10%;
+    bottom: -2%;
+    left: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-male img {
-    width: 350px; 
+    width: 250px; 
     height: auto;
 }
 
@@ -182,13 +285,13 @@ export default {
 /* Floating animation */
 @keyframes floating {
     0% {
-        transform: translate(-50%, 0); 
+        transform: translate(0, 0); 
     }
     50% {
-        transform: translate(-50%, -10px);
+        transform: translate(0, -10px);
     }
     100% {
-        transform: translate(-50%, 0);
+        transform: translate(0, 0);
     }
 }
 
@@ -208,7 +311,7 @@ export default {
         margin: 20px;
         max-height: 70vh; /* Limit height for mobile */
         overflow-y: auto; /* Enable vertical scrolling */
-        max-width: 80vw;
+        width: 90vw;
         margin-top: 20vh;
     }
 
@@ -264,7 +367,24 @@ export default {
 }
 @media (max-width: 765px){
     .background-page {
-        background-image: url('@/assets/cod/bg-mobile.png');
+        background-image: url('@/assets/cod/backmob2.jpg');
     }
+    .container-countdown {
+    display: flex;
+    position:fixed;
+    bottom: 25%;
+    left: 50%; 
+    transform: translate(-50%, 0);
+    color: white;
+    z-index: 2;
+}
+}
+@media (max-height: 715px) {
+    .sponsor-logos img {
+    max-width: 70%
+}
+.mosquito-logo {
+    top: 13%;
+}
 }
 </style>

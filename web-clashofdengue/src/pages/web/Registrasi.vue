@@ -4,15 +4,14 @@
             <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
         </div>
         <div class="content-container">
-            <h2>Registrasi</h2>
             <form @submit.prevent="submitForm" class="registration-form">
                 <div class="form-group">
                     <label for="name">Nama</label>
-                    <input type="text" id="name" v-model="formData.name" placeholder="Nama" @input="toUpperCase('name')" required />
+                    <input type="text" id="name" v-model="formData.name" placeholder="Nama" @input="toUpperCase('name')" required autocomplete="off"/>
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" v-model="formData.username" placeholder="Username" required />
+                    <input type="text" id="username" v-model="formData.username" placeholder="Username" required autocomplete="off"/>
                 </div>
                 <div class="form-group">
                     <label for="institutionType">Pilih Jenis Institusi</label>
@@ -52,10 +51,10 @@
             </form>
         </div>
         <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
         </div>
         <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-family1.png" alt="Maskot Laki-laki" />
         </div>
         <div class="featuring-by">
             <img src="@/assets/cod/Sponsor.png" alt="Featuring by" />
@@ -99,8 +98,7 @@ export default {
     },
     methods: {
         async submitForm() {
-            console.log(this.formData);
-            if (!this.formData.name || !this.formData.school || !this.formData.username || !this.formData.password || !this.formData.confirmPassword) {
+            if (!this.formData.name || !this.formData.username || !this.formData.password || !this.formData.confirmPassword) {
                 this.$store.commit("ClashOfDengue/setCreateDialog", {
                     show: true,
                     message: "Harap lengkapi seluruh data",
@@ -121,6 +119,7 @@ export default {
                 username: this.formData.username,
                 school_name: this.formData.institutionType === 'school' ? this.formData.school : this.formData.company,
                 password: this.formData.password,
+                type: this.formData.institutionType,
             };
             try {
                 await this.$store.dispatch("ClashOfDengue/registerUser", userData);
@@ -148,7 +147,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/backweb2.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -163,13 +162,13 @@ export default {
 /* Style untuk select dropdown */
 select {
     width: 100%;
-    padding: 5px; /* Sama seperti padding untuk input */
+    padding: 15px; /* Sama seperti padding untuk input */
     border: 1px solid #ccc; /* Border konsisten dengan input */
     border-radius: 5px; /* Rounded corners */
     font-size: 18px;
     font-weight: 400;
-    color: var(--secondary-color); /* Menggunakan warna yang sama */
-    background-color: white; /* Warna latar belakang untuk dropdown */
+    color: white; /* Menggunakan warna yang sama */
+    background-color: var(--primary-color); /* Warna latar belakang untuk dropdown */
     box-sizing: border-box; /* Menjaga padding tidak mempengaruhi lebar */
 }
 
@@ -199,9 +198,9 @@ option {
     border-radius: 45px;
     padding: 30px 50px;
     max-width: 90vw;
-    max-height: 60vh; /* Batasi tinggi kontainer di mobile */
+    max-height: 65vh; /* Batasi tinggi kontainer di mobile */
     overflow-y: auto; /* Aktifkan scroll vertikal */
-    margin: 60px 0px;
+    margin: 5% 0px;
     width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     color: var(--primary-color);
@@ -244,7 +243,8 @@ input {
     padding: 15px; /* Increased padding for better appearance */
     border: 1px solid #ccc; /* Border */
     border-radius: 5px; /* Rounded corners */
-    color: var(--secondary-color);
+    color: white;
+    background-color: var(--primary-color);
     font-size: 18px; 
     font-weight: 400;
 }
@@ -267,20 +267,20 @@ input {
 
 .maskot-female {
     position: absolute;
-    top: 10%;
+    top: 2%;
     right: 5%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-female img {
-    max-width: 150px;
+    max-width: 180px;
     height: auto;
 }
 
 .maskot-male {
     position: absolute;
-    top: 10%;
+    top: 6%;
     left: 25%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
@@ -322,7 +322,7 @@ input {
     }
 
     .background-page {
-    background-image: url('@/assets/cod/bg-mobile.png');
+    background-image: url('@/assets/cod/backmob2.jpg');
 }
     
     .content-container {
@@ -330,7 +330,7 @@ input {
         margin: 10px;
         max-height: 80vh; /* Batasi tinggi kontainer di mobile */
         overflow-y: auto; /* Aktifkan scroll vertikal */
-        margin-top: 20px; /* Space below sponsor logos */
+        margin-top: 17%; /* Space below sponsor logos */
     }
 
     input {
@@ -365,7 +365,7 @@ input {
     }
 
     .content-container h2 {
-        font-size: 10px;
+        font-size: 0px;
     }
 
     .button-container-regis {
@@ -377,12 +377,19 @@ input {
         padding: 8px 20px;
     }
 
+    .maskot-female {
+        top: 6%;
+    }
+
+    .maskot-male {
+        top: 9%;
+    }
     .maskot-female img {
-        max-width: 0;
+        max-width: 80px;
     }
 
     .maskot-male img {
-        width: 0;
+        width: 100px;
     }
 }
 
@@ -391,10 +398,16 @@ input {
         width: 100%; /* Full width */
         border: 1px solid #ccc; /* Border */
         border-radius: 5px; /* Rounded corners */
-        color: var(--secondary-color);
+        color: white;
         font-size: 15px; 
         font-weight: 400;
         padding: 5px;
     }
+    select {
+    padding: 5px; /* Sama seperti padding untuk input */
+
+}
+
+
 }
 </style>

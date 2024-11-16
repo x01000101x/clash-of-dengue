@@ -9,24 +9,26 @@
       <div class="content-container">
           <h2>Syarat & Ketentuan</h2>
           <ul class="terms-list">
-              <li>Peserta: Terbuka untuk siswa/siswi aktif di sekolah.</li>
+              <li>Peserta: Terbuka untuk peserta undangan Clash of Dengue (sekolah/office terpilih).</li>
               <li>Waktu pendaftaran: Pendaftaran akan dibuka pada tanggal 15 November 2024 - 22 November 2024.</li>
               <li>Pendaftaran: Pendaftaran dapat dilakukan pada website CegahDBD.com.</li>
               <li>Perangkat: Peserta dapat menggunakan HP masing-masing atau dapat melalui website.</li>
-              <li>Waktu Pengerjaan: Waktu pengerjaan akan dimulai pada pukul 13.00 - 15.00 setiap hari dari tanggal 15 November 2024 sampai tanggal 23 November 2024.</li>
+              <li>Waktu Pengerjaan: Waktu pengerjaan akan dimulai pada pukul 13.00 - 15.00 setiap hari dari tanggal 23 November 2024 sampai tanggal 28 November 2024.</li>
               <li>Kontak: Jika mengalami kendala dan pertanyaan seputar ini bisa menghubungi nomor 0813 9999 7218.</li>
           </ul>
       </div>
       <div class="button-container-term">
-          <button class="accept-button" @click="handleButtonClick">
-              Register
-          </button>
+          <label class="checkbox-container">
+              <input type="checkbox" class="checkbox" @change="handleCheckboxChange" />
+              <span class="checkmark"></span>
+              <span> Kamu sudah siap untuk ikut Clash Of Dengue? <a href="https://www.takeda.com/id-id/pemberitahuan-privasi/" target="_blank">Pahami</a> misinya, kuatkan aksi nyata, dan tunjukkan bahwa kamu bisa jadi pahlawan DBD!</span>
+            </label>
       </div>
       <div class="maskot-female">
-          <img src="@/assets/cod/logo-fam5.png" alt="Maskot Perempuan" />
+          <img src="@/assets/cod/logo-family1.png" alt="Maskot Perempuan" />
       </div>
       <div class="maskot-male">
-          <img src="@/assets/cod/logo-fam4.png" alt="Maskot Laki-laki" />
+          <img src="@/assets/cod/logo-family2.png" alt="Maskot Laki-laki" />
       </div>
   </div>
 </template>
@@ -35,9 +37,13 @@
 <script>
 export default {
   name: 'TermPage',
+  computed: {
+  },
   methods: {
-    handleButtonClick() {
-          this.$router.push('/regis');
+    handleCheckboxChange(event) {
+          if (event.target.checked) {
+              this.$router.push('/regis');
+          }
       },
   },
 };
@@ -48,7 +54,7 @@ export default {
   height: 100vh;
   height: 100dvh;
   width: 100%;
-  background-image: url('@/assets/cod/bg-mobile.png');
+  background-image: url('@/assets/cod/backmob2.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -84,7 +90,7 @@ export default {
 
 .content-container {
   background-color: white;
-  border-radius: 45px;
+  border-radius: 40px;
   padding: 30px 30px;
   max-width: 90vw; /* Maintain this size */
   max-height: 60vh; /* Maintain height limit */
@@ -98,6 +104,18 @@ export default {
   z-index: 2;
 }
 
+.checkbox-container a {
+  text-decoration: underline; /* Menambahkan garis bawah pada tautan */
+  color: white; /* Menjaga warna tautan sesuai dengan tema */
+  font-weight: bold; /* Menambahkan ketebalan pada teks agar lebih terlihat */
+
+}
+
+.checkbox-container a:hover {
+  text-decoration: underline; /* Menjaga garis bawah saat hover */
+  color: var(--primary-color); /* Ubah warna tautan saat hover */
+}
+
 .content-container h2 {
   font-size: 50px;
   font-weight: 1000;
@@ -106,7 +124,7 @@ export default {
 }
 
 .terms-list {
-  font-size: 20px; /* Adjust font size for the list */
+  font-size: 15px; /* Adjust font size for the list */
   list-style-type: disc; /* Add bullets */
   margin: 0; /* Remove default margin */
   padding-left: 20px; /* Add padding for list items */
@@ -123,6 +141,61 @@ export default {
   bottom: 2%;
   z-index: 999;
 }
+
+/* Checkbox and checkmark styles */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer; /* Mengubah pointer saat hover */
+  margin-bottom: 10px; /* Jarak bawah untuk checkbox */
+  background-color: var(--secondary-color);
+  color: white;
+  font-weight: 700;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 20px;
+  font-size: 9px;
+}
+
+.checkbox {
+  display: none; /* Sembunyikan checkbox default */
+}
+
+.checkmark {
+  height: 25px; /* Tinggi checkmark */
+  width: 25px; /* Lebar checkmark */
+  background-color: #eee; /* Warna latar belakang */
+  border: 2px solid #ccc; /* Border kotak centang */
+  /* Hapus border-radius agar kotaknya menjadi kotak, bukan bundar */
+  border-radius: 0; 
+  margin-right: 10px; /* Jarak antara checkbox dan teks */
+  position: relative; /* Posisi relatif untuk centang */
+}
+
+.checkbox:checked + .checkmark {
+  background-color: var(--primary-color); /* Ganti warna saat dicentang */
+  border-color: var(--primary-color); /* Ganti warna border saat dicentang */
+}
+
+.checkmark:after {
+  content: ""; /* Membuat konten kosong */
+  display: none; /* Sembunyikan konten awal */
+  position: absolute; /* Posisi absolut untuk centang */
+  left: 8px; /* Posisikan centang sedikit lebih ke kanan */
+  top: 3px; /* Atur posisi vertikal centang */
+  width: 5px; /* Lebar centang */
+  height: 10px; /* Tinggi centang */
+  border: solid white; /* Warna centang */
+  border-width: 0 2px 2px 0; /* Menentukan tepi yang diinginkan */
+  transform: rotate(45deg); /* Memutar centang */
+}
+
+.checkbox:checked + .checkmark:after {
+  display: block; /* Tampilkan centang saat dicentang */
+}
+
 
 /* New styles for the button */
 .accept-button {
@@ -160,7 +233,7 @@ export default {
 }
 
 .maskot-male img {
-  width: 100px; 
+  width: 150px; 
   height: auto;
 }
 
@@ -183,8 +256,12 @@ export default {
       max-width: 80%;
   }
 
+  .maskot-female {
+    bottom: -1%;
+  }
+
   .maskot-female img {
-  max-width: 100px;
+  max-width: 190px;
   height: auto;
 }
 .maskot-male img {
@@ -206,6 +283,8 @@ export default {
 
   .content-container h2 {
       font-size: 30px;
+      margin-top: 13%;
+
   }
 
   .accept-button {
@@ -225,24 +304,32 @@ export default {
   height: auto;
 }
 
+.maskot-female {
+  bottom: -1%;
+}
+
 .maskot-female img {
-  max-width: 70px;
+  max-width: 120px;
   height: auto;
 }
+.maskot-male {
+  bottom: -2%;
+}
 .maskot-male img {
-  max-width: 70px;
+  max-width: 90px;
   height: auto;
 }
 
   .content-container {
       padding: 20px 30px;
-      margin-top:35%;
+      margin-top:30%;
       max-height: 50vh; /* Sesuaikan max-height dengan kondisi viewport */
       overflow-y: auto;
   }
 
   .content-container h2 {
       font-size: 30px;
+      margin-top: 10%;
   }
 
   .accept-button {

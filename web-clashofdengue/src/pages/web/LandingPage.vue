@@ -10,13 +10,13 @@
       <h2>Makna dan Tujuan</h2>
       <ul>
         <li>
-          Meningkatkan kesadaran generasi muda tentang bahaya Demam Berdarah
+          Meningkatkan kesadaran masyarakat tentang bahaya Demam Berdarah
           Dengue (DBD) dan pentingnya pencegahan dini
         </li>
         <li>
-          Melalui kompetisi yang interaktif dan menyenangkan, anak-anak
+          Melalui kompetisi yang interaktif dan menyenangkan, peserta
           diharapkan tidak hanya memahami cara-cara pencegahan DBD tetapi
-          juga menjadi agen perubahan di lingkungan sekolah dan rumah mereka
+          juga menjadi agen perubahan di lingkungan masyarakat dan rumah mereka
         </li>
       </ul>
       <div class="button-container-regis">
@@ -46,7 +46,7 @@ export default {
 <style scoped>
 .background-page {
   height: 100vh;
-  background-image: url('@/assets/cod/backweb2.jpg');
+  background-image: url('@/assets/cod/backweb2.png');
   background-size: cover;
   background-position: center;
   display: flex;

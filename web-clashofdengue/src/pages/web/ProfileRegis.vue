@@ -5,15 +5,23 @@
         </div>
         
         <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
         </div>
         
         <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-family1.png" alt="Maskot Laki-laki" />
         </div>
 
         <!-- Profile Section -->
         <div class="profile-card">
+            <div class="posisi-icon-menu">
+                <div class="icon-container">
+                    <div @click="toggleMenu" class="icon">
+                        <img src="@/assets/School.png" alt="Menu Utama Icon" class="icon-image-menu" />
+                    </div>
+                    <p>Menu</p>
+                </div>
+            </div>
             <div class="profile-picture" @click="openAvatarDialog">
                 <img :src="avatars[parseInt(userAva)]" alt="Profile"/> <!-- Use parseInt to convert the string to an integer -->
             </div>
@@ -73,12 +81,7 @@ export default {
     },
     methods: {
         openAvatarDialog() {
-            console.log("open dialog");
             this.isAvatarDialogOpen = true;
-        },
-        submitForm() {
-            // Logic for handling form submission
-            console.log(this.formData);
         },
         async updateAvatar(value) {
         try {
@@ -116,6 +119,9 @@ export default {
       },
       goToEditProfile(){
         this.$router.push('/edit');
+      },
+      toggleMenu() {
+        this.$router.push('/');
       }
     },
 };
@@ -124,7 +130,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/backweb2.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -190,6 +196,30 @@ export default {
     align-items: center;
 }
 
+.posisi-icon-menu {
+    position: fixed;
+    top: 2%;
+    left: 2%;
+}
+
+.icon {
+  background-color: var(--secondary-color);
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 30px;
+  margin-bottom: 0.5rem;
+  color: white;
+  position: relative;
+}
+.icon-container p {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
 .profile-picture img {
     width: 250px; /* Set a fixed size for profile picture */
     height: auto;
@@ -212,8 +242,8 @@ export default {
 /* Existing styles for mascots and other elements remain unchanged */
 .maskot-female {
     position: absolute;
-    bottom: -25%;
-    right: -5%;
+    bottom: -7%;
+    right: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
@@ -225,8 +255,8 @@ export default {
 
 .maskot-male {
     position: absolute;
-    bottom: -25%;
-    left: 10%;
+    bottom: -5%;
+    left: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
@@ -239,13 +269,13 @@ export default {
 /* Animasi untuk efek floating */
 @keyframes floating {
     0% {
-        transform: translate(-50%, 0); 
+        transform: translate(0, 0); 
     }
     50% {
-        transform: translate(-50%, -10px);
+        transform: translate(0, -10px);
     }
     100% {
-        transform: translate(-50%, 0);
+        transform: translate(0, 0);
     }
 }
 
@@ -279,7 +309,7 @@ export default {
 /* Media Query untuk tampilan mobile */
 @media (max-width: 768px) {
     .background-page {
-    background-image: url('@/assets/cod/bg-mobile.png');
+    background-image: url('@/assets/cod/backmob2.jpg');
 }
 
 .profile-info h2 {
@@ -321,16 +351,12 @@ export default {
     }
 
     .maskot-female {
-        bottom: -10%;
+        bottom: -4%;
         right: 0%;
-        transform: translateX(-50%);
-        animation: none;
     }
 
 .maskot-male {
-    bottom: -10%;
-    transform: translateX(-50%);
-    animation: none;
+    bottom: -3%;
 }
 
     .maskot-male img {
@@ -341,6 +367,15 @@ export default {
         width: 70vw; /* Adjust for mobile */
     }
 
+    .icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .icon-container p {
+    font-size: 7px;
+}
+    
 .edit-button {
     background-color: var(--secondary-color);
     color: white;

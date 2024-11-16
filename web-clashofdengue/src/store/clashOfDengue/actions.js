@@ -274,9 +274,13 @@ export const endGame = async ({ getters, commit }) => {
 export const getQuizBySession = async ({ getters, commit }) => {
     try {
         commit("setShowLoading", true);
+
         const res = await clashOfDengueService.questionSession({
             token: getters.getToken,
-            session: getters.getLastSession,
+            session: getters.getLastSession.id.toString(),
+            type: getters.getUserProfile.type
+                ? getters.getUserProfile.type
+                : "sekolah",
         });
         console.debug("res get quiz session", res);
 
@@ -341,16 +345,13 @@ export const getRank = async ({ getters, commit }) => {
         const sortedRanks = filteredData.sort((a, b) => {
             return parseInt(b.total_score) - parseInt(a.total_score);
         });
-        console.log("SORETED RANK", sortedRanks);
 
         const myRankIndex = sortedRanks.findIndex(
             (score) => score.score_id === String(getters.getUserId)
         );
         const myRank = myRankIndex + 1;
-        console.log("myRank", myRank);
 
         if (myRank) {
-            console.log(`Your rank: ${myRank}`);
             commit("setUserRank", myRank);
         } else {
             commit("setUserRank", 0);

@@ -121,6 +121,7 @@ export default {
     color: var(--primary-color);
     font-size: 20px;
     font-weight: 500;
+    margin: 5px 2px;
 }
 
 .timer {
@@ -141,6 +142,7 @@ export default {
 .jawaban {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .choices-start {

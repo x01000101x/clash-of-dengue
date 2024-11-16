@@ -29,7 +29,7 @@ export default {
     return {
       chartOptions: {
         labels: ['Jawaban Benar', 'Jawaban Salah'],
-        colors: ['#FFA500', '#EB008B'],
+        colors: ['#14BAB0', '#EB008B'],
         responsive: [{
           breakpoint: 480,
           options: {

@@ -92,10 +92,7 @@ export default {
       try {
           await this.$store.dispatch("ClashOfDengue/getQuizBySession");
           this.$store.commit("ClashOfDengue/resetQuiz");
-          await this.$store.dispatch("ClashOfDengue/getProfileUser");
-          console.log("this.profileUser.session_id", this.profileUser.session_id);
-          console.log("session", this.session);
-          
+          await this.$store.dispatch("ClashOfDengue/getProfileUser");          
           
           if(this.profileUser.session_id && this.profileUser.session_id === String(this.session.id)) {
             this.$store.commit("ClashOfDengue/setCreateDialog", {
@@ -111,7 +108,7 @@ export default {
             this.$router.push('/start/quiz');
           }
       } catch (error) {
-        console.log("error", error);
+        console.debug("error", error);
         return
       }
     },
@@ -139,7 +136,6 @@ export default {
               updatedAt: sessionUpdatedAt
           } : latest;
       }, { session: null, updatedAt: new Date(0) }).session;
-      console.log("Lastsession", lastSession);
       
       this.$store.commit("ClashOfDengue/setLastSession", lastSession);
     },
@@ -179,7 +175,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-mobile.png');
+    background-image: url('@/assets/cod/mob-up.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -291,7 +287,6 @@ export default {
   justify-content: center;
   border-radius: 50%;
   font-size: 30px;
-  margin-bottom: 0.5rem;
   color: white;
   position: relative;
 }
@@ -299,6 +294,10 @@ export default {
 .icon-container p {
     color: var(--primary-color);
     font-weight: 500;
+}
+
+.icon-container {
+    margin: 5px;
 }
 
 .point-rank {

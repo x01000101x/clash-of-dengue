@@ -12,13 +12,13 @@
         </div>
 
         <div class="button-start">
-            <button type="submit" class="start-button" @click="StartGame">START</button>
+            <button type="submit" class="start-button" @click="StartGame">MULAI</button>
         </div>
         <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
         </div>
         <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-family1.png" alt="Maskot Laki-laki" />
         </div>
 
         <div class="featuring-by">
@@ -49,7 +49,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/back-web-mid.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -67,12 +67,13 @@ export default {
 }
 
 .start-button {
-    background-color: var(--secondary-color);
-    color: white;
+    background-color: white;
+    color: var(--primary-color);
     font-weight: 700;
+    font-size: 30px;
     padding: 10px 60px;
     border: none;
-    border-radius: 20px;
+    border-radius: 30px;
     cursor: pointer;
 }
 
@@ -99,7 +100,7 @@ export default {
 
 .maskot-female {
     position: absolute;
-    bottom: -25%;
+    bottom: -5%;
     right: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
@@ -112,8 +113,8 @@ export default {
 
 .maskot-male {
     position: absolute;
-    bottom: -25%;
-    left: 00%;
+    bottom: -3%;
+    left: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
@@ -186,10 +187,18 @@ export default {
 /* Media Query untuk tampilan mobile */
 @media (max-width: 800px) {
 .background-page {
-    background-image: url('@/assets/cod/bg-mobile.png');
+    background-image: url('@/assets/cod/backmob2.jpg');
 }
     .sponsor-logos img {
         max-width: 50%;
+    }
+    
+    .maskot-female {
+        bottom: 2%;
+    }
+
+    .maskot-male {
+        bottom: 2%;
     }
 
     .maskot-female img {

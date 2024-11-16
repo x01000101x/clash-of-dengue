@@ -11,6 +11,9 @@
                         <p>Menu</p>
                     </div>
                 </div>
+        <div class="mosquito-logo">
+            <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
+        </div>
         <div class="content-container">
             <div class="entries-section">
                 <LeaderboardEntry
@@ -42,10 +45,10 @@
                 />
         </div>
         <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
         </div>
         <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-family1.png" alt="Maskot Laki-laki" />
         </div>
     </div>
 </template>
@@ -82,7 +85,6 @@ export default {
       },
       entries() {
           const rankData = this.getAllRank || []; // Ambil data dari computed
-          console.log("rank data", rankData);
 
           return rankData.map(user => {
               return {
@@ -132,7 +134,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/back-web-mid.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -149,7 +151,6 @@ export default {
     background-color: white;
     border-radius: 25px;
     width: 60vw;
-    max-height: auto; /* Limit height for mobile */
     overflow-y: auto; /* Enable vertical scrolling */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     color: var(--primary-color);
@@ -163,8 +164,8 @@ export default {
 
 .posisi-icon-menu {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 3%;
+    left: 3%;
 }
 
 .icon {
@@ -185,6 +186,13 @@ export default {
     font-weight: 500;
 }
 
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
 .icon-image-menu {
   width: 45px !important;
   height: auto;
@@ -197,9 +205,11 @@ export default {
 .entries-section {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two columns for larger screens */
-    gap: 10px 40px;
+    gap: 0px 15px;
     width: 100%;
-    padding: 10px
+    padding: 15px;
+    height: 100%;
+    margin-top: 2%;
 }
 
 /* Other styles remain unchanged */
@@ -215,11 +225,6 @@ export default {
 }
 
 .mosquito-logo {
-    position: absolute;
-    top: 20%;
-    left: 50%; /* Center the mosquito logo */
-    transform: translate(-50%, 0); /* Center horizontally */
-    animation: floating 3s ease-in-out infinite;
     z-index: 999;
 }
 
@@ -230,27 +235,27 @@ export default {
 
 .maskot-female {
     position: absolute;
-    bottom: -25%;
-    right: -5%;
+    bottom: -5%;
+    right: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-female img {
-    max-width: 250px;
+    max-width: 200px;
     height: auto;
 }
 
 .maskot-male {
     position: absolute;
-    bottom: -25%;
-    left: 10%;
+    bottom: -4%;
+    left: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-male img {
-    width: 350px; 
+    width: 250px; 
     height: auto;
 }
 
@@ -293,13 +298,13 @@ export default {
 /* Floating animation */
 @keyframes floating {
     0% {
-        transform: translate(-50%, 0); 
+        transform: translate(0, 0); 
     }
     50% {
-        transform: translate(-50%, -10px);
+        transform: translate(0, -10px);
     }
     100% {
-        transform: translate(-50%, 0);
+        transform: translate(0, 0);
     }
 }
 
@@ -315,9 +320,15 @@ export default {
 }
 }
 
-@media (max-height: 625px) {
+@media (max-height: 750px) {
     .entries-section {
         margin-top: 20px;
     }
+    .mosquito-logo img {
+    max-width: 120px;
+}
+.sponsor-logos img {
+    max-width: 60%
+}
 }
 </style>

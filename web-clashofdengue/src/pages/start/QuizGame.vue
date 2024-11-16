@@ -59,8 +59,6 @@ export default {
       if (selectedAnswer !== null) {
         const selectedChoice = this.currentChoices[selectedAnswer];
         const score = parseInt(this.currentQuestion.point) || 0;
-        console.log("selected Choice", selectedChoice);
-        console.log("bandingkan", this.currentQuestion[this.currentQuestion.answer]);
         
         if(selectedChoice === this.currentQuestion[this.currentQuestion.answer]){
             await this.$store.dispatch("ClashOfDengue/sendScore", {correct: true, score: score*timeLeft, question_no: isLastQuestion? 0 : this.currentQuestionIndex+1});
@@ -113,7 +111,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/back-web-mid.png');
     background-size: cover;
     background-position: center;
     display: flex;

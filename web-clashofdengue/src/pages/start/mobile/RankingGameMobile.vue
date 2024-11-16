@@ -3,6 +3,9 @@
         <div class="sponsor-logos">
             <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
         </div>
+        <div class="mosquito-logo">
+          <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
+      </div>
         <div class="posisi-icon-menu">
                     <div class="icon-container">
                         <div @click="toggleMenu" class="icon">
@@ -74,7 +77,6 @@ export default {
       },
       entries() {
           const rankData = this.getAllRank || []; // Ambil data dari computed
-          console.log("rank data", rankData);
 
           return rankData.map(user => {
               return {
@@ -124,7 +126,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-web.png');
+    background-image: url('@/assets/cod/mob-up.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -141,13 +143,12 @@ export default {
   background-color: white;
   border-radius: 25px;
   width: 60vw;
-  max-height: 80vh; /* Membatasi tinggi kontainer */
   overflow-y: auto; /* Agar konten bisa digulir ke bawah jika melebihi batas */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   color: var(--primary-color);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
   margin-top: 20px;
@@ -155,8 +156,8 @@ export default {
 
 .posisi-icon-menu {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 2%;
+    left: 2%;
 }
 
 .icon {
@@ -168,7 +169,6 @@ export default {
   justify-content: center;
   border-radius: 50%;
   font-size: 30px;
-  margin-bottom: 0.5rem;
   color: white;
   position: relative;
 }
@@ -208,16 +208,11 @@ export default {
 }
 
 .mosquito-logo {
-    position: absolute;
-    top: 20%;
-    left: 50%; /* Center the mosquito logo */
-    transform: translate(-50%, 0); /* Center horizontally */
-    animation: floating 3s ease-in-out infinite;
-    z-index: 999;
+
 }
 
 .mosquito-logo img {
-    max-width: 150px;
+    max-width: 100px;
     height: auto;
 }
 
@@ -273,13 +268,12 @@ export default {
 /* Media Query for mobile view */
 @media (max-width: 480px) {
     .entries-section {
-        gap: 10px 10px; /* Menyesuaikan jarak antar elemen */
+        gap: 0px; /* Menyesuaikan jarak antar elemen */
     }
 }
 
 @media (max-height: 625px) {
     .entries-section {
-        margin-top: 20px;
     }
 }
 

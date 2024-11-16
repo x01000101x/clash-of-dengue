@@ -4,14 +4,6 @@
             <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
         </div>
         
-        <div class="maskot-female">
-            <img src="@/assets/cod/maskot-woman.png" alt="Maskot Perempuan" />
-        </div>
-        
-        <div class="maskot-male">
-            <img src="@/assets/cod/maskot-man.png" alt="Maskot Laki-laki" />
-        </div>
-
         <!-- Profile Section -->
         <div class="profile-card">
             <div class="posisi-icon-menu">
@@ -124,12 +116,7 @@ export default {
     },
     methods: {
         openAvatarDialog() {
-            console.log("open dialog");
             this.isAvatarDialogOpen = true;
-        },
-        submitForm() {
-            // Logic for handling form submission
-            console.log(this.formData);
         },
         async updateAvatar(value) {
         try {
@@ -181,7 +168,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-mobile.png');
+    background-image: url('@/assets/cod/mob-up.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -196,14 +183,14 @@ export default {
 
 .posisi-icon-rank {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 2%;
+    right: 2%;
 }
 
 .posisi-icon-menu {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 2%;
+    left: 2%;
 }
 
 .icon {
@@ -215,7 +202,6 @@ export default {
   justify-content: center;
   border-radius: 50%;
   font-size: 30px;
-  margin-bottom: 0.5rem;
   color: white;
   position: relative;
 }
@@ -400,6 +386,7 @@ export default {
 .game-status {
     padding: 0px;
     gap: 10px;
+    margin-top: 2%
 }
 }
 
