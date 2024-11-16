@@ -3,33 +3,54 @@
         <div class="sponsor-logos">
             <img src="@/assets/cod/Sponsor-utama.png" alt="Kerjamsama Utama" />
         </div>
-        <div class="content-container">
-            <div class="poster">
-              <img src="@/assets/cod/Poster.png" alt="Gambar Poster" />
+        <div class="mosquito-logo">
+            <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
+        </div>
+        <div class="posisi-icon-rank">
+            <div class="icons">
+                <div class="icon-container">
+                    <div class="icon" @click="goToCallCenter">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <p>Contact Person</p>
+                </div>
             </div>
+        </div>
+        <div class="content-container">
+            <i class="fa-solid fa-arrow-left" @click="prevImage"></i>
+            <div class="poster">
+              <img :src="currentPoster" alt="Gambar Poster" />
+            </div>
+            <i class="fa-solid fa-arrow-right" @click="nextImage"></i>
+        </div>
+        <div class="container-countdown">
             <div class="countdown">
                 <h2>Counting the Days</h2>
                 <div class="countdown-timer">
-                    <div>
-                        <span>{{ days }}</span> Days
+                    <div class="time">
+                        <span>{{ days }}</span> 
+                        <p>Days</p>
                     </div>
-                    <div>
-                        <span>{{ hours }}</span> Hours
+                    <div class="time">
+                        <span>{{ hours }}</span>
+                        <p>Hours</p>
                     </div>
-                    <div>
-                        <span>{{ minutes }}</span> Minutes
+                    <div class="time">
+                        <span>{{ minutes }}</span> 
+                        <p>Minutes</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="button-profile">
+            <button @click="goToNewGame" class="profile-button">New Game</button>
             <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
         </div>
         <div class="maskot-female">
-            <img src="@/assets/cod/logo-fam4.png" alt="Maskot Perempuan" />
+            <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
         </div>
         <div class="maskot-male">
-            <img src="@/assets/cod/logo-fam5.png" alt="Maskot Laki-laki" />
+            <img src="@/assets/cod/logo-family1.png" alt="Maskot Laki-laki" />
         </div>
  
     </div>
@@ -43,6 +64,11 @@ export default {
             days: 0,
             hours: 0,
             minutes: 0,
+            posters: [
+                require("@/assets/cod/poster-nyamuk.png"),
+                require("@/assets/cod/Poster.png")
+            ],
+            currentIndex: 0,
         };
     },
     computed: {
@@ -52,6 +78,9 @@ export default {
         targetDate(){
             return this.$store.getters["ClashOfDengue/getCountDown"];
         },
+        currentPoster() {
+            return this.posters[this.currentIndex]; // Menampilkan gambar berdasarkan currentIndex
+        }
     },
     methods: {
         goToProfile() {
@@ -60,6 +89,9 @@ export default {
             } else {
                 this.$router.push('/regis/profile');
             }
+        },
+        goToNewGame() {
+            this.$router.push('/start');
         },
         updateCountdown() {
             const now = new Date();
@@ -74,6 +106,27 @@ export default {
                 this.hours = 0;
                 this.minutes = 0;
             }
+        },
+        nextImage() {
+            if (this.currentIndex < this.posters.length - 1) {
+                this.currentIndex++;
+            } else {
+                this.currentIndex = 0; // Jika sudah di gambar terakhir, kembali ke gambar pertama
+            }
+        },
+        // Fungsi untuk menampilkan gambar sebelumnya
+        prevImage() {
+            if (this.currentIndex > 0) {
+                this.currentIndex--;
+            } else {
+                this.currentIndex = this.posters.length - 1; // Jika sudah di gambar pertama, kembali ke gambar terakhir
+            }
+        },
+        async goToCallCenter() {
+            const message = encodeURIComponent("Halo Admin Clash Of Dengue, saya bertanya");
+            const phoneNumber = '+6281399997218';
+            const url = `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(url, '_blank');
         },
     },
     async created() {
@@ -90,7 +143,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-mobile.png');
+    background-image: url('@/assets/cod/mob-up.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -125,11 +178,51 @@ export default {
     background-color: var(--secondary-color);
     color: white;
     font-weight: 700;
-    padding: 10px 20px; /* Adjust padding for the button */
+    padding: 5px 10px; /* Adjust padding for the button */
     border: none;
     border-radius: 20px;
     cursor: pointer;
     width: 150px;
+    margin-left: 10px;
+    font-size: 10px;
+}
+
+.posisi-icon-rank {
+    position: absolute;
+    bottom: 0%;
+    z-index: 999;
+    cursor: pointer;
+}
+
+.icon {
+  background-color: var(--primary-color);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 30px;
+  color: white;
+  position: relative;
+}
+.icon-container p {
+    color: white;
+    font-weight: 500;
+    font-size: 10px;
+}
+
+.icon-container {
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container-countdown {
+    display: flex;
+    color: white;
 }
 
 .content-container {
@@ -138,11 +231,12 @@ export default {
     padding: 15px 15px;
     width: 90vw;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 20px 0; /* Menambahkan margin untuk jarak antara konten */
     color: var(--primary-color);
     display: flex;
     flex-direction: column;
     align-items: center; /* Agar elemen di dalam container terpusat */
+    flex-direction: row;
+    align-items: center;
 }
 
 .poster {
@@ -159,13 +253,30 @@ export default {
 
 .countdown {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 2px;
 }
 
 .countdown-timer {
     display: flex;
     justify-content: center;
     gap: 20px;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.time span {
+    font-size: 50px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.time p {
+    font-size: 15px;
 }
 
 .countdown-timer div {
@@ -175,7 +286,7 @@ export default {
 
 .maskot-female {
     position: absolute;
-    bottom: -10%;
+    bottom: -3%;
     right: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
@@ -188,14 +299,14 @@ export default {
 
 .maskot-male {
     position: absolute;
-    bottom: -10%;
+    bottom: -3%;
     left: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-male img {
-    width: 200px; 
+    width: 250px; 
     height: auto;
 }
 
@@ -218,39 +329,47 @@ export default {
         max-width: 80%;
     }
 
+    .maskot-female {
+        bottom: -4%;
+    }
+    .maskot-male {
+        bottom: -2%;
+    }
+
     .maskot-female img {
-        max-width: 125px;
+        max-width: 100px;
     }
 
     .maskot-male img {
-        width: 100px;
+        width: 120px;
     }
 
     .mosquito-logo img {
-        max-width: 200px;
+        max-width: 150px;
         height: auto;
     }
 }
 
 @media (max-width: 450px) {
        .mosquito-logo img {
-        max-width: 150px;
+        max-width: 70px;
         height: auto;
     }
 }
 
 @media (max-height: 750px) {
        .mosquito-logo img {
-        max-width: 150px;
+        max-width: 80px;
         height: auto;
     }
-}
+    .maskot-female img {
+        max-width: 70px;
+    }
 
-@media (max-width: 320px) {
-       .mosquito-logo img {
-        max-width: 100px;
-        height: auto;
+    .maskot-male img {
+        width: 80px;
     }
+
 }
 
 </style>
