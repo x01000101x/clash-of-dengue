@@ -7,8 +7,12 @@
             <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
         </div>
         <div class="content-container">
-            <p>Selamat kamu telah berhasil menyelesaikan tantangan</p>
-            <h2>Clash Of Dengue</h2>
+            <p>Terima kasih sudah mengikuti sesi 1 game Clash of Dengue hari ini, semoga pengalaman bermainnya seru dan bermanfaat.
+Jangan lupa ya sesi berikutnya akan berlangsung besok pukul 13.00 - 15.00 dan pastikan perangkat kamu siap dan koneksi stabil untuk bermain.
+Selalu kunjungi website www.CegahDBD.com untuk informasi terbaru seputar game dan pengumuman pemenang.
+Jika ada kendala atau pertanyaan, silakan hubungi kami di 0813 9999 7218.
+Terus semangat dan selamat bermain di sesi berikutnya. </p>
+            <!-- <h2>Clash Of Dengue</h2> -->
         </div>
         <div class="container-countdown">
             <div class="countdown">
@@ -55,21 +59,19 @@ export default {
         targetDate() {
             const now = new Date();
             const target = new Date(now);
+            
+            target.setHours(13, 0, 0, 0);
 
-            // Cek apakah waktu saat ini sudah melewati jam 15:00
-            if (now.getHours() >= 15) {
-                // Jika sudah lewat jam 15, targetkan keesokan hari jam 15:00
-                target.setDate(now.getDate() + 1); // Setel tanggal ke hari berikutnya
+           if (now > target) {
+                target.setDate(now.getDate() + 1); // Tambah 1 hari ke target
             }
 
-            // Setel jam menjadi 15:00 (3 sore) pada hari yang sudah ditentukan
-            target.setHours(15, 0, 0, 0);
             return target;
         },
     },
     methods: {
         updateCountdown() {
-            const now = new Date();
+            const now = new Date();            
             const timeDifference = this.targetDate - now;
 
             if (timeDifference > 0) {
@@ -91,7 +93,7 @@ export default {
         setInterval(this.updateCountdown, 10000);
         setTimeout(() => {
             this.$router.push({ path: '/start/count' });
-        }, 8000);
+        }, 15000);
     },
 };
 </script>
@@ -210,7 +212,7 @@ export default {
 }
 
 .content-container p {
-    font-size: 25px; /* Make the text larger */
+    font-size: 15px; /* Make the text larger */
     font-weight: bold; /* Bold text for emphasis */
 }
 
@@ -377,6 +379,12 @@ export default {
     transform: translate(-50%, 0);
     color: white;
     z-index: 2;
+}
+.content-container{
+    max-height: 25vh;
+}
+.content-container p {
+    font-size: 10px;
 }
 }
 @media (max-height: 715px) {

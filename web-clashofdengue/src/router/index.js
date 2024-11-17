@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import LandingPage from "@/pages/web/LandingPage.vue";
 import LandingPageMobile from "@/pages/mobile/LandingPageMobile.vue";
 import Registrasi from "@/pages/web/Registrasi.vue";
 import RegistSuccess from "@/pages/web/RegistSuccess.vue";
@@ -21,17 +20,23 @@ import HalamanEditFame from "@/pages/start/controllerPage/HalamanEdit.vue";
 import HalamanRanking from "@/pages/start/controllerPage/HalamanRanking.vue";
 import HalamanCountGame from "@/pages/start/controllerPage/HalamanCountGame.vue";
 import HalamanProfile from "@/pages/start/controllerPage/HalamanProfile.vue";
+import HalamanHitungRegis from "@/pages/controllerPage/HalamanHitungRegis.vue";
 
 const routes = [
     {
         path: "/",
         name: "Home",
+        component: StartGame,
+    },
+    {
+        path: "/count",
+        name: "CountDays",
         component: HalamanHitung,
     },
     {
-        path: "/landing",
-        name: "Landing",
-        component: LandingPage,
+        path: "/count/regis",
+        name: "CountDaysRegis",
+        component: HalamanHitungRegis,
     },
     {
         path: "/term",

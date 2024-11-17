@@ -25,9 +25,9 @@
                 </div>
                 <div class="button-container-regis">
                     <button class="register-button" @click="submitLogin">LOGIN</button>
-                    <p>
+                    <!-- <p>
                         Belum memiliki akun? <a @click="goToSPlash">Daftar</a>
-                    </p>
+                    </p> -->
                 </div>
             </form>
         </div>

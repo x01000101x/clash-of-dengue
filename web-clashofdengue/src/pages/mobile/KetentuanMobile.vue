@@ -8,14 +8,14 @@
       </div>
       <div class="content-container">
           <h2>Syarat & Ketentuan</h2>
-          <ul class="terms-list">
-              <li>Peserta: Terbuka untuk peserta undangan Clash of Dengue (sekolah/office terpilih).</li>
-              <li>Waktu pendaftaran: Pendaftaran akan dibuka pada tanggal 15 November 2024 - 22 November 2024.</li>
-              <li>Pendaftaran: Pendaftaran dapat dilakukan pada website CegahDBD.com.</li>
-              <li>Perangkat: Peserta dapat menggunakan HP masing-masing atau dapat melalui website.</li>
-              <li>Waktu Pengerjaan: Waktu pengerjaan akan dimulai pada pukul 13.00 - 15.00 setiap hari dari tanggal 23 November 2024 sampai tanggal 28 November 2024.</li>
-              <li>Kontak: Jika mengalami kendala dan pertanyaan seputar ini bisa menghubungi nomor 0813 9999 7218.</li>
-          </ul>
+          <ol class="terms-list">
+              <li>Kompetisi ini terbuka untuk peserta undangan Clash of Dengue dari sekolah/kantor terpilih</li>
+              <li>Pendaftaran akan dibuka mulai tanggal 15 - 22 November 2024</li>
+              <li>Peserta dapat mendaftar melalui situs website <a href="https://www.cegahdbd.com/" target="_blank">www.CegahDBD.com</a></li>
+              <li>Peserta dapat mengikuti kompetisi menggunakan ponsel/perangkat pribadi atau melalui situs website</li>
+              <li>Kompetisi akan berlangsung setiap hari pada pukul 13.00 - 15.00, dimulai tanggal 23-28 November 2024.</li>
+              <li>Jika mengalami kendala atau memiliki pertanyaan, silahkan hubungi nomor 0813 9999 7218</li>
+          </ol>
       </div>
       <div class="button-container-term">
           <label class="checkbox-container">
@@ -128,6 +128,12 @@ export default {
   list-style-type: disc; /* Add bullets */
   margin: 0; /* Remove default margin */
   padding-left: 20px; /* Add padding for list items */
+  list-style-type: decimal; 
+}
+
+.terms-list a{
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .terms-list li {

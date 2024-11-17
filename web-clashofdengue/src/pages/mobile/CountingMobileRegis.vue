@@ -6,9 +6,6 @@
         <div class="mosquito-logo">
             <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
         </div>
-        <div class="highlight-logo">
-            <img src="@/assets/cod/event-highlight.png" alt="Logo Highlight" />
-        </div>
         <div class="posisi-icon-rank">
             <div class="icons">
                 <div class="icon-container">
@@ -46,10 +43,7 @@
             </div>
         </div>
         <div class="button-profile">
-            <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
-        </div>
-        <div class="button-newgame">
-            <button @click="goToNewGame" class="profile-button">Mulai Pertandingan</button>
+            <button @click="goToRegis" class="profile-button">Daftar Sekarang</button>
         </div>
         <div class="maskot-female">
             <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
@@ -88,15 +82,8 @@ export default {
         }
     },
     methods: {
-        goToProfile() {
-            if(!this.token){
-                this.$router.push('/login');
-            } else {
-                this.$router.push('/regis/profile');
-            }
-        },
-        goToNewGame() {
-            this.$router.push('/start/login');
+        goToRegis() {
+            this.$router.push('/splash');
         },
         updateCountdown() {
             const now = new Date();
@@ -148,7 +135,7 @@ export default {
 <style scoped>
 .background-page {
     height: 100vh;
-    background-image: url('@/assets/cod/bg-count-web.png');
+    background-image: url('@/assets/cod/mob-up.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -156,14 +143,15 @@ export default {
     align-items: center;
     position: relative;
     overflow: hidden;
-    opacity: 0.9;
+    height: 100dvh;
+    width: 100%;
 }
 
 .sponsor-logos {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 20px; /* Space between logos and content */
+    margin-bottom: 20px;
 }
 
 .sponsor-logos img {
@@ -171,48 +159,49 @@ export default {
     height: auto;
 }
 
-.sponsor-logos img {
-    max-width: 70%;
+.button-profile {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 2px;
 }
 
-.mosquito-logo {
-  position: absolute;
-  top: 10%;
-  left: 75%; /* Pusatkan logo nyamuk di tengah */
-  transform: translate(-50%, -50%); /* Pusatkan secara horizontal */
-  animation: floating 3s ease-in-out infinite;
-  z-index: 999;
-}
-
-.mosquito-logo img {
-  max-width: 140px;
-  height: auto;
+.profile-button {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 700;
+    padding: 5px 10px; /* Adjust padding for the button */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 150px;
+    margin-left: 10px;
+    font-size: 10px;
 }
 
 .posisi-icon-rank {
     position: absolute;
-    top: 1%;
-    left: 1%;
+    bottom: 0%;
     z-index: 999;
     cursor: pointer;
 }
 
 .icon {
   background-color: var(--primary-color);
-  width: 70px;
-  height: 70px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   font-size: 30px;
-  margin-bottom: 0.5rem;
   color: white;
   position: relative;
 }
 .icon-container p {
     color: white;
     font-weight: 500;
+    font-size: 10px;
 }
 
 .icon-container {
@@ -223,78 +212,46 @@ export default {
     justify-content: center;
 }
 
-.button-profile {
-    position: absolute;
-    bottom: 10%;
-    left: 67%;
+.container-countdown {
     display: flex;
-    flex-direction: column;
-}
-
-.button-newgame{
-    position: absolute;
-    bottom: 10%;
-    right: 67%;
-    display: flex;
-    flex-direction: column;
-}
-
-.profile-button {
-    background-color: var(--secondary-color);
     color: white;
-    font-weight: 700;
-    padding: 10px 20px; /* Adjust padding for the button */
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    min-width: 150px;
-}
-
-.highlight-logo {
-  position: absolute;
-  top: 20%;
-  left: 23%; /* Pusatkan logo nyamuk di tengah */
-  transform: translate(-50%, -50%); /* Pusatkan secara horizontal */
-  z-index: 999;
-}
-
-.highlight-logo img {
-  max-width: 150px;
-  height: auto;
 }
 
 .content-container {
     background-color: white;
-    border-radius: 45px;
-    padding: 30px 10px;
-    max-width: 90vw;
+    border-radius: 15px;
+    padding: 15px 15px;
+    width: 90vw;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 0;
     color: var(--primary-color);
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 48%;
-    left: 50%; 
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    display: flex;
+    align-items: center; /* Agar elemen di dalam container terpusat */
     flex-direction: row;
     align-items: center;
 }
 
-.content-container i {
-    font-size: 30px;
-    margin:20px
+.poster {
+    height: auto;
+    overflow: hidden;
 }
 
-.container-countdown {
+.content-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.countdown {
+    text-align: center;
+    margin-top: 2px;
+}
+
+.countdown-timer {
     display: flex;
-    position: absolute;
-    bottom: 1%;
-    left: 50%; 
-    transform: translate(-50%, 0);
-    color: white;
+    justify-content: center;
+    gap: 20px;
 }
 
 .time {
@@ -310,31 +267,8 @@ export default {
     margin: 0px;
 }
 
-.poster {
-    width: 50vw;
-    height: auto;
-    overflow: hidden;
-}
-
-.content-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.countdown {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.countdown h2{
-    font-size: 20px;
-}
-
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+.time p {
+    font-size: 15px;
 }
 
 .countdown-timer div {
@@ -344,14 +278,14 @@ export default {
 
 .maskot-female {
     position: absolute;
-    bottom: -8%;
+    bottom: -3%;
     right: 0%;
     transform: translateX(-50%);
     animation: floating 3s ease-in-out infinite;
 }
 
 .maskot-female img {
-    max-width: 200px;
+    max-width: 250px;
     height: auto;
 }
 
@@ -381,61 +315,53 @@ export default {
     }
 }
 
-@media (max-width: 1024px) {
+/* Media Query untuk tampilan mobile */
+@media (max-width: 768px) {
     .sponsor-logos img {
-        max-width: 60%;
+        max-width: 80%;
+    }
+
+    .maskot-female {
+        bottom: -4%;
+    }
+    .maskot-male {
+        bottom: -2%;
     }
 
     .maskot-female img {
-        max-width: 200px;
+        max-width: 100px;
     }
 
     .maskot-male img {
-        width: 250px;
+        width: 120px;
     }
 
     .mosquito-logo img {
-        max-width: 100px;
-      }
-
-    .highlight-logo img {
-        max-width: 100px;
+        max-width: 150px;
         height: auto;
-    }
-    .highlight-logo {
-        top: 15%;
-    }
-    .profile-button {
-        font-size: 15px;
-        padding: 8px 8px; /* Adjust padding for the button */
-
     }
 }
 
-/* Media Query untuk tampilan mobile */
-@media (max-width: 800px) {
-    .sponsor-logos img {
-        max-width: 50%;
+@media (max-width: 450px) {
+       .mosquito-logo img {
+        max-width: 70px;
+        height: auto;
     }
+}
 
+@media (max-height: 750px) {
+       .mosquito-logo img {
+        max-width: 80px;
+        height: auto;
+    }
     .maskot-female img {
-        max-width: 100px;
+        max-width: 70px;
     }
 
     .maskot-male img {
-        width: 150px;
+        width: 80px;
     }
-    .mosquito-logo {
-        top: 25%;
-      }
-      .highlight-logo {
-        top: 30%;
-    }
+
 }
 
-@media (max-height:750px) {
-    .content-container {
-        top: 45%;
-    }
-}
 </style>

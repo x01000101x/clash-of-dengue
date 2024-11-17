@@ -25,9 +25,9 @@
                 </div>
                 <div class="button-container-regis">
                     <button class="register-button" @click="submitLogin">LOGIN</button>
-                    <p>
+                    <!-- <p>
                         Belum memiliki akun? <a @click="goToSPlash">Daftar</a>
-                    </p>
+                    </p> -->
                 </div>
             </form>
         </div>
@@ -76,7 +76,7 @@ export default {
             };
             try {
                 await this.$store.dispatch("ClashOfDengue/loginUser", userData);
-                this.$router.push('/');
+                this.$router.push('/count');
             } catch (error) {
                 console.error('Login error:', error.message);
                 this.$store.commit("ClashOfDengue/setCreateDialog", {

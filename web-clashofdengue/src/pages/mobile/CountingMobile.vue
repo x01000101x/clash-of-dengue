@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="button-profile">
-            <button @click="goToNewGame" class="profile-button">New Game</button>
+            <button @click="goToNewGame" class="profile-button">Mulai Pertandingan</button>
             <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
         </div>
         <div class="maskot-female">

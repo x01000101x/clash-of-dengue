@@ -6,9 +6,20 @@
         <div class="mosquito-logo">
             <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
         </div>
-
+        <div class="posisi-icon-rank">
+            <div class="icons">
+                <div class="icon-container">
+                    <div class="icon" @click="goToCallCenter">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <p>Contact Person</p>
+                </div>
+            </div>
+        </div>
         <div class="welcome-text">
-            <img src="@/assets/cod/welcome-text.png" alt="Welcome text" />
+            <span class="text">Selamat Datang dalam Permainan
+            <span class="cod"> Clash of Dengue </span> 
+            Terima kasih telah berpartisipasi menjadi bagian dari Indonesia Bebas Kematian Akibat DBD 2030</span>
         </div>
 
         <div class="button-start">
@@ -38,10 +49,17 @@ export default {
     },
     methods: {
         StartGame(){
-            this.$router.push('/start/login');
-        }
+            this.$router.push('/count/regis');
+        },
+        async goToCallCenter() {
+            const message = encodeURIComponent("Halo Admin Clash Of Dengue, saya bertanya");
+            const phoneNumber = '+6281399997218';
+            const url = `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(url, '_blank');
+        },
     },
     mounted() {
+        this.$store.commit("ClashOfDengue/resetStore")
     },
 };
 </script>
@@ -126,6 +144,53 @@ export default {
 
 .welcome-text{
     max-width: 75vw;
+    display: flex;
+    flex-direction: row;
+}
+.text{
+    font-size: 35px;
+    color: var(--secondary-color);
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    -webkit-text-stroke: 1px white;
+}
+
+.cod {
+    font-size: 55px;
+}
+
+.posisi-icon-rank {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    z-index: 999;
+    cursor: pointer;
+}
+
+.icon {
+  background-color: var(--primary-color);
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 30px;
+  margin-bottom: 0.5rem;
+  color: white;
+  position: relative;
+}
+.icon-container p {
+    color: white;
+    font-weight: 500;
+}
+
+.icon-container {
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .featuring-by {
@@ -219,7 +284,28 @@ export default {
         width: auto;
     }
     .mosquito-logo img {
-        max-width: 300px;
+        max-width: 150px;
       }
+
+      .text{
+    font-size: 18px;
+    -webkit-text-stroke: 0.8px white;
+}
+
+.start-button {
+    font-size: 15px;
+}
+
+.cod {
+    font-size: 35px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+.icon-container p {
+    font-size: 10px;
+}
 }
 </style>

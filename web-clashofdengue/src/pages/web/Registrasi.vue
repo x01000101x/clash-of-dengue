@@ -18,7 +18,7 @@
                     <!-- Gantikan radio button dengan select dropdown -->
                     <select v-model="formData.institutionType" id="institutionType" required>
                         <option value="" disabled>Pilih Institusi</option>
-                        <option value="school">Sekolah</option>
+                        <option value="school">Sekolah Dasar</option>
                         <option value="company">Perusahaan</option>
                     </select>
                 </div>
@@ -81,7 +81,8 @@ export default {
                 "Namira International Islamic School",
                 "Darma Bangsa Medan",
                 "High Scope School Medan",
-                "Chandra Kumala School"
+                "Chandra Kumala School",
+                "Al-Azhar Model"
             ],
             companies: [
                 "Bank Permata",

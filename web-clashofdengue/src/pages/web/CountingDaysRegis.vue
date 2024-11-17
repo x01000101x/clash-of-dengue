@@ -45,11 +45,8 @@
                 </div>
             </div>
         </div>
-        <div class="button-profile">
-            <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
-        </div>
         <div class="button-newgame">
-            <button @click="goToNewGame" class="profile-button">Mulai Pertandingan</button>
+            <button @click="goToRegis" class="profile-button">Daftar Sekarang</button>
         </div>
         <div class="maskot-female">
             <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
@@ -88,15 +85,8 @@ export default {
         }
     },
     methods: {
-        goToProfile() {
-            if(!this.token){
-                this.$router.push('/login');
-            } else {
-                this.$router.push('/regis/profile');
-            }
-        },
-        goToNewGame() {
-            this.$router.push('/start/login');
+        goToRegis(){
+            this.$router.push('/splash');
         },
         updateCountdown() {
             const now = new Date();
@@ -247,7 +237,7 @@ export default {
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    min-width: 150px;
+    width: 150px;
 }
 
 .highlight-logo {

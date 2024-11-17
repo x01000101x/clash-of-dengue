@@ -39,7 +39,7 @@
         this.$router.push('/login'); 
       },
       backToLogin(){
-        this.$router.push('/'); 
+        this.$router.push('/login'); 
       }
     },
   };

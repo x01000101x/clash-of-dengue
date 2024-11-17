@@ -11,7 +11,7 @@
             <h2>Indonesia Bebas Kematian Akibat DBD Tahun 2030</h2>
         </div>
         <div class="content-container-date">
-            <p>Tanggal Periode pertandingan: 23 - 28 November 2024</p>
+            <p>Tanggal Periode pertandingan: 23 - 28 November 2024 Pukul 13.00 – 15.00 WIB</p>
         </div>
         <div class="maskot-female">
             <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
@@ -33,7 +33,7 @@ export default {
     },
     mounted() {
         setTimeout(() => {
-            this.$router.push({ path: '/' });
+            this.$router.push({ path: '/count' });
         }, 8000);
     },
 };
