@@ -6,7 +6,7 @@
         <div class="content-container">
             <form @submit.prevent="submitForm" class="registration-form">
                 <div class="form-group">
-                    <label for="name">Nama</label>
+                    <label for="name">Nama Lengkap</label>
                     <input type="text" id="name" v-model="formData.name" placeholder="Nama" @input="toUpperCase('name')" required autocomplete="off"/>
                 </div>
                 <div class="form-group">

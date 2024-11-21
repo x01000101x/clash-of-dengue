@@ -42,11 +42,15 @@
                   :ava="userAva? userAva : '0'"
                 />
         </div>
+            <!-- <div>
+        <button class="button-share" @click="captureAndShare">Share on IG</button>
+    </div> -->
     </div>
 </template>
 
 <script>
 import LeaderboardEntry from '@/components/LeaderBoardItem.vue';
+import html2canvas from "html2canvas";
 
 export default {
   name: 'LeaderboardPage',
@@ -103,6 +107,31 @@ export default {
       },
   },
   methods: {
+    captureAndShare() {
+      const elementToCapture = document.body; // Anda bisa mengubahnya menjadi elemen spesifik yang ingin di-capture
+
+      html2canvas(elementToCapture).then(canvas => {
+        // Mengonversi screenshot menjadi URL gambar
+        const imageUrl = canvas.toDataURL("image/png");
+
+        // Menyediakan opsi untuk mengunduh gambar
+        this.downloadImage(imageUrl);
+
+        // Arahkan pengguna ke Instagram untuk mengunggah gambar secara manual
+        this.openInstagram(imageUrl);
+      });
+    },
+
+        // Metode untuk mengunduh gambar
+        downloadImage(imageUrl) {
+      const link = document.createElement("a");
+      link.href = imageUrl;
+      link.download = "screenshot.png"; // Nama file untuk diunduh
+      link.click();
+    },
+    openInstagram() {
+     window.open('https://www.instagram.com/', '_blank');
+    },
       backToMenu() {
           this.$router.push('/'); 
       },
@@ -152,6 +181,17 @@ export default {
   align-items: center;
   text-align: center;
   margin-top: 20px;
+}
+
+.button-share {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 5%;
 }
 
 .posisi-icon-menu {

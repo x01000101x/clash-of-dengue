@@ -289,7 +289,6 @@ height: auto;
 .featuring-by {
 position: absolute;
 bottom: 0%;
-left: auto;
 z-index: 2;
 }
 

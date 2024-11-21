@@ -253,7 +253,7 @@ cursor: pointer;
 position: absolute;
 bottom: -4%;
 right: 0%;
-z-index: 999;
+z-index: 2;
 }
 
 .maskot-female img {
@@ -288,8 +288,7 @@ height: auto;
 .featuring-by {
 position: absolute;
 bottom: 0%;
-left: auto;
-z-index: 2;
+z-index: 99;
 }
 
 .featuring-by img {

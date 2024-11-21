@@ -45,9 +45,9 @@
                 </div>
             </div>
         </div>
-        <div class="button-profile">
+        <!-- <div class="button-profile">
             <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
-        </div>
+        </div> -->
         <div class="button-newgame">
             <button @click="goToNewGame" class="profile-button">Mulai Pertandingan</button>
         </div>

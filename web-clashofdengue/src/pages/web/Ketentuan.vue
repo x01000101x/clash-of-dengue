@@ -10,7 +10,7 @@
           <h2>Syarat dan Ketentuan</h2>
           <ol class="terms-list">
             <li>Kompetisi ini terbuka untuk peserta undangan Clash of Dengue dari sekolah/kantor terpilih</li>
-              <li>Pendaftaran akan dibuka mulai tanggal 15 - 22 November 2024</li>
+              <li>Pendaftaran akan dibuka mulai tanggal 18 - 22 November 2024</li>
               <li>Peserta dapat mendaftar melalui situs website <a href="https://www.cegahdbd.com/" target="_blank">www.CegahDBD.com</a></li>
               <li>Peserta dapat mengikuti kompetisi menggunakan ponsel/perangkat pribadi atau melalui situs website</li>
               <li>Kompetisi akan berlangsung setiap hari pada pukul 13.00 - 15.00, dimulai tanggal 23-28 November 2024.</li>
@@ -95,7 +95,7 @@ export default {
   font-size: 50px;
   font-weight: 1000;
   margin-bottom: 20px;
-  text-align: center;
+  text-align: left;
 }
 
 .button-container-term {

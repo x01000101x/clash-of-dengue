@@ -274,7 +274,11 @@ export const endGame = async ({ getters, commit }) => {
 export const getQuizBySession = async ({ getters, commit }) => {
     try {
         commit("setShowLoading", true);
-
+        if (!getters.getLastSession.id) {
+            throw new Error(
+                "Mohon maaf sesi pertandingan belum dimulai, silahkan datang kembali pada tanggal 23 November 2024 pukul 13.00 - 15.00 WIB"
+            );
+        }
         const res = await clashOfDengueService.questionSession({
             token: getters.getToken,
             session: getters.getLastSession.id.toString(),

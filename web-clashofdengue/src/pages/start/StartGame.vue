@@ -16,6 +16,9 @@
                 </div>
             </div>
         </div>
+        <div class="posisi-icon-code">
+            <span>C-ANPROM/ID/QDE/0693 | Nov 2024</span>
+        </div>
         <div class="welcome-text">
             <span class="text">Selamat Datang dalam Permainan
             <span class="cod"> Clash of Dengue </span> 
@@ -148,7 +151,7 @@ export default {
     flex-direction: row;
 }
 .text{
-    font-size: 35px;
+    font-size: 30px;
     color: var(--secondary-color);
     font-family: 'Arial Black', sans-serif;
     font-weight: 900;
@@ -165,6 +168,17 @@ export default {
     left: 1%;
     z-index: 999;
     cursor: pointer;
+}
+
+.posisi-icon-code {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    z-index: 999;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 15px;
 }
 
 .icon {
@@ -306,6 +320,12 @@ export default {
 }
 .icon-container p {
     font-size: 10px;
+}
+
+.posisi-icon-code {
+    padding: 2px;
+    border-radius: 8px;
+    font-size: 4px;
 }
 }
 </style>

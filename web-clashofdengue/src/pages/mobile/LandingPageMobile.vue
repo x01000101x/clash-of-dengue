@@ -7,7 +7,7 @@
       <img src="@/assets/cod/logo-border.png" alt="Logo Nyamuk" />
     </div>
     <div class="content-container">
-      <h2>Makna dan Tujuan</h2>
+      <h2>Esensi Permainan</h2>
       <ul>
         <li>
           Meningkatkan kesadaran masyarakat tentang bahaya Demam Berdarah

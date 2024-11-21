@@ -44,7 +44,7 @@
         </div>
         <div class="button-profile">
             <button @click="goToNewGame" class="profile-button">Mulai Pertandingan</button>
-            <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button>
+            <!-- <button @click="goToProfile" class="profile-button">{{token? "Lihat Profile": "Login"}}</button> -->
         </div>
         <div class="maskot-female">
             <img src="@/assets/cod/logo-family2.png" alt="Maskot Perempuan" />
@@ -91,7 +91,7 @@ export default {
             }
         },
         goToNewGame() {
-            this.$router.push('/start');
+            this.$router.push('/start/login');
         },
         updateCountdown() {
             const now = new Date();
