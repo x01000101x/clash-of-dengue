@@ -106,6 +106,9 @@ export default {
           return this.$store.getters["ClashOfDengue/getAllRank"];
       },
   },
+  async mounted(){
+    await this.$store.dispatch("ClashOfDengue/getRank");
+  },
   methods: {
     captureAndShare() {
       const elementToCapture = document.body; // Anda bisa mengubahnya menjadi elemen spesifik yang ingin di-capture

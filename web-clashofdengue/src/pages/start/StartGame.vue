@@ -52,7 +52,7 @@ export default {
     },
     methods: {
         StartGame(){
-            this.$router.push('/count/regis');
+            this.$router.push('/start/login');
         },
         async goToCallCenter() {
             const message = encodeURIComponent("Halo Admin Clash Of Dengue, saya bertanya");

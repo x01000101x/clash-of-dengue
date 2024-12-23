@@ -162,6 +162,8 @@ export default {
 
 .jawaban {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .choices-start {

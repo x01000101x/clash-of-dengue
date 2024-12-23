@@ -8,7 +8,7 @@
         </div>
         <div class="content-container">
             <p>Terima kasih sudah mengikuti sesi 1 game Clash of Dengue hari ini, semoga pengalaman bermainnya seru dan bermanfaat.
-Jangan lupa ya sesi berikutnya akan berlangsung besok pukul 13.00 - 15.00 dan pastikan perangkat kamu siap dan koneksi stabil untuk bermain.
+Jangan lupa ya sesi berikutnya akan berlangsung besok pukul 13.00 - 21.00 dan pastikan perangkat kamu siap dan koneksi stabil untuk bermain.
 Selalu kunjungi website www.CegahDBD.com untuk informasi terbaru seputar game dan pengumuman pemenang.
 Jika ada kendala atau pertanyaan, silakan hubungi kami di 0813 9999 7218.
 Terus semangat dan selamat bermain di sesi berikutnya. </p>

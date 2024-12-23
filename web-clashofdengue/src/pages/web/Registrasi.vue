@@ -93,7 +93,8 @@ export default {
                 "Purnama Suryani Panjaitan",
                 "Juncai",
                 "PT Galileo Indonesia Perdana",
-                "Hive Five"
+                "Hive Five",
+                "Umum"
             ]
         };
     },

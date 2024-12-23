@@ -100,7 +100,6 @@ export default {
           this.$store.commit("ClashOfDengue/resetQuiz");
           await this.$store.dispatch("ClashOfDengue/getProfileUser");
           
-          
           if(this.profileUser.session_id && this.profileUser.session_id === String(this.session.id)) {
             this.$store.commit("ClashOfDengue/setCreateDialog", {
             show: true,
@@ -112,6 +111,10 @@ export default {
                 let questionNo = parseInt(this.scoreUser.question_no, 10);
                 this.$store.commit("ClashOfDengue/setCurrentQuiz",  questionNo);
             }
+            // const sesiUser = this.profileUser.session_id  && !isNaN(parseInt(this.profileUser.session_id)) ? parseInt(this.profileUser.session_id) : 0 
+            // if(sesiUser + 1 < this.session.id) {
+            //     this.$store.commit("ClashOfDengue/setCurrentQuiz",  0);
+            // }
             this.$router.push('/start/quiz');
           }
       } catch (error) {
@@ -132,18 +135,12 @@ export default {
     },
     checkSession() {
       const activeSessions = this.getActiveSession(this.sessions);
+    console.debug("active session", activeSessions);
     
       if (activeSessions.length === 0) {
         return null; // Tidak ada sesi aktif
-      }
-      const lastSession = this.sessions && this.sessions.reduce((latest, session) => {
-          const sessionUpdatedAt = new Date(session.updated_at);
-          return sessionUpdatedAt > latest.updatedAt ? {
-              session,
-              updatedAt: sessionUpdatedAt
-          } : latest;
-      }, { session: null, updatedAt: new Date(0) }).session;      
-      this.$store.commit("ClashOfDengue/setLastSession", lastSession);
+      }           
+      this.$store.commit("ClashOfDengue/setLastSession", activeSessions[0]);
     },
     async logOut() {
         try {

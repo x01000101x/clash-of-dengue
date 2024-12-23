@@ -36,10 +36,10 @@
         const phoneNumber = '+6281399997218';
         const url = `https://wa.me/${phoneNumber}?text=${message}`;
         window.open(url, '_blank');
-        this.$router.push('/login'); 
+        this.$router.push('/start/login'); 
       },
       backToLogin(){
-        this.$router.push('/login'); 
+        this.$router.push('/start/login'); 
       }
     },
   };

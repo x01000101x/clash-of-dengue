@@ -110,6 +110,9 @@ export default {
           return this.$store.getters["ClashOfDengue/getAllRank"];
       },
   },
+  async mounted(){
+    await this.$store.dispatch("ClashOfDengue/getRank");
+  },
   methods: {
       backToMenu() {
           this.$router.push('/'); 

@@ -223,6 +223,8 @@ export const updateUser = async ({ getters, commit }, request) => {
 export const getSession = async ({ getters, commit }) => {
     try {
         commit("setShowLoading", true);
+        commit("setLastSession", {});
+
         const res = await clashOfDengueService.getSession({
             token: getters.getToken,
         });
@@ -274,11 +276,29 @@ export const endGame = async ({ getters, commit }) => {
 export const getQuizBySession = async ({ getters, commit }) => {
     try {
         commit("setShowLoading", true);
-        if (!getters.getLastSession.id) {
+        const lastSession = getters.getLastSession;
+
+        // Cek apakah sesi ada
+        if (!lastSession.id) {
+            throw new Error("Mohon maaf sesi pertandingan belum dimulai");
+        }
+
+        // Cek apakah waktu sesi valid
+        const now = new Date();
+        const sessionStart = new Date(lastSession.dateFrom);
+        const sessionEnd = new Date(lastSession.dateTo);
+        if (now < sessionStart) {
             throw new Error(
-                "Mohon maaf sesi pertandingan belum dimulai, silahkan datang kembali pada tanggal 23 November 2024 pukul 13.00 - 15.00 WIB"
+                `Sesi belum dimulai. Harap kembali pada ${sessionStart.toLocaleString()}`
             );
         }
+
+        if (now > sessionEnd) {
+            throw new Error(
+                `Sesi telah berakhir pada ${sessionEnd.toLocaleString()}`
+            );
+        }
+
         const res = await clashOfDengueService.questionSession({
             token: getters.getToken,
             session: getters.getLastSession.id.toString(),
@@ -336,8 +356,11 @@ export const getAllUser = async ({ getters, commit }) => {
 export const getRank = async ({ getters, commit }) => {
     try {
         commit("setShowLoading", true);
-        const res = await clashOfDengueService.getRank({
+        const res = await clashOfDengueService.getRankByType({
             token: getters.getToken,
+            type: getters.getUserProfile.type
+                ? getters.getUserProfile.type
+                : "sekolah",
         });
         console.debug("res Rank", res);
 

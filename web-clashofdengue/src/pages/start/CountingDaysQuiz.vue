@@ -70,15 +70,13 @@ export default {
         targetDate() {
             const now = new Date();
             const target = new Date(now);
+            
+            target.setHours(13, 0, 0, 0);
 
-            // Cek apakah waktu saat ini sudah melewati jam 15:00
-            if (now.getHours() >= 15) {
-                // Jika sudah lewat jam 15, targetkan keesokan hari jam 15:00
-                target.setDate(now.getDate() + 1); // Setel tanggal ke hari berikutnya
+           if (now > target) {
+                target.setDate(now.getDate() + 1); // Tambah 1 hari ke target
             }
 
-            // Setel jam menjadi 15:00 (3 sore) pada hari yang sudah ditentukan
-            target.setHours(15, 0, 0, 0);
             return target;
         },
         currentPoster() {

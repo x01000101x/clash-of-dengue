@@ -336,6 +336,32 @@ export default {
         }
     },
 
+    async getRankByType(request) {
+        const func = "Get Rank By Tpe";
+        const endpoint = url + "/getRankByType";
+        const bodyRequest = {
+            type: request.type,
+        };
+        const token = request.token;
+        try {
+            console.debug(func, bodyRequest);
+            const response = await axios.post(endpoint, bodyRequest, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response) {
+                throw new Error(
+                    error.response.data.message || "Something went wrong"
+                );
+            } else {
+                throw new Error("Network error: " + error.message);
+            }
+        }
+    },
     async getCountdown(request) {
         const func = "Get Count Down";
         const endpoint = url + "/count-down";

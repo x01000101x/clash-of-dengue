@@ -85,7 +85,7 @@ export default {
             icon: "fa-solid fa-circle-exclamation",
           });
         }
-        this.$router.push('/start/finish');
+          this.$router.push('/start/rank');
       }
     },
     resetTimer() {

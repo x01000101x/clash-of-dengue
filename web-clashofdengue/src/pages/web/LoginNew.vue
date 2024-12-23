@@ -76,7 +76,7 @@ export default {
             };
             try {
                 await this.$store.dispatch("ClashOfDengue/loginUser", userData);
-                this.$router.push('/count');
+                this.$router.push('/start/dashboard');
             } catch (error) {
                 console.error('Login error:', error.message);
                 this.$store.commit("ClashOfDengue/setCreateDialog", {
